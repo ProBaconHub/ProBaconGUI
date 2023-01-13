@@ -1,0 +1,172 @@
+--Start Up
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base"))()
+local Window = Library.CreateLib("Pro Bacon Hub", "Midnight")
+--Midnight
+--Ocean
+--BloodTheme
+
+--Local Player Tab
+local LocalPlayerTab = Window:NewTab("Local Player")
+local PlayerStuffSection = LocalPlayerTab:NewSection("Local player stuff")
+local PlayerStuffFlySection = LocalPlayerTab:NewSection("Fly")
+
+PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
+end)
+
+PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 200, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
+end)
+
+PlayerStuffSection:NewToggle("No Clip", "Turn no clip on and off", function(state)
+    if state then
+        
+    else
+        
+    end
+end)
+
+PlayerStuffFlySection:NewLabel("Looks like little dumb Pro Bacon don't know how to make fly~")
+PlayerStuffFlySection:NewLabel("Anyone can help me?")
+PlayerStuffFlySection:NewLabel("No? Ok well... Fine... Fine...")
+PlayerStuffFlySection:NewButton("LOL", "Laugh at Pro Bacon", function()
+    game.Players.LocalPlayer:Kick("You got banned \r reason: Anti cheat detected API or web direct. If you beleave this is a mistick, contect the creator of this game.")
+    wait(7.5)
+    game.Players.LocalPlayer:Kick("Pro Bacon \r LOL you though its real? \r Now who's the dummy~")
+end)
+
+--Tool Tab
+local ToolTab = Window:NewTab("Tool")
+local ToolSection = ToolTab:NewSection("Tool")
+local CheckToolSection = ToolTab:NewSection("Check Tool")
+local player = game.Players.LocalPlayer
+
+ToolSection:NewButton("TP Tool", "This tool can TP you to where you click \r Info: Click to TP \r WOW finally a useful script by Pro Bacon!", function()
+	local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+local Tool = Instance.new("Tool")
+
+Tool.RequiresHandle = false
+Tool.Name = "TPTool"
+
+Tool.Activated:Connect(function()
+    local Root = Player.Character.HumanoidRootPart
+    local Pos = Mouse.Hit.Position+Vector3.new(0,2.5,0)
+    local Offset = Pos-Root.Position
+    Root.CFrame = Root.CFrame+Offset
+end)
+
+Tool.Parent = Player.Backpack
+end)
+ToolSection:NewTextBox("Delete Tool", "Enter the tool name here", function(txt)
+    local player = game.Players.LocalPlayer
+    local ToolDelName = txt
+    for i, player in pairs(game.Players:GetChildren()) do
+    	for i, backpack in pairs(player:GetChildren()) do
+	        if backpack.Name == "Backpack" then
+	            for i, v in pairs(backpack:GetChildren()) do
+			    	if v.Name == ToolDelName then
+				    	print("Deleting", v)
+					    v:Destroy()
+				    end
+	            end
+	        end
+	    end
+    end
+end)
+ToolSection:NewButton("Delete holding tool", "Delete the yool you are holding.", function()
+    if player.Character:FindFirstChildOfClass("Tool") then
+        player.Character:FindFirstChildOfClass("Tool"):Destroy()
+    end
+end)
+
+CheckToolSection:NewButton("Check Tool", "Print and notifi all tools.", function()
+    for i, player in pairs(game.Players:GetChildren()) do -- players
+        for i, backpack in pairs(player:GetChildren()) do
+            if backpack.Name == "Backpack" then -- backpacks
+                for i, v in pairs(backpack:GetChildren()) do -- stuff in backpacks
+                    print(v)
+                end
+            end
+        end
+    end
+end)
+
+--Hubs Tab
+local ScriptTab = Window:NewTab("Scripts")
+local AdminSection = ScriptTab:NewSection("Admin")
+
+AdminSection:NewButton("CMD-X", "Load CMD-X Admin \r Info: Fake admin", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+end)
+
+local HubSection = ScriptTab:NewSection("Hub")
+
+HubSection:NewButton("V.G Hub", "Load V.G Hub \r Info: 60+ games \r WARN: Not suggested for mobile, size are too big", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub"))()
+end)
+
+HubSection:NewButton("Proxmia Hub", "Load Proxmia Hub \r Info: 5+ games", function()
+    loadstring(game:HttpGet("URL HERE"))()
+end)
+
+HubSection:NewButton("Eclipse Hub", "Load Eclipse Hub \r Info: 10+ games", function()
+    loadstring(game:HttpGet("URL HERE"))()
+end)
+
+HubSection:NewLabel("More comming soon!")
+
+--Others
+
+local OtherTab = Window:NewTab("Others")
+local OtherSection = OtherTab:NewSection("Others")
+
+OtherSection:NewButton("Get Position", "Print and notifi your position.", function()
+    print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+    game.StarterGui:SetCore("SendNotification", {
+        Icon = " ",
+         Title = "Pro Bacon",
+         Text = "Your position: \r", game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+    })
+end)
+
+--Pro Bacon Tab
+
+local ProBaconTab = Window:NewTab("Pro Bacon Hub")
+local GameSection = ProBaconTab:NewSection("Games")
+
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2"}, function(currentOption)
+    AddTab(currentOption)
+end)
+
+--Function
+function AddTab(Tab)
+    if Tab == "Adopt Me!" then
+        local AdoptMeTab = Window:NewTab("Adopt Me!")
+        local AdoptMeFarmSection = AdoptMeTab:NewSection("Auto Farm")
+        local PetSection = AdoptMeTab:NewSection("Pet")
+
+        AdoptMeFarmSection:NewLabel("Baby autofarm WIP")
+        PetSection:NewLabel("Neon pet WIP")
+	elseif Tab == "Build a Boat" then
+        local BuildaBoatTab = Window:NewTab("Build a Boat")
+        local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
+        local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
+        
+        BABFTFarmSection:NewLabel("Gold autofarm WIP")
+        BABFTFarmSection:NewLabel("Gold block autofarm WIP")
+    elseif Tab == "Mad City CH2" then
+        local MadCityTab = Window:NewTab("Mad City")
+        local MadAutoSection = MadCityTab:NewSection("Auto")
+
+        MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
+            if currentOption == "Escape" then
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison"))()
+            elseif currentOption == "Escape + Back to base" then
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20base"))()
+            elseif currentOption == "Escape + Go to pear shop" then
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop"))()
+            end
+        end)
+	end
+end
