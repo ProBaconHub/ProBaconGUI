@@ -1,5 +1,5 @@
 --Start Up
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Midnight")
 --Midnight
 --Ocean
@@ -161,12 +161,12 @@ function AddTab(Tab)
 
         MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
             if currentOption == "Escape" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison"))()
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true))()
             elseif currentOption == "Escape + Back to base" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20base"))()
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20base", true))()
             elseif currentOption == "Escape + Go to pear shop" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop"))()
+                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true))()
             end
         end)
-	end
+    end
 end
