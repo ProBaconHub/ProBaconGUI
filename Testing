@@ -18,6 +18,14 @@ PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
 end)
 
+PlayerStuffSection:NewToggle("INF Jump", "Jump more than once", function(state)
+    if state then
+        _G.INFJumpEnable = true
+    else
+        _G.INFJumpEnable = false
+    end
+end)
+
 PlayerStuffSection:NewToggle("No Clip", "Turn no clip on and off", function(state)
     if state then
         
@@ -42,7 +50,7 @@ local CheckToolSection = ToolTab:NewSection("Check Tool")
 local player = game.Players.LocalPlayer
 
 ToolSection:NewButton("TP Tool", "This tool can TP you to where you click \r Info: Click to TP \r WOW finally a useful script by Pro Bacon!", function()
-	local Player = game:GetService("Players").LocalPlayer
+    local Player = game:GetService("Players").LocalPlayer
 local Mouse = Player:GetMouse()
 local Tool = Instance.new("Tool")
 
@@ -62,16 +70,16 @@ ToolSection:NewTextBox("Delete Tool", "Enter the tool name here", function(txt)
     local player = game.Players.LocalPlayer
     local ToolDelName = txt
     for i, player in pairs(game.Players:GetChildren()) do
-    	for i, backpack in pairs(player:GetChildren()) do
-	        if backpack.Name == "Backpack" then
-	            for i, v in pairs(backpack:GetChildren()) do
-			    	if v.Name == ToolDelName then
-				    	print("Deleting", v)
-					    v:Destroy()
-				    end
-	            end
-	        end
-	    end
+        for i, backpack in pairs(player:GetChildren()) do
+            if backpack.Name == "Backpack" then
+                for i, v in pairs(backpack:GetChildren()) do
+                    if v.Name == ToolDelName then
+                        print("Deleting", v)
+                        v:Destroy()
+                    end
+                end
+            end
+        end
     end
 end)
 ToolSection:NewButton("Delete holding tool", "Delete the yool you are holding.", function()
@@ -148,7 +156,7 @@ function AddTab(Tab)
 
         AdoptMeFarmSection:NewLabel("Baby autofarm WIP")
         PetSection:NewLabel("Neon pet WIP")
-	elseif Tab == "Build a Boat" then
+    elseif Tab == "Build a Boat" then
         local BuildaBoatTab = Window:NewTab("Build a Boat")
         local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
         local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
@@ -168,5 +176,20 @@ function AddTab(Tab)
                 loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true))()
             end
         end)
+    end
+end
+
+
+--Functions
+
+local UserInputService = game:GetService("UserInputService")
+ 
+local function onInputBegan(input)
+    if input.UserInputType == Enum.UserInputType.Space then
+        if _G.INFJumpEnable == true then
+            LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Seated")
+            wait()
+            LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Jumping")
+        end
     end
 end
