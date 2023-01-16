@@ -150,6 +150,7 @@ end)
 --Function
 function AddTab(Tab)
     if Tab == "Adopt Me!" then
+        --Adopt
         local AdoptMeTab = Window:NewTab("Adopt Me!")
         local AdoptMeFarmSection = AdoptMeTab:NewSection("Auto Farm")
         local PetSection = AdoptMeTab:NewSection("Pet")
@@ -157,6 +158,7 @@ function AddTab(Tab)
         AdoptMeFarmSection:NewLabel("Baby autofarm WIP")
         PetSection:NewLabel("Neon pet WIP")
     elseif Tab == "Build a Boat" then
+        --Build
         local BuildaBoatTab = Window:NewTab("Build a Boat")
         local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
         local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
@@ -164,6 +166,7 @@ function AddTab(Tab)
         BABFTFarmSection:NewLabel("Gold autofarm WIP")
         BABFTFarmSection:NewLabel("Gold block autofarm WIP")
     elseif Tab == "Mad City CH2" then
+        --Mad
         local MadCityTab = Window:NewTab("Mad City")
         local MadAutoSection = MadCityTab:NewSection("Auto")
 
@@ -183,13 +186,15 @@ end
 --Functions
 
 local UserInputService = game:GetService("UserInputService")
- 
-local function onInputBegan(input)
-    if input.UserInputType == Enum.UserInputType.Space then
-        if _G.INFJumpEnable == true then
-            LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Seated")
-            wait()
-            LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Jumping")
-        end
-    end
-end
+
+UserInputService.InputBegan:Connect(function(input)
+	if (UserInputService:GetFocusedTextBox()) then
+		return; -- make sure player's not chatting!
+	end
+	if input.KeyCode == Enum.KeyCode.Space then
+		LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Seated")
+        wait()
+        LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Jumping")
+	end	
+
+end)
