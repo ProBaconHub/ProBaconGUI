@@ -1,4 +1,4 @@
-if v.Hyper == true then
+if _G.Hyper == true then
     --Basic mode for car
     for i,v in next, getgc(true) do
         if type(v) == "table" and rawget(v, "MaxSpeed") then
