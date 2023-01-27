@@ -1,0 +1,30 @@
+if v.Hyper == true then
+    --Basic mode for car
+    for i,v in next, getgc(true) do
+        if type(v) == "table" and rawget(v, "MaxSpeed") then
+            rawset(v, "TurretFireRate", 0.3) -- turret firerate on all vehicles
+            rawset(v, "MaxSpeed", 300) -- speed
+            rawset(v, "HoverHitWater", true) -- dont change
+            rawset(v, "CanTurnHoverMode", false) 
+            rawset(v, "StartTime", 0) --vehicle start time
+        end
+     end
+else
+    --Basic mode for car
+	for i,v in next, getgc(true) do
+	    if type(v) == "table" and rawget(v, "MaxSpeed") then
+    		rawset(v, "TurretFireRate", 0.3) -- turret firerate on all vehicles
+    		rawset(v, "MaxSpeed", 300) -- speed
+    		rawset(v, "HoverHitWater", true) -- dont change
+    		rawset(v, "CanTurnHoverMode", true) 
+    		rawset(v, "StartTime", 0) --vehicle start time
+  		end
+	end
+end
+
+--INF boost mode
+for i,v in next, getgc(true) do
+  if type(v) == "table" and rawget(v, "BoostRegenPerSecond") then
+     rawset(v, "BoostRegenPerSecond", 5000)
+  end
+end
