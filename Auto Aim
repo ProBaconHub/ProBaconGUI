@@ -1,3 +1,2 @@
-getgenv().fov = 1000 
 getgenv().bodypart = "Head" 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Cesare0328/my-scripts/main/SAMCH2', true))()
