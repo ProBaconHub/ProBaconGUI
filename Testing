@@ -1,20 +1,43 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Midnight")
+
+game.StarterGui:SetCore("SendNotification", {
+    Icon = " ",
+     Title = "Pro Bacon",
+     Text = "Thanks for using!"
+})
+game.StarterGui:SetCore("SendNotification", {
+    Icon = " ",
+     Title = "Pro Bacon",
+     Text = "Last Update: 1/28/23 (MM/DD/YY)"
+})
 --Midnight
 --Ocean
 --BloodTheme
+
+--Set Up
+_G.Hyper = false
+getgenv().fov = 100
+
+--Get data
+local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true)
+local EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", true)
+local EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true)
+local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", true)
+local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", true)
+local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
 local PlayerStuffSection = LocalPlayerTab:NewSection("Local player stuff")
 local PlayerStuffFlySection = LocalPlayerTab:NewSection("Fly")
 
-PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 500 (MaxValue) | 0 (MinValue)
+PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 200 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
 end)
 
-PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 200, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
+PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 500, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
 end)
 
@@ -103,7 +126,7 @@ end)
 --Hubs Tab
 local ScriptTab = Window:NewTab("Scripts")
 local AdminSection = ScriptTab:NewSection("Admin")
-
+ 
 AdminSection:NewButton("CMD-X", "Load CMD-X Admin \r Info: Fake admin", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
 end)
@@ -144,53 +167,32 @@ local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
 GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2"}, function(currentOption)
+    game.StarterGui:SetCore("SendNotification", {
+        Icon = " ",
+         Title = "Pro Bacon",
+         Text = "Loading tab, please wait..."
+    })
     AddTab(currentOption)
 end)
 
---Function
-function AddTab(Tab)
-    if Tab == "Adopt Me!" then
-        --Adopt
-        local AdoptMeTab = Window:NewTab("Adopt Me!")
-        local AdoptMeFarmSection = AdoptMeTab:NewSection("Auto Farm")
-        local PetSection = AdoptMeTab:NewSection("Pet")
+--Settings
 
-        AdoptMeFarmSection:NewLabel("Baby autofarm WIP")
-        PetSection:NewLabel("Neon pet WIP")
-    elseif Tab == "Build a Boat" then
-        --Build
-        local BuildaBoatTab = Window:NewTab("Build a Boat")
-        local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
-        local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
-        
-        BABFTFarmSection:NewLabel("Gold autofarm WIP")
-        BABFTFarmSection:NewLabel("Gold block autofarm WIP")
-    elseif Tab == "Mad City CH2" then
-        --Mad
-        local MadCityTab = Window:NewTab("Mad City")
-        local MadAutoSection = MadCityTab:NewSection("Auto")
+local SettingTab = Window:NewTab("Settings")
+local SettingSection = SettingTab:NewSection("Setting")
 
-        MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
-            if currentOption == "Escape" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true))()
-            elseif currentOption == "Escape + Back to base" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", true))()
-            elseif currentOption == "Escape + Go to pear shop" then
-                loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true))()
-            end
-        end)
-    end
-end
-
+SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function()
+	Library:ToggleUI()
+end)
 
 --Functions
 
 local UserInputService = game:GetService("UserInputService")
 
-UserInputService.InputBegan:Connect(function(input)
-	if (UserInputService:GetFocusedTextBox()) then
-		return; -- make sure player's not chatting!
-	end
+UserInputService.InputBegan:Connect(function(input, Typing)
+	if Typing then 
+        return;
+    end
+
 	if input.KeyCode == Enum.KeyCode.Space then
 		LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Seated")
         wait()
@@ -198,3 +200,108 @@ UserInputService.InputBegan:Connect(function(input)
 	end	
 
 end)
+
+
+
+--New Tab Function
+function AddTab(Tab)
+    if Tab == "Adopt Me!" then
+        --Adopt
+        local AdoptMeTab = Window:NewTab("Adopt Me!")
+        local AdoptMeFarmSection = AdoptMeTab:NewSection("Auto Farm")
+        local PetSection = AdoptMeTab:NewSection("Pet")
+
+        AdoptMeFarmSection:NewButton("Dev finding for Baby Auto Farm", "Voluntear to help Pro Bacon", function()
+            clipboardCopy("Discord invite link")
+        end)
+
+        PetSection:NewButton("Dev finding for Neon Pet", "Voluntear to help Pro Bacon", function()
+            clipboardCopy("Discord invite link")
+        end)
+
+
+
+    elseif Tab == "Build a Boat" then
+        --Build
+        local BuildaBoatTab = Window:NewTab("Build a Boat")
+        local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
+        local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
+        
+        BABFTFarmSection:NewButton("Dev finding for Gold Auto farm", "Voluntear to help Pro Bacon", function()
+            clipboardCopy("Discord invite link")
+        end)
+        BABFTFarmSection:NewLabel("Gold block autofarm WIP")
+
+        BABFTTPSection:NewLabel("Dropdown comming soon!")
+
+
+
+    elseif Tab == "Mad City CH2" then
+        --Mad
+        local MadCityTab = Window:NewTab("Mad City")
+        local MadAutoSection = MadCityTab:NewSection("Auto")
+        local MadRemoteSection = MadCityTab:NewSection("Remote")
+
+        MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
+            if currentOption == "Escape" then
+                loadstring(Escape)()
+            elseif currentOption == "Escape + Back to base" then
+                loadstring(EscapeToBace)()
+            elseif currentOption == "Escape + Go to pear shop" then
+                loadstring(EscapeToPear)()
+            end
+        end)
+        MadAutoSection:NewButton("Aim", "Aim good", function()
+            loadstring(Aim)()
+        end)
+        MadAutoSection:NewSlider("Aim Circle", "Decide how big the circle is.", 1500, 0, function(AimCircle)
+            getgenv().fov = AimCircle
+        end)
+
+        MadRemoteSection:NewButton("No E Wait", "No more waiting when pressing E!", function()
+            loadstring(NoEWait)()
+        end)
+        MadRemoteSection:NewButton("Car Mode", "Make your car way more better!", function()
+            loadstring(CarMode)()
+        end)
+        MadRemoteSection:NewToggle("Motor", "Better car mode if you using motor e.g. Hyper Glider", function(state)
+            if state then
+                _G.Hyper = true --I dont know if only hyper will glitch out because I dont have other moters
+            else
+                _G.Hyper = false
+            end
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {
+            Icon = " ",
+             Title = "Pro Bacon",
+             Text = "Done"
+        })
+
+
+    elseif Tab =="JailBreak" then
+        game.StarterGui:SetCore("SendNotification", {
+            Icon = " ",
+             Title = "Pro Bacon",
+             Text = "I got banned from this MF game!"
+        })
+        wait()
+        game.StarterGui:SetCore("SendNotification", {
+            Icon = " ",
+             Title = "Pro Bacon",
+             Text = "I wonder what injector are you using..."
+        })
+        wait()
+        game.StarterGui:SetCore("SendNotification", {
+            Icon = " ",
+             Title = "Pro Bacon",
+             Text = "Not getting ban from injection or executeion?"
+        })
+
+        game.StarterGui:SetCore("SendNotification", {
+            Icon = " ",
+             Title = "Pro Bacon",
+             Text = "Done"
+        })
+    end
+end
