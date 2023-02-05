@@ -1,6 +1,10 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
-local Window = Library.CreateLib("Pro Bacon Hub", "Midnight")
+local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
+--Midnight
+--Ocean
+--BloodTheme
+--Serpent
 
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
@@ -10,11 +14,8 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",
-     Text = "Last Update: 1/28/23 (MM/DD/YY)"
+     Text = "Last Update: 2/5/23 (MM/DD/YY)"
 })
---Midnight
---Ocean
---BloodTheme
 
 --Set Up
 _G.Hyper = false
@@ -23,10 +24,11 @@ getgenv().fov = 100
 --Get data
 local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true)
 local EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", true)
-local EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true)
+_G.EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true)
 local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", true)
 local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", true)
 local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", true)
+local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -256,6 +258,9 @@ function AddTab(Tab)
         end)
         MadAutoSection:NewSlider("Aim Circle", "Decide how big the circle is.", 1500, 0, function(AimCircle)
             getgenv().fov = AimCircle
+        end)
+        MadAutoSection:NewButton("Half-Auto Rob", "Auto Rob but you have to spam E by yourself", function()
+            loadstring(HalfAutoRob)()
         end)
 
         MadRemoteSection:NewButton("No E Wait", "No more waiting when pressing E!", function()
