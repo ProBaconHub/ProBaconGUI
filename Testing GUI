@@ -1,1 +1,0 @@
-loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Testing", true))()
