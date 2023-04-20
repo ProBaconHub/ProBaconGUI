@@ -1,0 +1,17 @@
+while wait() do
+ --Cash
+local CashHck = {
+    [1] = 10
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(unpack(CashHck))
+
+--Punch
+local PunchHck = {
+    [1] = game:GetService("Players").LocalPlayer
+}
+game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(unpack(PunchHck))
+game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(unpack(PunchHck))
+game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(unpack(PunchHck))
+game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(unpack(PunchHck))
+game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(unpack(PunchHck))
+end
