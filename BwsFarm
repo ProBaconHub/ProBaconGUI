@@ -1,17 +1,17 @@
-local ProBaconBestMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BwsFarmProBaconBestMode", true)
-while _G.BwsFarmEnable == true do
+local ProBaconBestMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarmProBaconBestMode", true)
+while _G.PwsFarmEnable == true do
     wait()
-    if _G.BwsFarmMode == "Normal" then --How normal
+    if _G.PwsFarmMode == "Normal" then --How normal
         wait()
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-    elseif _G.BwsFarmMode == "Fast" then --Lets be faster
+    elseif _G.PwsFarmMode == "Fast" then --Lets be faster
         wait()
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-    elseif _G.BwsFarmMode == "Super" then
+    elseif _G.PwsFarmMode == "Super" then
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
@@ -24,7 +24,7 @@ while _G.BwsFarmEnable == true do
         for i = 1, 5 do
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
         end
-    elseif _G.BwsFarmMode == "Ultra" then    --SUPER ULTRA!!! But...May Lag T_T
+    elseif _G.PwsFarmMode == "Ultra" then    --SUPER ULTRA!!! But...May Lag T_T
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
@@ -58,7 +58,7 @@ while _G.BwsFarmEnable == true do
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(3)
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(4)
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(5)
-    elseif _G.BwsFarmMode == "Safe" then --How peaseful
+    elseif _G.PwsFarmMode == "Safe" then --How peaseful
         wait(1)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
@@ -70,7 +70,7 @@ while _G.BwsFarmEnable == true do
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
             wait()
         end
-    elseif _G.BwsFarmMode == "ProBaconBest" then --How peaseful
+    elseif _G.PwsFarmMode == "ProBaconBest" then --How peaseful
         loadstring(ProBaconBestMode)()
         loadstring(ProBaconBestMode)()
         loadstring(ProBaconBestMode)()
