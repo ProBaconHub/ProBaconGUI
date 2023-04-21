@@ -14,21 +14,14 @@ while _G.BwsFarmEnable == true do
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
-        game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
-        game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-        game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-        game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-        
         for i = 1, 8 do
             game:GetService("ReplicatedStorage").Event.OnlineGift:FireServer(i)
-            wait()
         end
         for i = 1, 5 do
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
-            wait()
         end
     elseif _G.BwsFarmMode == "Ultra" then    --SUPER ULTRA!!! But...May Lag T_T
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
