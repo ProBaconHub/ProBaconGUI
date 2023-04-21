@@ -1,15 +1,15 @@
 while _G.BwsFarmEnable == true do
-    if _G.BwsFarmMode == "Normal" then --How normal
+    if _G.BwsFarmMode == Normal then --How normal
         wait()
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-    elseif _G.BwsFarmMode == "Fast" then --Lets be faster
+    elseif _G.BwsFarmMode == Fast then --Lets be faster
         wait()
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-    elseif _G.BwsFarmMode == "Super" then
+    elseif _G.BwsFarmMode == Super then
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
@@ -22,7 +22,7 @@ while _G.BwsFarmEnable == true do
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
             wait()
         end
-    elseif _G.BwsFarmMode == "Ultra" then    --SUPER ULTRA!!! But...May Lag T_T
+    elseif _G.BwsFarmMode == Ultra then    --SUPER ULTRA!!! But...May Lag T_T
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
@@ -56,7 +56,7 @@ while _G.BwsFarmEnable == true do
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(3)
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(4)
         game:GetService("ReplicatedStorage").Event.Spin:FireServer(5)
-    elseif _G.BwsFarmMode == "Safe" then --How peaseful
+    elseif _G.BwsFarmMode == Safe then --How peaseful
         wait(1)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
