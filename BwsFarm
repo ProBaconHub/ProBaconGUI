@@ -76,10 +76,6 @@ while _G.BwsFarmEnable == true do
         loadstring(ProBaconBestMode)()
         loadstring(ProBaconBestMode)()
         loadstring(ProBaconBestMode)()
-        loadstring(ProBaconBestMode)()
-        loadstring(ProBaconBestMode)()
-        loadstring(ProBaconBestMode)()
-        loadstring(ProBaconBestMode)()
-        loadstring(ProBaconBestMode)()
+        --Cant make 10 cuz cpu will drop and effency will become low
     end
 end
