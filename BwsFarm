@@ -1,3 +1,4 @@
+local ProBaconBestMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BwsFarmProBaconBestMode", true)
 while _G.BwsFarmEnable == true do
     wait()
     if _G.BwsFarmMode == "Normal" then --How normal
@@ -14,10 +15,6 @@ while _G.BwsFarmEnable == true do
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
-        game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
-        game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
-        game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
-        game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
@@ -73,5 +70,16 @@ while _G.BwsFarmEnable == true do
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
             wait()
         end
+    elseif _G.BwsFarmMode == "ProBaconBest" then --How peaseful
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
+        loadstring(ProBaconBestMode)()
     end
 end
