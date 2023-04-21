@@ -29,7 +29,7 @@ local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBacon
 local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", true)
 local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", true)
 local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", true)
-local BwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BwsFarm", true)
+local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -169,7 +169,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Break Wall Simulator"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -285,43 +285,43 @@ function AddTab(Tab)
         })
 
 
-    elseif Tab == "Break Wall Simulator" then
-        --Bws
-        local BreakWallSimTab = Window:NewTab("BreakWallSim")
-        local BwsCashSection = BreakWallSimTab:NewSection("Cash")
-        local BwsPunchSection = BreakWallSimTab:NewSection("Punch")
-        local BwsGiftSection = BreakWallSimTab:NewSection("Gift")
-        local BwsSpinSection = BreakWallSimTab:NewSection("Spin")
-        local BwsTipSection = BreakWallSimTab:NewSection("Glitch Tip")
-        local BwsFarmSection = BreakWallSimTab:NewSection("Farm")
-        _G.BwsFarmMode = "Normal"
-        _G.BwsFarmEnable = false
+    elseif Tab == "Punch Wall Simulator" then
+        --Pws
+        local PunchWallSimTab = Window:NewTab("PunchWallSim")
+        local PwsCashSection = PunchWallSimTab:NewSection("Cash")
+        local PwsPunchSection = PunchWallSimTab:NewSection("Punch")
+        local PwsGiftSection = PunchWallSimTab:NewSection("Gift")
+        local PwsSpinSection = PunchWallSimTab:NewSection("Spin")
+        local PwsTipSection = PunchWallSimTab:NewSection("Glitch Tip")
+        local PwsFarmSection = PunchWallSimTab:NewSection("Farm")
+        _G.PwsFarmMode = "Normal"
+        _G.PwsFarmEnable = false
 
-        BwsCashSection:NewButton("Gimmi Cash!", "Give you money by compleating lvl 10", function()
+        PwsCashSection:NewButton("Gimmi Cash!", "Give you money by compleating lvl 10", function()
             game:GetService("ReplicatedStorage"):WaitForChild("Event"):WaitForChild("DestoryWall"):FireServer(10)
         end)
-        BwsPunchSection:NewButton("Gimmi Punch!", "Give you more punch!", function()
+        PwsPunchSection:NewButton("Gimmi Punch!", "Give you more punch!", function()
             game:GetService("ReplicatedStorage").Event.TrainHit:FireServer(game:GetService("Players").LocalPlayer)
         end)
-        BwsGiftSection:NewDropdown("Get Gift", "Choose what gift u wanna get", {1, 2, 3, 4, 5, 6, 7, 8}, function(currentOption)
+        PwsGiftSection:NewDropdown("Get Gift", "Choose what gift u wanna get", {1, 2, 3, 4, 5, 6, 7, 8}, function(currentOption)
             game:GetService("ReplicatedStorage").Event.OnlineGift:FireServer(currentOption)
         end)
-        BwsGiftSection:NewButton("Clam All Gift! (OP)", "Clam all gift without getting them, can do many times By: Pro Bacon", function()
+        PwsGiftSection:NewButton("Clam All Gift! (OP)", "Clam all gift without getting them, can do many times By: Pro Bacon", function()
             for i = 1, 8 do
                 game:GetService("ReplicatedStorage").Event.OnlineGift:FireServer(i)
                 wait()
             end
         end)
-        BwsSpinSection:NewDropdown("Get Spin", "Choose what prise u wanna get", {1, 2, 3, 4, 5}, function(currentOption)
+        PwsSpinSection:NewDropdown("Get Spin", "Choose what prise u wanna get", {1, 2, 3, 4, 5}, function(currentOption)
             game:GetService("ReplicatedStorage").Event.Spin:FireServer(currentOption)
         end)
-        BwsSpinSection:NewButton("Get All Spin! (OP)", "Get all spin By: Pro Bacon", function()
+        PwsSpinSection:NewButton("Get All Spin! (OP)", "Get all spin By: Pro Bacon", function()
             for i = 1, 5 do
                 game:GetService("ReplicatedStorage").Event.Spin:FireServer(i)
                 wait()
             end
         end)
-        BwsTipSection:NewButton("Get Tip", "Wot tip?", function()
+        PwsTipSection:NewButton("Get Tip", "Wot tip?", function()
             game.StarterGui:SetCore("SendNotification", {
                 Icon = " ",
                  Title = "Pro Bacon",
@@ -333,19 +333,19 @@ function AddTab(Tab)
                  Text = "It will make you jump higher and faster"
             })
         end)
-        BwsFarmSection:NewButton("Gimmi All! (OP)", "By: Pro Bacon", function()
-            loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BwsFarmProBaconBestMode", true))()
+        PwsFarmSection:NewButton("Gimmi All! (OP)", "By: Pro Bacon", function()
+            loadstring(Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarmProBaconBestMode", true))()
         end)
-        BwsFarmSection:NewToggle("Auto Farm", "Auto Farm", function(state)
+        PwsFarmSection:NewToggle("Auto Farm", "Auto Farm", function(state)
             if state then
-                _G.BwsFarmEnable = true
-                loadstring(BwsFarm)()
+                _G.PwsFarmEnable = true
+                loadstring(PwsFarm)()
             else
-                _G.BwsFarmEnable = false
+                _G.PwsFarmEnable = false
             end
         end)
-        BwsFarmSection:NewDropdown("Auto Farm Mode", "Choose Farm Mode", {"Normal", "Fast", "Super", "Ultra", "Safe", "ProBaconBest"}, function(currentOption)
-            _G.BwsFarmMode = currentOption
+        PwsFarmSection:NewDropdown("Auto Farm Mode", "Choose Farm Mode", {"Normal", "Fast", "Super", "Ultra", "Safe", "ProBaconBest"}, function(currentOption)
+            _G.PwsFarmMode = currentOption
         end)
         game.StarterGui:SetCore("SendNotification", {
             Icon = " ",
