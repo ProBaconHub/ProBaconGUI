@@ -1,0 +1,4 @@
+while _G.LotbsAutoHit do
+	game:GetService("ReplicatedStorage").Remotes.UseItem:FireServer()
+	wait()
+end
