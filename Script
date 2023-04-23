@@ -30,6 +30,8 @@ local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProB
 local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", true)
 local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", true)
 local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", true)
+local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", true)
+local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -169,7 +171,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -352,5 +354,40 @@ function AddTab(Tab)
              Title = "Pro Bacon",
              Text = "Done"
         })
+    elseif Tab == "TLOTBS RPG" then
+        --The Legend of The Bone Sword RPG
+        local TLOTBSTab = Window:NewTab("TLOTBST")
+        local LotbsAutoSection = TLOTBSTab:NewSection("The Legend Of The Bone Sword")
+        local LotbsTPSection = TLOTBSTab:NewSection("TP")
+        local LotbsBossSection = TLOTBSTab:NewSection("Boss")
+
+        LotbsAutoSection:NewToggle("Auto Click", "Auto hit surrouning mobs when equip sword", function(state)
+            _G.LotbsAutoHit = state
+            loadstring(TLOTBSautoclick)()
+        end)
+        LotbsTPSection:NewTextBox("PlayerTP", "Input player name", function(txt)
+            local GamePlayer = game.Players
+            local Plr = GamePlayer.txt
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Plr.Character.HumanoidRootPart.CFrame
+        end)
+        LotbsBossSection:NewTextBox("Auto Hit Boss", "Input boss name", function(txt)
+            _G.EnemiesName = txt
+        end)
+        LotbsBossSection:NewButton("Print All Enemies", "It will print in Dev Console", function()
+            _G.LastEnemie = Nothing
+            _G.MixResult = nil
+            print("--------All Enemies--------")
+            for i,v in pairs(Workspace.Enemies:GetChildren()) do
+            	if v.Name ~= _G.LastEnemie then
+            		_G.LastEnemie = v.Name
+            		print(v.Name)
+            	end
+            end
+            print("Done")
+        end)
+        LotbsBossSection:NewToggle("On/Off Auto Hit", "Turn on and off", function(state)
+            _G.AutoHitEnable = state
+            loadstring(TLOTBSautohit)()
+        end)
     end
 end
