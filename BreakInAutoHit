@@ -1,0 +1,4 @@
+while _G.BreakInAutoHit then
+    game:GetService("ReplicatedStorage").RemoteEvents.HitBadguy:FireServer(workspace.BadGuys:FindFirstChild(" "),4,true)
+    task.wait()
+end
