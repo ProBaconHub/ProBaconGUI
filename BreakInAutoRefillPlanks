@@ -1,0 +1,3 @@
+while _G.BreakInAutoRefilPlanks then
+    game:GetService("ReplicatedStorage").RemoteEvents.RefreshPlanks:FireServer()
+end
