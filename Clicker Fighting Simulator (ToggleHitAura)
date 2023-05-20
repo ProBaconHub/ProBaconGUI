@@ -1,0 +1,13 @@
+_G.HitAura = not _G.HitAura
+while task.wait(0.1) and _G.HitAura do
+	for i = 001,048 do
+		_G.LoopRound = i
+		if i < 10 then
+			_G.EnemyNum = "00".._G.LoopRound
+		else
+			_G.EnemyNum = "0".._G.LoopRound
+		end
+		game:GetService("ReplicatedStorage").Remotes.RE_TakeDamage:FireServer("Npc".._G.EnemyNum)
+		game:GetService("ReplicatedStorage").Remotes.RE_ClickPower:FireServer()
+	end
+end
