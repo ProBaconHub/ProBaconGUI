@@ -1,0 +1,3 @@
+while _G.PlayerWsEnable do
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.PlayerWalkSpeed
+end
