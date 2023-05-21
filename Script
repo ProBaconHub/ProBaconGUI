@@ -14,12 +14,34 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",
-     Text = "Last Update: 21/4/23 (DD/MM/YY)"
+     Text = "Last Update: 21/5/23 (DD/MM/YY)"
 })
 
 --Set Up
 _G.Hyper = false
 getgenv().fov = 100
+local Noclip = nil
+local Clip = nil
+
+function noclip()
+	Clip = false
+	local function Nocl()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
+					v.CanCollide = false
+				end
+			end
+		end
+		wait(0.21) -- basic optimization
+	end
+	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
+end
+
+function clip()
+	if Noclip then Noclip:Disconnect() end
+	Clip = true
+end
 
 --Get data
 local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true)
@@ -32,6 +54,8 @@ local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/
 local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", true)
 local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", true)
 local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", true)
+local BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", true)
+local BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -56,10 +80,118 @@ end)
 
 PlayerStuffSection:NewToggle("No Clip", "Turn no clip on and off", function(state)
     if state then
-        
+        noclip()
     else
-        
+        clip()
     end
+end)
+PlayerStuffSection:NewToggle("Full Bright", "No more dark", function(state)
+    if not _G.FullBrightExecuted then
+
+        _G.FullBrightEnabled = false
+    
+        _G.NormalLightingSettings = {
+            Brightness = game:GetService("Lighting").Brightness,
+            ClockTime = game:GetService("Lighting").ClockTime,
+            FogEnd = game:GetService("Lighting").FogEnd,
+            GlobalShadows = game:GetService("Lighting").GlobalShadows,
+            Ambient = game:GetService("Lighting").Ambient
+        }
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
+            if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
+                _G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").Brightness = 1
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
+            if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
+                _G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").ClockTime = 12
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
+            if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
+                _G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").FogEnd = 786543
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+            if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
+                _G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").GlobalShadows = false
+            end
+        end)
+    
+        game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
+            if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
+                _G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
+                if not _G.FullBrightEnabled then
+                    repeat
+                        wait()
+                    until _G.FullBrightEnabled
+                end
+                game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+            end
+        end)
+    
+        game:GetService("Lighting").Brightness = 1
+        game:GetService("Lighting").ClockTime = 12
+        game:GetService("Lighting").FogEnd = 786543
+        game:GetService("Lighting").GlobalShadows = false
+        game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+    
+        local LatestValue = true
+        spawn(function()
+            repeat
+                wait()
+            until _G.FullBrightEnabled
+            while wait() do
+                if _G.FullBrightEnabled ~= LatestValue then
+                    if not _G.FullBrightEnabled then
+                        game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
+                        game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
+                        game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
+                        game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
+                        game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
+                    else
+                        game:GetService("Lighting").Brightness = 1
+                        game:GetService("Lighting").ClockTime = 12
+                        game:GetService("Lighting").FogEnd = 786543
+                        game:GetService("Lighting").GlobalShadows = false
+                        game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+                    end
+                    LatestValue = not LatestValue
+                end
+            end
+        end)
+    end
+    
+    _G.FullBrightExecuted = true
+    _G.FullBrightEnabled = state
 end)
 
 PlayerStuffFlySection:NewLabel("Looks like little dumb Pro Bacon don't know how to make fly~")
@@ -171,7 +303,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -246,6 +378,7 @@ function AddTab(Tab)
         local MadCityTab = Window:NewTab("Mad City")
         local MadAutoSection = MadCityTab:NewSection("Auto")
         local MadRemoteSection = MadCityTab:NewSection("Remote")
+        local MadTeleSection = MadCityTab:NewSection("Force Teleport")
 
         MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
             if currentOption == "Escape" then
@@ -277,6 +410,34 @@ function AddTab(Tab)
                 _G.Hyper = true --I dont know if only hyper will glitch out because I dont have other moters
             else
                 _G.Hyper = false
+            end
+        end)
+        MadTeleSection:NewDropdown("Force Teleport", "It will TP you back after", {"Base", "Casino", "Bank", "Club", "Prymid"}, function(currentOption)
+            if currentOption == "Base" then
+                for i = 1,200 do
+	                task.wait()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(106, 26, -166)
+                end
+            elseif currentOption == "Casino" then
+                for i = 1,200 do
+	                task.wait()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1500, -41, 622)
+                end
+            elseif currentOption == "Bank" then
+                for i = 1,200 do
+	                task.wait()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(653, -19, 566)
+                end
+            elseif currentOption == "Club" then
+                for i = 1,200 do
+	                task.wait()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1835, 225, -1167)
+                end
+            elseif currentOption == "Prymid" then
+                for i = 1,200 do
+	                task.wait()
+	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(162, -62, 1152)
+                end
             end
         end)
 
@@ -389,5 +550,186 @@ function AddTab(Tab)
             _G.AutoHitEnable = state
             loadstring(TLOTBSautohit)()
         end)
+    elseif Tab == "Break In (Story)" then
+        local BreakInTab = Window:NewTab("BreakInStory")
+        local BreakInLobbySection = BreakInTab:NewSection("Lobby")
+        local BreakInGameSection = BreakInTab:NewSection("In Game")
+        local BreakInCatSection = BreakInTab:NewSection("Cat")
+        local BreakInEndingSection = BreakInTab:NewSection("Ending")
+        local BreakInTelePortSection = BreakInTab:NewSection("Teleports")
+        _G.BreakInRoleName = "Bat"
+        _G.BreakInRoleKid = false
+        BreakInLobbySection:NewDropdown("Roles", "Become role (Only in lobby)", {"Bat", "MedKit", "TeddyBloxpin", "Chips"}, function(currentOption)
+            _G.BreakInRoleName = currentOption
+            local args = {
+                [1] = _G.BreakInRoleName,
+                [2] = _G.BreakInRoleKid,
+                [3] = true
+            }
+            game:GetService("ReplicatedStorage").RemoteEvents.MakeRole:FireServer(unpack(args))
+        end)
+        BreakInLobbySection:NewDropdown("OutSideRole", "Become role (Only in lobby)", {"SwatGun", "Lollipop", "Gun"}, function(currentOption)
+            _G.BreakInRoleName = currentOption
+            local args = {
+                [1] = _G.BreakInRoleName,
+                [2] = _G.BreakInRoleKid,
+            }
+            game:GetService("ReplicatedStorage").RemoteEvents.OutsideRole:FireServer(unpack(args))
+        end)
+        BreakInLobbySection:NewToggle("Role As a Kid", "Make your role a kid", function(state)
+            _G.BreakInRoleKid = true
+            local args = {
+                [1] = _G.BreakInRoleName,
+                [2] = _G.BreakInRoleKid,
+                [3] = true
+            }
+            game:GetService("ReplicatedStorage").RemoteEvents.MakeRole:FireServer(unpack(args))
+        end)
+        BreakInLobbySection:NewButton("NoRole", "Remove any role", function()
+            local args = {
+                [1] = nil,
+                [2] = true,
+                [3] = true
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvents.MakeRole:FireServer(unpack(args))
+        end)
+        BreakInLobbySection:NewButton("OffSeast", "Get off the seat in car", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.Seater:FireServer()
+        end)
+        BreakInCatSection:NewButton("BeFriendCat", "Be friend with cat", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.Cattery:FireServer()
+        end)
+        BreakInGameSection:NewToggle("AutoHeal(Cat)", "Be friend cat first", function(state)
+            _G.BreakInCatAutoHeal = state
+        end)
+        BreakInGameSection:NewButton("MakeCatJump", "Make the cat jump", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.CatJumped:FireServer()
+        end)
+        BreakInGameSection:NewButton("Heal 15 HP", "Heal you 15 HP", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+        end)
+        BreakInGameSection:NewButton("Heal 20 HP", "Heal you 20 HP", function()
+            game.Players.LocalPlayer.Character.Humanoid.Sit = true
+            game:GetService("ReplicatedStorage").RemoteEvents.BedTime:FireServer("Carnation pink")
+            task.wait()
+            game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+        end)
+        BreakInGameSection:NewTextBox("KillPlayer", "Kill a playuer", function(txt)
+            game:GetService("ReplicatedStorage").RemoteEvents.ToxicDrown:FireServer(1,_txt)
+        end)
+        BreakInGameSection:NewToggle("Auto Damage Bad Guys", "Auto damage bad guys", function(state)
+            _G.BreakInAutoHit = state
+            loadstring(BreakInAutoHit)()
+        end)
+        BreakInGameSection:NewButton("Force Jump", "You can now jumo off bed", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.makeJump:FireServer(true)
+        end)
+        BreakInGameSection:NewToggle("Auto Refill Planks", "Nothing to say...", function(state)
+            _G.BreakInAutoRefilPlanks = state
+            loadstring(BreakInAutoRefilPlanks)()
+        end)
+        BreakInEndingSection:NewButton("Easter Ending", "Only when going to shop time!", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(2,"IcePart2")
+            task.wait()
+            game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(2,"IcePart2")
+            task.wait()
+            game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(2,"IcePart2")
+        end)
+        BreakInEndingSection:NewButton("Final Ending", "Only when going to shop", function()
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15,"Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Apple")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Cookie")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Cookie")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Cookie")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Cookie")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("BloxyCola")
+            game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("BloxyCola")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("BloxyCola")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("BloxyCola")
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Pie","Apple Pie",5)
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Pie","Cookie Pie",5)
+            game:GetService("ReplicatedStorage").RemoteEvents.AddCrazy:FireServer("Pie","Glazed Apple Pie",5)
+            game.StarterGui:SetCore("SendNotification", {
+                Icon = " ",
+                Title = "Pro Bacon",
+                Text = "You may want to spam it if it doesnt work. You will have to compleat the last one yourself if it still didnt work"
+            })
+        end)
     end
 end
+
+
+-- Script generated by SimpleSpy - credits to exx#9394
+
+
+--[[
+
+                      BREAK IN
+
+local args = {
+    [1] = 6,
+    [2] = "Pizza3"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(unpack(args))
+
+
+
+-- Script generated by SimpleSpy - credits to exx#9394
+
+local args = {
+    [1] = "Pizza3"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
+
+-- Script generated by SimpleSpy - credits to exx#9394
+
+local args = {
+    [1] = "Apple"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
+
+-- Script generated by SimpleSpy - credits to exx#9394
+
+local args = {
+    [1] = 15,
+    [2] = "Apple"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(unpack(args))
+
+--              Give Cure
+
+local args = {
+    [1] = "Cure"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
+
+
+
+local args = {
+    [1] = 2,
+    [2] = "IcePart2"
+}
+
+game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(unpack(args))
+
+
+]] 
