@@ -14,7 +14,7 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",
-     Text = "Last Update: 21/5/23 (DD/MM/YY)"
+     Text = "Last Update: 21/4/23 (DD/MM/YY)"
 })
 
 --Set Up
@@ -56,6 +56,7 @@ local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHu
 local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", true)
 local BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", true)
 local BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", true)
+local INFJump = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -64,18 +65,23 @@ local PlayerStuffFlySection = LocalPlayerTab:NewSection("Fly")
 
 PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 200 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
+    _G.PlayerWalkSpeed = WS
+end)
+PlayerStuffSection:NewToggle("WalkSpeed", "Enable walkspeed", function(state)
+    _G.PlayerWsEnable = state
 end)
 
 PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 500, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
+    _G.PlayerJumpPower = JP
+end)
+PlayerStuffSection:NewToggle("JumpPower", "Enable jumppower", function(state)
+    _G.PlayerJpEnable = state
 end)
 
 PlayerStuffSection:NewToggle("INF Jump", "Jump more than once", function(state)
-    if state then
-        _G.INFJumpEnable = true
-    else
-        _G.INFJumpEnable = false
-    end
+    _G.infinjump = state
+    loadstring(INFJump)()
 end)
 
 PlayerStuffSection:NewToggle("No Clip", "Turn no clip on and off", function(state)
@@ -319,23 +325,6 @@ local SettingSection = SettingTab:NewSection("Setting")
 
 SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function()
 	Library:ToggleUI()
-end)
-
---Functions
-
-local UserInputService = game:GetService("UserInputService")
-
-UserInputService.InputBegan:Connect(function(input, Typing)
-	if Typing then 
-        return;
-    end
-
-	if input.KeyCode == Enum.KeyCode.Space then
-		LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Seated")
-        wait()
-        LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Jumping")
-	end	
-
 end)
 
 
@@ -617,7 +606,7 @@ function AddTab(Tab)
             game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
         end)
         BreakInGameSection:NewTextBox("KillPlayer", "Kill a playuer", function(txt)
-            game:GetService("ReplicatedStorage").RemoteEvents.ToxicDrown:FireServer(1,_txt)
+            game:GetService("ReplicatedStorage").RemoteEvents.ToxicDrown:FireServer(1,txt)
         end)
         BreakInGameSection:NewToggle("Auto Damage Bad Guys", "Auto damage bad guys", function(state)
             _G.BreakInAutoHit = state
