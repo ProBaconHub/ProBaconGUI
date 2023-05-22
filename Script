@@ -16,6 +16,8 @@ game.StarterGui:SetCore("SendNotification", {
      Title = "Pro Bacon",
      Text = "Last Update: 21/4/23 (DD/MM/YY)"
 })
+game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
+
 
 --Set Up
 _G.Hyper = false
@@ -57,6 +59,10 @@ local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBacon
 local BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", true)
 local BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", true)
 local INFJump = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", true)
+local PlayerWalkSpeed =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed")
+local PlayerJumpPower =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower")
+local SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", true)
+local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", true)
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -64,19 +70,19 @@ local PlayerStuffSection = LocalPlayerTab:NewSection("Local player stuff")
 local PlayerStuffFlySection = LocalPlayerTab:NewSection("Fly")
 
 PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 200 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = WS
     _G.PlayerWalkSpeed = WS
 end)
 PlayerStuffSection:NewToggle("WalkSpeed", "Enable walkspeed", function(state)
     _G.PlayerWsEnable = state
+    loadstring(PlayerWalkSpeed)()
 end)
 
 PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 500, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JP
     _G.PlayerJumpPower = JP
 end)
 PlayerStuffSection:NewToggle("JumpPower", "Enable jumppower", function(state)
     _G.PlayerJpEnable = state
+    loadstring(PlayerJumpPower)()
 end)
 
 PlayerStuffSection:NewToggle("INF Jump", "Jump more than once", function(state)
@@ -309,7 +315,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -344,7 +350,7 @@ function AddTab(Tab)
         PetSection:NewButton("Dev finding for Neon Pet", "Voluntear to help Pro Bacon", function()
             clipboardCopy("Discord invite link")
         end)
-
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
 
 
     elseif Tab == "Build a Boat" then
@@ -360,7 +366,7 @@ function AddTab(Tab)
 
         BABFTTPSection:NewLabel("Dropdown comming soon!")
 
-
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
 
     elseif Tab == "Mad City CH2" then
         --Mad
@@ -539,6 +545,9 @@ function AddTab(Tab)
             _G.AutoHitEnable = state
             loadstring(TLOTBSautohit)()
         end)
+
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+
     elseif Tab == "Break In (Story)" then
         local BreakInTab = Window:NewTab("BreakInStory")
         local BreakInLobbySection = BreakInTab:NewSection("Lobby")
@@ -658,6 +667,45 @@ function AddTab(Tab)
                 Text = "You may want to spam it if it doesnt work. You will have to compleat the last one yourself if it still didnt work"
             })
         end)
+
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+
+    elseif Tab == "SendMeme(SMTYETDTT)" then
+        local SendMemeTab = Window:NewTab("SendMemes")
+        local SendMemeAuto = SendMemeTab:NewSection("Auto")
+
+        SendMemeAuto:NewToggle("Auto Research", "Research for you", function(state)
+            _G.SendMemesAutoResearch = state
+            loadstring(SendMemeAutoResearch)()
+        end)
+
+        SendMemeAuto:NewToggle("Auto Hack", "Hack for you", function(state)
+            _G.SendMemesAutoHack = state
+            loadstring(SendMemeAutoHack)()
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+        
+    elseif Tab == "Sonic Speed" then
+        local SonicSpeedTab = Window:NewTab("Sonic Speed")
+        local LimitedEvent = SonicSpeedTab:NewSection("Limited Event")
+
+        LimitedEvent:NewButton("Get Holographic Metal Sonic", "You have to go clam it afterwards", function()
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Compleating tasks..."; Duration=5;})
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="It will take a few seconds."; Duration=5;})
+            for i = 1,10 do
+                game:GetService("ReplicatedStorage").Knit.Services.ProgressService.RE.LogProgress:FireServer("BoostTime", 3000)
+                task.wait(0.5)
+                game:GetService("ReplicatedStorage").Knit.Services.ProgressService.RE.LogProgress:FireServer("FallTimeTotal",10000)
+                task.wait(0.5)
+            end
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-363, 6, -15051)
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Got to the task place to clam it!"; Duration=5;})
+        end)
+
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+
     end
 end
 
