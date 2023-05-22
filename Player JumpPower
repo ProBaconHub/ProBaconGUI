@@ -1,6 +1,6 @@
 if not _G.PlayerJpEnable then
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
 end
-while _G.PlayerJpEnable do
+while _G.PlayerJpEnable and task.wait() do
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.PlayerJumpPower
 end
