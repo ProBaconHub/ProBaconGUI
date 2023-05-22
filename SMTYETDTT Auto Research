@@ -1,4 +1,4 @@
-if _G.SendMemesAutoResearch then
+while _G.SendMemesAutoResearch do
     task.wait()
     game:GetService("ReplicatedStorage").Remotes.ToServer.Research:FireServer()
 end
