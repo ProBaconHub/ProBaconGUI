@@ -1,0 +1,4 @@
+if _G.SendMemesAutoResearch then
+    task.wait()
+    game:GetService("ReplicatedStorage").Remotes.ToServer.Research:FireServer()
+end
