@@ -1,3 +1,6 @@
+if not _G.PlayerJpEnable then
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+end
 while _G.PlayerJpEnable do
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.PlayerJumpPower
 end
