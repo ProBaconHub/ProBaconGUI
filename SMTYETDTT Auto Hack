@@ -1,0 +1,3 @@
+while _G.SendMemesAutoHack do
+    game:GetService("ReplicatedStorage").Remotes.ToServer.Hack:InvokeServer()
+end
