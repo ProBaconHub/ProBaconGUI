@@ -306,7 +306,7 @@ OtherSection:NewButton("Get Position", "Print and notifi your position.", functi
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
-         Text = "Your position: \r", game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+         Text = "Your position: \r".. game.Players.LocalPlayer.Character.HumanoidRootPart.Position
     })
 end)
 
@@ -315,7 +315,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed", "Car Dealership Tycoon"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -706,6 +706,37 @@ function AddTab(Tab)
 
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
 
+        elseif Tab == "Car Dealership Tycoon" then
+            local CarDealerSimTab = Window:NewTab("Car Dealer Sim")
+            local CarDealerLimitedEvent = CarDealerSimTab:NewSection("Limited Event")
+    
+            CarDealerLimitedEvent:NewButton("Get Holographic Metal Sonic", "You have to go clam it afterwards", function()
+                for i,v in pairs(Workspace.BirthdayEvent.Parts:GetChildren()) do
+                    _G.ItemName = v.Name
+                    for i,a in pairs(v:GetChildren()) do
+                        if a:IsA("Part") then
+                            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Grabing what you need"; Duration=5;})
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a.CFrame
+                            task.wait(.25)
+                            game:GetService("ReplicatedStorage").Remotes.Collectibles.TryToCollect:FireServer(a)
+                            task.wait(1)
+                            game:GetService("ReplicatedStorage").Remotes.DestroyGui:FireServer(_G.ItemName)
+                            wait()
+                            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Placing parts"; Duration=5;})
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1996, 605, 3716)
+                            task.wait(.5)
+                            local Unlock = {
+                                [1] = "AssembleCarPart",
+                                [2] = {}
+                            }
+                            game:GetService("ReplicatedStorage").Remotes.EventController.PerformAction:FireServer(unpack(Unlock))
+                        end
+                    end
+                end
+                game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+            end)
+    
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
     end
 end
 
