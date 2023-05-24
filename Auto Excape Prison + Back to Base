@@ -1,1 +1,27 @@
+function Teleport(x,y,z,cd)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
+    task.wait(cd)
+end
 
+function TweenTeleport(x,y,z, time)
+    local Position = Vector3.new(x,y,z)
+    local TweenService = game:GetService('TweenService')
+    local LocalPlayer = game.Players.LocalPlayer
+    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+    local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(time --[[ time ]]), {CFrame = CFrame.new(Position)}  )
+    Tween:Play()
+    task.wait(time)
+end
+
+Teleport(-2084, 87, -550, 0.25)
+TweenTeleport(-2084, 76, -550, 0.25)
+TweenTeleport(-2084, 62, -550, 0.25)
+TweenTeleport(-2084, 50, -550, 0.25)
+Teleport(-2141, 47, -534, 0.25)
+TweenTeleport(-2168, 47, -447, 0.25)
+Teleport(-2193, 47, -419, 0.5)
+TweenTeleport(-2193, 300, -419, 1)
+TweenTeleport(55, 300, -150, 6)
+TweenTeleport(55, 25, -150, 1)
+task.wait(0.25)
+Teleport(115, 26, -175)
