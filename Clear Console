@@ -1,0 +1,16 @@
+local CoreGui = game:GetService("CoreGui")
+local DevConsole = CoreGui:WaitForChild("DevConsoleMaster")
+local DevWindow = DevConsole:FindFirstChild("DevConsoleWindow")
+local DevUI = DevWindow:FindFirstChild("DevConsoleUI")
+local MainView = DevUI:FindFirstChild("MainView")
+local ClientLog = MainView:FindFirstChild("ClientLog")
+
+function ClearConsole()
+    for _, Element in next, ClientLog:GetChildren() do
+        if Element:IsA("GuiObject") and Element.Name == Element.Name:match("%d+") then
+            Element:Destroy()
+        end
+    end
+end
+
+ClearConsole()
