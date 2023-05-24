@@ -1,4 +1,4 @@
-if _G.AutoKeyClick and wait() then
+while _G.AutoKeyClick and wait() do
     local Space = 0x20; local E = 0x45; local F = 0x46; local Q = 0x51; Z = 0x5A; local X = 0x58; local C = 0x43; 
     function PressKey(key)
    	    keypress(key)
