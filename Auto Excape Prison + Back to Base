@@ -1,4 +1,3 @@
---[[
 function Teleport(x,y,z,cd)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
     task.wait(cd)
@@ -26,4 +25,3 @@ TweenTeleport(55, 300, -150, 6)
 TweenTeleport(55, 25, -150, 1)
 task.wait(0.25)
 Teleport(115, 26, -175)
-]]
