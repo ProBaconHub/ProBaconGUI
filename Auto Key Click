@@ -7,19 +7,19 @@ while _G.AutoKeyClick do
    	    keyrelease(key)
         task.wait (_G.AutoKeyCCD)
     end
-    if _G.AutoKeyToClick == "Space" then
+    if _G.AutoKeyToClick == Space then
         PressKey(Space)
-    elseif _G.AutoKeyToClick == "E" then
+    elseif _G.AutoKeyToClick == E then
         PressKey(E)
-    elseif _G.AutoKeyToClick == "F" then
+    elseif _G.AutoKeyToClick == F then
         PressKey(F)
-    elseif _G.AutoKeyToClick == "Q" then
+    elseif _G.AutoKeyToClick == Q then
         PressKey(Q)
-    elseif _G.AutoKeyToClick == "Z" then
+    elseif _G.AutoKeyToClick == Z then
         PressKey(Z)
-    elseif _G.AutoKeyToClick == "X" then
+    elseif _G.AutoKeyToClick == X then
         PressKey(X)
-    elseif _G.AutoKeyToClick == "C" then
+    elseif _G.AutoKeyToClick == C then
         PressKey(C)
     end
 end
