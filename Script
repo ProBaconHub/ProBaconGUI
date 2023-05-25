@@ -1,6 +1,8 @@
+---@diagnostic disable: undefined-global
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
+local SelfVersion = "V1.6.12"
 --Midnight
 --Ocean
 --BloodTheme
@@ -8,8 +10,8 @@ local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
 
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
-     Title = "Pro Bacon",
-     Text = "Thanks for using!"
+    Title = "Pro Bacon",
+    Text = "Thanks for using!"
 })
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
@@ -45,24 +47,65 @@ function clip()
 	Clip = true
 end
 
---Get data
-local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", true)
-local EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", true)
-local EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", true)
-local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", true)
-local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", true)
-local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", true)
-local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", true)
-local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", true)
-local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", true)
-local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", true)
-local BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", true)
-local BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", true)
-local INFJump = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", true)
-local PlayerWalkSpeed =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed")
-local PlayerJumpPower =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower")
-local SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", true)
-local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", true)
+local Space = 0x20; local E = 0x45; local F = 0x46; local Q = 0x51; Z = 0x5A; local X = 0x58; local C = 0x43; 
+
+function PressKey(key)
+    keypress(key)
+    task.wait(_G.AutoKeyHoldTime)
+    keyrelease(key)
+    task.wait (_G.AutoKeyCCD)
+end
+
+-- Get Data
+game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Downloading Data..."; Duration=5;})
+local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
+local EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
+local EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
+local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
+local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
+local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
+local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", {["Cache-Control"] = "no-cache"})
+local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
+local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
+local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
+local BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
+local BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
+local INFJump = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
+local PlayerWalkSpeed =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed", {["Cache-Control"] = "no-cache"})
+local PlayerJumpPower =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower", {["Cache-Control"] = "no-cache"})
+local SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
+local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
+local AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
+local VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
+local VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
+game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
+
+function UpdateFunctions()
+    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Update Functions is in Beta, may not work."; Duration=5;})
+    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No cache is in beta, may not work."; Duration=5;})
+    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Updating Data..."; Duration=5;})
+    Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
+    EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
+    EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
+    Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
+    NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
+    CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
+    HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", {["Cache-Control"] = "no-cache"})
+    PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
+    TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
+    TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
+    BreakInAutoHit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
+    BreakInAutoRefilPlanks = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
+    INFJump = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
+    PlayerWalkSpeed =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed", {["Cache-Control"] = "no-cache"})
+    PlayerJumpPower =Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower", {["Cache-Control"] = "no-cache"})
+    SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
+    SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
+    AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
+    VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
+    VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
+    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
+end
 
 --Local Player Tab
 local LocalPlayerTab = Window:NewTab("Local Player")
@@ -306,8 +349,44 @@ OtherSection:NewButton("Get Position", "Print and notifi your position.", functi
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
-         Text = "Your position: \r".. game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+         Text = "Your position: \r", game.Players.LocalPlayer.Character.HumanoidRootPart.Position
     })
+end)
+OtherSection:NewDropdown("AutoClickKey", "Spam key for you.", {"Space", "E", "F", "Q", "Z", "X", "C"}, function(currentOption)
+    _G.AutoKeyToClick = currentOption
+end)
+OtherSection:NewTextBox("Key Hold (s)", "How long the key will hold in seconds", function(txt)
+    _G.AutoKeyHoldTime = txt
+end)
+OtherSection:NewTextBox("Click CD", "How many seconds to wait after pressing again?", function(txt)
+    if txt ~= 0 then
+        _G.AutoKeyCCD = txt
+    else
+        _G.AutoKeyCCD = 1
+    end
+end)
+OtherSection:NewToggle("Auto Key Click", "Base on the above settings.", function(state)
+    _G.AutoKeyClick = state
+    print("Auto CLick: ", _G.AutoKeyClick)
+    print("Key Hold Time: ",_G.AutoKeyHoldTime)
+    loadstring(AutoKeyClick)()
+end)
+OtherSection:NewButton("Click once", "Auto click once", function()
+    if _G.AutoKeyToClick == "Space" then
+        PressKey(Space)
+    elseif _G.AutoKeyToClick == "E" then
+        PressKey(E)
+    elseif _G.AutoKeyToClick == "F" then
+        PressKey(F)
+    elseif _G.AutoKeyToClick == "Q" then
+        PressKey(Q)
+    elseif _G.AutoKeyToClick == "Z" then
+        PressKey(Z)
+    elseif _G.AutoKeyToClick == "X" then
+        PressKey(X)
+    elseif _G.AutoKeyToClick == "C" then
+        PressKey(C)
+    end
 end)
 
 --Pro Bacon Tab
@@ -332,8 +411,34 @@ local SettingSection = SettingTab:NewSection("Setting")
 SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function()
 	Library:ToggleUI()
 end)
-
-
+SettingSection:NewButton("Update Function", "Update it when there is any changes", function()
+    UpdateFunctions()
+end)
+SettingSection:NewButton("Check for function update", "Check for new update for function!", function()
+    if VersionOfFunction == Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"}) then
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Function is up to date!"; Duration=5;})
+    else
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="There is new update for function, requier Update function to get the newest version of function!"; Duration=10;})
+    end
+end)
+SettingSection:NewButton("Check for GUI update", "Check for new update for function!", function()
+    print(SelfVersion)
+    print(VersionOfGUI)
+    if VersionOfGUI == SelfVersion then
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No update for GUI!"; Duration=5;})
+    else
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="There is new version of GUI is out! There might be more supported games of fixes! Requier rexecute to update!"; Duration=10;})
+    end
+end)
+SettingSection:NewButton("Check for GUI version", "See GUI version", function()
+    print("--------GUI state--------")
+    print("Current version of GUI: ",SelfVersion)
+    print("Current version of function: ",VersionOfFunction)
+    print("Available version of GUI: ", VersionOfGUI)
+    print("Available version of function: ",VersionOfFunction)
+    print("Update function to get 100% correct info")
+    game.StarterGui:SetCore("DevConsoleVisible", true)
+end)
 
 --New Tab Function
 function AddTab(Tab)
@@ -733,7 +838,7 @@ function AddTab(Tab)
                         end
                     end
                 end
-                game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+                
             end)
     
             game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
