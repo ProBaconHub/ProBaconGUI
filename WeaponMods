@@ -1,7 +1,5 @@
 for i,v in next, getgc(true) do
   if type(v) == "table" and rawget(v, "Missiles") then
-     v.MissileCooldown = 0.5
-     v.MissileTargetRange = 2000000
      v.MissileLock = 0.1
   end
 end
@@ -10,8 +8,8 @@ for i,v in next, getgc(true) do
   if type(v) == "table" and rawget(v, "Damage") then
      rawset(v, "RateOfFire", 0) -- firerate
      rawset(v, "ReloadTime", 0) -- ReloadTime
-     rawset(v, "ClipSize", math.huge) -- inf ammo only works on shotguns etc (math.huge or 0 etc) MaxAmmo
+     rawset(v, "ClipSize", 1500) -- inf ammo only works on shotguns etc (math.huge or 0 etc) MaxAmmo
      rawset(v, "FireMode", "Burst") -- Burst , Auto
-     rawset(v, "Clips", math.huge) -- Ammo
+     rawset(v, "Clips", 1500) -- Ammo
   end
 end
