@@ -1,0 +1,3 @@
+while wait() do -- I use wait becasue I dont want to crash the game
+    game.Players.LocalPlayer.Character.Humanoid.Sit = false
+end
