@@ -58,13 +58,15 @@ end
 
 -- Get Data
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Downloading Data..."; Duration=5;})
+local VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
+local VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
 local Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
 local EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
 local EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
 local Aim = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
 local NoEWait = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
 local CarMode = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
-local HalfAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", {["Cache-Control"] = "no-cache"})
+local MadAutoRob = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Mad%20Auto%20Rob", {["Cache-Control"] = "no-cache"})
 local PwsFarm = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
 local TLOTBSautohit = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
 local TLOTBSautoclick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
@@ -76,14 +78,15 @@ local PlayerJumpPower =Game:HttpGet("https://raw.githubusercontent.com/ProBaconH
 local SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
 local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
 local AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-local VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
-local VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
+local MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
 
 function UpdateFunctions()
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Update Functions is in Beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No cache is in beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Updating Data..."; Duration=5;})
+    VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
+    VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
     Escape = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
     EscapeToBace = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
     EscapeToPear = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
@@ -102,8 +105,7 @@ function UpdateFunctions()
     SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
     SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
     AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-    VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
-    VersionOfGUI = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
+    MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
 end
 
@@ -394,7 +396,7 @@ end)
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed", "Car Dealership Tycoon"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed", "Car Dealership Tycoon", "Base Battles!"}, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -480,6 +482,12 @@ function AddTab(Tab)
         local MadRemoteSection = MadCityTab:NewSection("Remote")
         local MadTeleSection = MadCityTab:NewSection("Force Teleport")
 
+        function Teleport(x,y,z,cd)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
+            task.wait(cd)
+        end
+        local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
+
         MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
             if currentOption == "Escape" then
                 loadstring(Escape)()
@@ -495,8 +503,10 @@ function AddTab(Tab)
         MadAutoSection:NewSlider("Aim Circle", "Decide how big the circle is.", 1500, 0, function(AimCircle)
             getgenv().fov = AimCircle
         end)
-        MadAutoSection:NewButton("Half-Auto Rob (Patched)", "Auto Rob but you have to spam E by yourself, TP patched", function()
-            loadstring(HalfAutoRob)()
+        MadAutoSection:NewButton("Auto Rob", "Rejoin if it doesnt work!", function()
+            getgenv().ServerHop = false
+            getgenv().WaitSevenSeconds = false
+            loadstring(MadAutoRob)()
         end)
 
         MadRemoteSection:NewButton("No E Wait", "No more waiting when pressing E!", function()
@@ -505,12 +515,15 @@ function AddTab(Tab)
         MadRemoteSection:NewButton("Car Mode", "Make your car way more better!", function()
             loadstring(CarMode)()
         end)
-        MadRemoteSection:NewToggle("Motor", "Enable if you are not using a car (Includ motor like Hyper Glider)", function(state)
+        MadRemoteSection:NewToggle("No hover", "No hover mode", function(state)
             if state then
                 _G.Hyper = true --I dont know if only hyper will glitch out because I dont have other moters
             else
                 _G.Hyper = false
             end
+        end)
+        MadRemoteSection:NewButton("Gun Mods", "Mod your guns", function()
+            loadstring(MadWeaponMod)()
         end)
         MadTeleSection:NewDropdown("Force Teleport", "It will TP you back after", {"Base", "Casino", "Bank", "Club", "Prymid"}, function(currentOption)
             if currentOption == "Base" then
@@ -839,6 +852,25 @@ function AddTab(Tab)
                     end
                 end
                 
+            end)
+    
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+
+        elseif Tab == "Base Battles!" then
+            local BaseBattle = Window:NewTab("Base Battles!")
+            local BaseBattlePathRaw = BaseBattle:NewSection("Path Raw")
+            local BaseBattleOthers = BaseBattle:NewSection("Other BaseBattles script")
+        
+            BaseBattlePathRaw:NewButton("INF ammo", "No need to care about reload ammo!", function()
+                    for i, v in pairs(getgc(true)) do if type(v) == "table" and rawget(v, "ammo") then v.ammo = math.huge end end
+            end)
+    
+            BaseBattlePathRaw:NewButton("Auto gun", "Make gun automatic", function()
+                    for i, v in next, getgc(true) do if type(v) == "table" and rawget(v, "damage") then v.automatic = "true" end end
+            end)
+
+            BaseBattleOthers:NewButton("Strucid Fucker (HitBox expand)", "No need to care about not aiming good!", function()
+                loadstring(Game:HttpGet("https://pastebin.com/raw/7pnyZ2YV", true))()
             end)
     
             game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
