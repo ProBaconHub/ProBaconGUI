@@ -2,11 +2,24 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.6.12"
+local SelfVersion = "V1.7.0"
 --Midnight
 --Ocean
 --BloodTheme
 --Serpent
+
+local GamesTab = {
+    "Mad City CH2", 
+    "Punch Wall Simulator", 
+    "TLOTBS RPG", 
+    "Break In (Story)", 
+    "SendMeme(SMTYETDTT)", 
+    "Base Battles!", 
+    "arm wrestling simulator", 
+    "Wall Mining Sim"
+}
+
+
 
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
@@ -391,12 +404,23 @@ OtherSection:NewButton("Click once", "Auto click once", function()
     end
 end)
 
+
+
+
+
+
+
+
+
+
+
+
 --Pro Bacon Tab
 
 local ProBaconTab = Window:NewTab("Pro Bacon Hub")
 local GameSection = ProBaconTab:NewSection("Games")
 
-GameSection:NewDropdown("Game", "Choose your game", {"Mad City CH2", "Punch Wall Simulator", "TLOTBS RPG", "Break In (Story)", "SendMeme(SMTYETDTT)", "Sonic Speed", "Car Dealership Tycoon", "Base Battles!"}, function(currentOption)
+GameSection:NewDropdown("Game", "Choose your game", GamesTab, function(currentOption)
     game.StarterGui:SetCore("SendNotification", {
         Icon = " ",
          Title = "Pro Bacon",
@@ -804,73 +828,67 @@ function AddTab(Tab)
 
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
         
-    elseif Tab == "Sonic Speed" then
-        local SonicSpeedTab = Window:NewTab("Sonic Speed")
-        local LimitedEvent = SonicSpeedTab:NewSection("Limited Event")
+    elseif Tab == "Base Battles!" then
+        local BaseBattle = Window:NewTab("Base Battles!")
+        local BaseBattlePathRaw = BaseBattle:NewSection("Path Raw")
+        local BaseBattleOthers = BaseBattle:NewSection("Other BaseBattles script")
+    
+        BaseBattlePathRaw:NewButton("INF ammo", "No need to care about reload ammo!", function()
+                for i, v in pairs(getgc(true)) do if type(v) == "table" and rawget(v, "ammo") then v.ammo = math.huge end end
+        end)
+    
+        BaseBattlePathRaw:NewButton("Auto gun", "Make gun automatic", function()
+                for i, v in next, getgc(true) do if type(v) == "table" and rawget(v, "damage") then v.automatic = "true" end end
+        end)
 
-        LimitedEvent:NewButton("Get Holographic Metal Sonic", "You have to go clam it afterwards", function()
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Compleating tasks..."; Duration=5;})
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="It will take a few seconds."; Duration=5;})
-            for i = 1,10 do
-                game:GetService("ReplicatedStorage").Knit.Services.ProgressService.RE.LogProgress:FireServer("BoostTime", 3000)
-                task.wait(0.5)
-                game:GetService("ReplicatedStorage").Knit.Services.ProgressService.RE.LogProgress:FireServer("FallTimeTotal",10000)
-                task.wait(0.5)
-            end
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-363, 6, -15051)
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Got to the task place to clam it!"; Duration=5;})
+        BaseBattleOthers:NewButton("Strucid Fucker (HitBox expand)", "No need to care about not aiming good!", function()
+            loadstring(Game:HttpGet("https://pastebin.com/raw/7pnyZ2YV", true))()
+        end)
+    
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+    elseif Tab == "arm wrestling simulator" then
+        local AWSTab = Window:NewTab("arm wrestling simulator")
+        local AWS = AWSTab:NewSection("train all")
+        
+        AWS:NewButton("Train All (OP)", "A train all script that makes you be top in no time!", function()
+            workspace.Main.RemoteEvent:FireServer(500000000000000000) workspace.Main2.RemoteEvent:FireServer(500000000000000000) workspace.Main3.RemoteEvent:FireServer(500000000000000000) game:GetService("ReplicatedStorage").money:FireServer(1000000000)
+        end)
+        AWS:NewButton("[Dangerous] INF Train (Read information!!!)", "This makes you get infinity everything but there is a risk, Click Print Risk!", function()
+            workspace.Main.RemoteEvent:FireServer(math.huge) workspace.Main2.RemoteEvent:FireServer(math.huge) workspace.Main3.RemoteEvent:FireServer(math.huge) game:GetService("ReplicatedStorage").money:FireServer(math.huge)
+        end)
+        AWS:NewButton("Print Risk", "Print the risk", function()
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="This script might bring you to a risk that all your state become [nan] and there is no way back!"; Duration=10;})
         end)
 
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
 
-        elseif Tab == "Car Dealership Tycoon" then
-            local CarDealerSimTab = Window:NewTab("Car Dealer Sim")
-            local CarDealerLimitedEvent = CarDealerSimTab:NewSection("Limited Event")
-    
-            CarDealerLimitedEvent:NewButton("Get Holographic Metal Sonic", "You have to go clam it afterwards", function()
-                for i,v in pairs(Workspace.BirthdayEvent.Parts:GetChildren()) do
-                    _G.ItemName = v.Name
-                    for i,a in pairs(v:GetChildren()) do
-                        if a:IsA("Part") then
-                            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Grabing what you need"; Duration=5;})
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = a.CFrame
-                            task.wait(.25)
-                            game:GetService("ReplicatedStorage").Remotes.Collectibles.TryToCollect:FireServer(a)
-                            task.wait(1)
-                            game:GetService("ReplicatedStorage").Remotes.DestroyGui:FireServer(_G.ItemName)
-                            wait()
-                            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Placing parts"; Duration=5;})
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1996, 605, 3716)
-                            task.wait(.5)
-                            local Unlock = {
-                                [1] = "AssembleCarPart",
-                                [2] = {}
-                            }
-                            game:GetService("ReplicatedStorage").Remotes.EventController.PerformAction:FireServer(unpack(Unlock))
-                        end
-                    end
+        elseif Tab == "Wall Mining Sim" then
+            local WallMiningSimTab = Window:NewTab("Wall Mining Sim")
+            local WallMiningSimFarm = WallMiningSimTab:NewSection("Farm")
+            
+            WallMiningSimFarm:NewButton("Add Win", "Get 10QI wins!", function()
+                game:GetService("ReplicatedStorage").Remote.Event.Eco["[C-S]AddWin"]:FireServer(9999999999000000000,"EntityDied")
+            end)
+            WallMiningSimFarm:NewToggle("Add train", "Train for ya!", function(state)
+                _G.WallMiningSimFarmTrain = state
+                while _G.WallMiningSimFarmTrain and wait() do
+                    game:GetService("ReplicatedStorage").Remote.Event.Game["[C-S]PlayerPick"]:FireServer("BedRock")
                 end
-                
             end)
-    
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
-
-        elseif Tab == "Base Battles!" then
-            local BaseBattle = Window:NewTab("Base Battles!")
-            local BaseBattlePathRaw = BaseBattle:NewSection("Path Raw")
-            local BaseBattleOthers = BaseBattle:NewSection("Other BaseBattles script")
-        
-            BaseBattlePathRaw:NewButton("INF ammo", "No need to care about reload ammo!", function()
-                    for i, v in pairs(getgc(true)) do if type(v) == "table" and rawget(v, "ammo") then v.ammo = math.huge end end
-            end)
-    
-            BaseBattlePathRaw:NewButton("Auto gun", "Make gun automatic", function()
-                    for i, v in next, getgc(true) do if type(v) == "table" and rawget(v, "damage") then v.automatic = "true" end end
-            end)
-
-            BaseBattleOthers:NewButton("Strucid Fucker (HitBox expand)", "No need to care about not aiming good!", function()
-                loadstring(Game:HttpGet("https://pastebin.com/raw/7pnyZ2YV", true))()
+            WallMiningSimFarm:NewButton("EGG", "Get Egg", function()
+                for i = 1,3 do
+                    game:GetService("ReplicatedStorage").Remote.Function.Luck["[C-S]DoLuck"]:InvokeServer("Robux12")
+                    game:GetService("ReplicatedStorage").Remote.Function.Luck["[C-S]DoLuck"]:InvokeServer("Robux12")
+                    game:GetService("ReplicatedStorage").Remote.Function.Luck["[C-S]DoLuck"]:InvokeServer("Robux12")
+                    game:GetService("ReplicatedStorage").Remote.Event.Pet["[C-S]TryCraftAll"]:FireServer()
+                end
+                task.wait(.1)
+                for i = 1,5 do
+                    game:GetService("ReplicatedStorage").Remote.Event.Pet["[C-S]TryCraftAll"]:FireServer()
+                    game:GetService("ReplicatedStorage").Remote.Event.Pet["[C-S]TryEquipBest"]:FireServer()
+                end
+                task.wait(.5)
+                game:GetService("ReplicatedStorage").Remote.Event.Pet["[C-S]TryEquipBest"]:FireServer()
             end)
     
             game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
