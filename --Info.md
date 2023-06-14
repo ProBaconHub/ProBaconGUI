@@ -6,13 +6,10 @@ Powerful and keyless script
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 9/6
++ Last Update: 14/6
 
 --------Update Log--------
-+ Added new scripts
-+ Added noclip
-+ Added INF Jum
-+ Removed Hubs
++ Added Sonic Speed Simulator
 
 --------Future Updates--------
 + More UCG Events
