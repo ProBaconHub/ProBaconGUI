@@ -29,7 +29,7 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",                                                                                                                                                                                                                
-     Text = "Last Update: 21/4/23 (DD/MM/YY)"
+     Text = "Last Update: 14/6/23 (DD/MM/YY)"
 })
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
 
