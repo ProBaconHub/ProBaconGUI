@@ -2,7 +2,7 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.7.1"
+local SelfVersion = "V1.8.1"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
@@ -12,6 +12,7 @@ local PlayerName = game:GetService("Players").LocalPlayer.Name
 local GamesTab = {
     "Mad City CH2", 
     "Sonic Speed Sim", 
+    "My Prison",
     "Punch Wall Simulator", 
     "TLOTBS RPG", 
     "Break In (Story)", 
@@ -286,20 +287,35 @@ local player = game.Players.LocalPlayer
 
 ToolSection:NewButton("TP Tool", "This tool can TP you to where you click \r Info: Click to TP \r WOW finally a useful script by Pro Bacon!", function()
     local Player = game:GetService("Players").LocalPlayer
-local Mouse = Player:GetMouse()
-local Tool = Instance.new("Tool")
+    local Mouse = Player:GetMouse()
+    local Tool = Instance.new("Tool")
 
-Tool.RequiresHandle = false
-Tool.Name = "TPTool"
+    Tool.RequiresHandle = false
+    Tool.Name = "TPTool"
 
-Tool.Activated:Connect(function()
-    local Root = Player.Character.HumanoidRootPart
-    local Pos = Mouse.Hit.Position+Vector3.new(0,2.5,0)
-    local Offset = Pos-Root.Position
-    Root.CFrame = Root.CFrame+Offset
+    Tool.Activated:Connect(function()
+        local Root = Player.Character.HumanoidRootPart
+        local Pos = Mouse.Hit.Position+Vector3.new(0,2.5,0)
+        local Offset = Pos-Root.Position
+        Root.CFrame = Root.CFrame+Offset
+    end)
+
+    Tool.Parent = Player.Backpack
 end)
+ToolSection:NewButton("Path Tool", "This tool can print the path of an object \r Info: Click to print path \r WOW finally a useful script by Pro Bacon!", function()
+    local Player = game:GetService("Players").LocalPlayer
+    local Mouse = Player:GetMouse()
+    local Tool = Instance.new("PathTool")
 
-Tool.Parent = Player.Backpack
+    Tool.RequiresHandle = false
+    Tool.Name = "PathTool"
+
+    Tool.Activated:Connect(function()
+        print(game:GetService("Players").LocalPlayer:GetMouse().Target:GetFullName())
+        setclipboard(game:GetService("Players").LocalPlayer:GetMouse().Target:GetFullName())
+    end)
+
+    Tool.Parent = Player.Backpack
 end)
 ToolSection:NewTextBox("Delete Tool", "Enter the tool name here", function(txt)
     local player = game.Players.LocalPlayer
@@ -588,8 +604,8 @@ function AddTab(Tab)
             TweenTeleport(-2168, 47, -447, 1)
             Teleport(-2193, 47, -419, 0.75)
             TweenTeleport(-2193, 700, -419, 3)
-            TweenTeleport(-44, 300, -111, 6)
-            TweenTeleport(-44, 25, -111, 1)
+            TweenTeleport(-73, 300, -96, 6)
+            TweenTeleport(-73, 25, -96, 1)
             task.wait(0.25)
             TweenTeleport(115, 26, -175, 2)
         end)
@@ -1076,7 +1092,87 @@ function AddTab(Tab)
         end)
 
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
+    elseif Tab == "My Prison" then
+        local MyPrisonTab = Window:NewTab("MyPrison")
+        local MyPrison = MyPrisonTab:NewSection("MyPrison")
+        local MyPrisonEvent = MyPrisonTab:NewSection("MyPrisonEvent")
+        local Player = game.Players.LocalPlayer.Character.HumanoidRootPart
+        local vim = game:GetService('VirtualInputManager')
+        function Click(key, HT, cd)
+            vim:SendKeyEvent(true, key, false, game)
+            task.wait(HT)
+            vim:SendKeyEvent(false, key, false, game)
+            task.wait(cd)
+        end
+
+        MyPrison:NewButton("Arrest", "Go to a place first.", function()
+            for i = 1, 500 do
+                game:GetService("ReplicatedStorage").Remote.NPC.Interact:FireServer(i,"PromptTriggered")
+            end
+        end)
+        MyPrisonEvent:NewButton("Collect All Baterys", "Collect baterys instancely", function()
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_1")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_2")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_3")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_4")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_5")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_6")
+            game:GetService("ReplicatedStorage").Remote.Client:FireServer("CollectBattery","Battery_7")
+        end)
+        MyPrisonEvent:NewButton("Auto Place Baterys", "Auto place batterys.", function()
+            Player.CFrame = game.Workspace.Batterys.Battery_1.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(0.1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_2.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(0.1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_3.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(0.1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_4.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_5.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(0.1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_6.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+            task.wait(1)
+
+            Player.CFrame = game.Workspace.Batterys.Battery_7.Part.CFrame
+            task.wait(0.1)
+            Click(Enum.KeyCode.E, 0.1, .01)
+        end)
+        MyPrisonEvent:NewButton("Auto put out fire", "Fill and pour water.", function()
+            for i = 1, 10 do
+                Player.CFrame = game:GetService("Workspace").WaterZone.CFrame
+                task.wait(0.1)
+                Player.CFrame = game:GetService("Workspace").Plots.Plot2.Floors["2"].Furnitures.Fireplace.Models.Model:GetChildren()[3].CFrame
+                task.wait(0.1)
+            end
+        end)
+        MyPrisonEvent:NewLabel("For event: You dont have to go anywhere")
+        MyPrisonEvent:NewLabel("Game will teleport you.")
     end
+
+
+
+
+
+
+
+
 end
 
 
