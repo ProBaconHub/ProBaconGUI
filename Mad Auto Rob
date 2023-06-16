@@ -1,10 +1,3 @@
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Waiting for game to load.."; Duration=5;})
-repeat wait() until game:IsLoaded()
-wait(1)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Game Loaded!"; Duration=5;})
-getgenv().ServerHop = true
-getgenv().WaitSevenSeconds = true
-
 if true then
 if WaitSevenSeconds then
 	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Wait 7 seconds."; Duration=20;})
