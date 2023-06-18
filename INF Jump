@@ -2,17 +2,25 @@ if _G.INFjumpAlrEnabled == nil then
 	_G.INFjumpAlrEnabled = true
 	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="INF jump loaded"; Duration=5;})
 
-	--The actual infinite jump
 	local LocalPlayer = game:GetService('Players').LocalPlayer
-	local Mouse = LocalPlayer:GetMouse()
-	Mouse.KeyDown:connect(function(Key)
-		if _G.infinjump then
-			if Key:byte() == 32 then
-			humanoid = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
-			humanoid:ChangeState('Jumping')
-			wait()
-			humanoid:ChangeState('Seated')
-			end
-		end
+	local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+	local Humanoid = Character:WaitForChild("Humanoid")
+
+	local function onInputBegan(input)
+	    if input.UserInputType == Enum.UserInputType.Keyboard and input.KeyCode == Enum.KeyCode.Space then
+	        if _G.infinjump then
+	            Humanoid:ChangeState('Jumping')
+	            wait()
+	            Humanoid:ChangeState('Seated')
+	        end
+	    elseif input.UserInputType == Enum.UserInputType.Touch and input.UserInputState == Enum.UserInputState.Begin then
+	        if _G.infinjump then
+	            Humanoid:ChangeState('Jumping')
+	            wait()
+	            Humanoid:ChangeState('Seated')
+	        end
+	    end
+	end
+	game:GetService("UserInputService").InputBegan:Connect(onInputBegan)
 	end)
 end
