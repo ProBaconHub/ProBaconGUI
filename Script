@@ -304,8 +304,7 @@ ToolSection:NewButton("TP Tool", "This tool can TP you to where you click \r Inf
 end)
 ToolSection:NewButton("Path Tool", "This tool can print the path of an object \r Info: Click to print path \r WOW finally a useful script by Pro Bacon!", function()
     local Player = game:GetService("Players").LocalPlayer
-    local Mouse = Player:GetMouse()
-    local Tool = Instance.new("PathTool")
+    local Tool = Instance.new("Tool")
 
     Tool.RequiresHandle = false
     Tool.Name = "PathTool"
@@ -366,11 +365,12 @@ HubSection:NewButton("V.G Hub", "Load V.G Hub \r Info: 60+ games \r WARN: Not su
 end)
 
 HubSection:NewButton("Proxmia Hub", "Load Proxmia Hub \r Info: 5+ games", function()
-    loadstring(game:HttpGet("URL HERE"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/TrixAde/Proxima-Hub/main/Main.lua"))()
 end)
 
-HubSection:NewButton("Eclipse Hub", "Load Eclipse Hub \r Info: 10+ games", function()
-    loadstring(game:HttpGet("URL HERE"))()
+HubSection:NewButton("Eclipse Hub (Supported executors patched)", "Load Eclipse Hub \r Info: 10+ games", function()
+    getgenv().mainKey = "nil"
+    local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,tostring,"https://api.eclipsehub.xyz/auth"c(a and b,"Executor not Supported")a(b({Url=e.."\?\107e\121\61"..d(mainKey),Headers={["User-Agent"]="Eclipse"}}).Body)()
 end)
 
 HubSection:NewLabel("More comming soon!")
@@ -542,7 +542,7 @@ function AddTab(Tab)
         local MadCityTab = Window:NewTab("Mad City")
         local MadAutoSection = MadCityTab:NewSection("Auto")
         local MadRemoteSection = MadCityTab:NewSection("Remote")
-        local MadTeleSection = MadCityTab:NewSection("Force Teleport")
+        local MadEventSection = MadCityTab:NewSection("Piggy Event")
         local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
         function Teleport(x,y,z,cd)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
@@ -637,33 +637,46 @@ function AddTab(Tab)
         MadRemoteSection:NewButton("Gun Mods", "Mod your guns", function()
             loadstring(MadWeaponMod)()
         end)
-        MadTeleSection:NewDropdown("Force Teleport", "It will TP you back after", {"Base", "Casino", "Bank", "Club", "Prymid"}, function(currentOption)
-            if currentOption == "Base" then
-                for i = 1,200 do
-	                task.wait()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(106, 26, -166)
+        MadEventSection:NewButton("ESP Meteor", "Let to see Meteor locations", function()
+            for __,v in pairs(game.workspace:GetDescendants()) do
+                if v.Name == "Meteor" then
+                  local a = Instance.new("BillboardGui",v)
+                  a.Name = "ProBaconESPIn1Minutes"
+                  a.Size = UDim2.new(10,0, 10,0)
+                  a.AlwaysOnTop = true
+                  local b = Instance.new("Frame",a)
+                  b.Size = UDim2.new(1,0, 1,0)
+                  b.BackgroundTransparency = 0.80
+                  b.BorderSizePixel = 0
+                  b.BackgroundColor3 = Color3.new(0, 255, 0)
+                  local c = Instance.new('TextLabel',b)
+                  c.Size = UDim2.new(2,0,2,0)
+                  c.BorderSizePixel = 0
+                  c.TextSize = 20
+                  c.Text = v.Name
+                  c.BackgroundTransparency = 1
                 end
-            elseif currentOption == "Casino" then
-                for i = 1,200 do
-	                task.wait()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1500, -41, 622)
-                end
-            elseif currentOption == "Bank" then
-                for i = 1,200 do
-	                task.wait()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(653, -19, 566)
-                end
-            elseif currentOption == "Club" then
-                for i = 1,200 do
-	                task.wait()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1835, 225, -1167)
-                end
-            elseif currentOption == "Prymid" then
-                for i = 1,200 do
-	                task.wait()
-	                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(162, -62, 1152)
-                end
+               end
+        end)
+        MadEventSection:NewToggle("Piggy Event Safe Place", "Join event first \r It mod your guns", function(state)
+            _G.MadPigEventStand = state
+            local hp = game.Players.LocalPlayer.Character.HumanoidRootPart
+            local platform = Instance.new("Part", game.Workspace)
+            for i,v in next, getgc(true) do
+              if type(v) == "table" and rawget(v, "Damage") then
+                 rawset(v, "RateOfFire", 0)
+                 rawset(v, "ReloadTime", 0)
+                 rawset(v, "ClipSize", 2000)
+                 rawset(v, "FireMode", "Burst")
+                 rawset(v, "Clips", 2000)
+              end
             end
+            platform.Anchored = true
+            platform.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -203.6, 0)
+            repeat
+                hp.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -200, 0)
+                task.wait()
+            until not _G.MadPigEventStand
         end)
 
         game.StarterGui:SetCore("SendNotification", {
@@ -671,7 +684,6 @@ function AddTab(Tab)
              Title = "Pro Bacon",
              Text = "Done"
         })
-
 
     elseif Tab == "Punch Wall Simulator" then
         --Pws
