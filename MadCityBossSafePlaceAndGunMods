@@ -1,0 +1,28 @@
+if _G.MadPigEventStand then
+    local Position = Vector3.new(-14704, 638, 19962)
+    local TweenService = game:GetService('TweenService')
+    local LocalPlayer = game.Players.LocalPlayer
+    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+    local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(1), {CFrame = CFrame.new(Position)}  )
+    Tween:Play()
+    task.wait(0.5)
+    local hp = game.Players.LocalPlayer.Character.HumanoidRootPart
+    local platform = Instance.new("Part", game.Workspace)
+    for i,v in next, getgc(true) do
+        if type(v) == "table" and rawget(v, "Damage") then
+           rawset(v, "RateOfFire", 0.001)
+           rawset(v, "ReloadTime", 0.001)
+           rawset(v, "ClipSize", 2000)
+           rawset(v, "FireMode", "Burst")
+           rawset(v, "Clips", 2000)
+           rawset(v, "MinAccuracy", 0)
+           rawset(v, "MaxAccuracy", 0.001)
+        end
+      end
+    platform.Anchored = true
+    platform.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -203.6, 0)
+    repeat
+        hp.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -200, 0)
+        task.wait()
+    until not _G.MadPigEventStand
+end
