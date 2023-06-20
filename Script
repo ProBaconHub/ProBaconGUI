@@ -2,7 +2,7 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.8.3"
+local SelfVersion = "V1.8.4"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
@@ -98,6 +98,7 @@ local SendMemeAutoResearch = Game:HttpGet("https://raw.githubusercontent.com/Pro
 local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
 local AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
 local MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
+local MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
 
 function UpdateFunctions()
@@ -125,6 +126,7 @@ function UpdateFunctions()
     SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
     AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
     MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
+    MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
 end
 
@@ -660,32 +662,7 @@ function AddTab(Tab)
         end)
         MadEventSection:NewToggle("Piggy Event Safe Place", "Join event first \r It mod your guns", function(state)
             _G.MadPigEventStand = state
-            if _G.MadPigEventStand then
-                local Position = Vector3.new(-14704, 638, 19962)
-                local TweenService = game:GetService('TweenService')
-                local LocalPlayer = game.Players.LocalPlayer
-                local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-                local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(1), {CFrame = CFrame.new(Position)}  )
-                Tween:Play()
-                task.wait(0.5)
-                local hp = game.Players.LocalPlayer.Character.HumanoidRootPart
-                local platform = Instance.new("Part", game.Workspace)
-                for i,v in next, getgc(true) do
-                  if type(v) == "table" and rawget(v, "Damage") then
-                     rawset(v, "RateOfFire", 0)
-                     rawset(v, "ReloadTime", 0)
-                     rawset(v, "ClipSize", 2000)
-                     rawset(v, "FireMode", "Burst")
-                     rawset(v, "Clips", 2000)
-                  end
-                end
-                platform.Anchored = true
-                platform.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -203.6, 0)
-                repeat
-                    hp.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -200, 0)
-                    task.wait()
-                until not _G.MadPigEventStand
-            end
+            loadstring(MadBossFight)()
         end)
 
         game.StarterGui:SetCore("SendNotification", {
@@ -771,6 +748,28 @@ function AddTab(Tab)
         LotbsAutoSection:NewToggle("Auto Click", "Auto hit surrouning mobs when equip sword", function(state)
             _G.LotbsAutoHit = state
             loadstring(TLOTBSautoclick)()
+        end)
+        LotbsAutoSection:NewButton("BringAll", "Bring all enemy", function()
+            for i,v in pairs(Workspace.Enemies:GetChildren()) do
+                v:FindFirstChild("HumanoidRootPart").Anchored = true
+                v:FindFirstChild("HumanoidRootPart").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame*CFrame.new(1,1,4)
+            end
+        end)
+        LotbsAutoSection:NewToggle("AutoHeal", "Auto heal you", function(state)
+            --Variables
+            Heal = game:GetService("Workspace").Parts.Decoration["Healing Pond"].Pad
+            Chara = Game.Players.LocalPlayer.Character
+            basepart = Chara:FindFirstChildWhichIsA("BasePart")
+            --Script
+            _G.LotbsAutoHeal = state
+            while _G.LotbsAutoHeal do task.wait()
+              pcall(function() --Because I am lazy and don't wanna spend time optimizing
+                  firetouchinterest(Heal,basepart,0) --This heals you
+                  task.wait(.001)
+                  firetouchinterest(Heal,basepart,1)
+                  task.wait(.001)
+              end)
+            end
         end)
         LotbsTPSection:NewTextBox("PlayerTP", "Input player name", function(txt)
             local GamePlayer = game.Players
