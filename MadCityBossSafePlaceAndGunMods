@@ -10,15 +10,15 @@ if _G.MadPigEventStand then
     local platform = Instance.new("Part", game.Workspace)
     for i,v in next, getgc(true) do
         if type(v) == "table" and rawget(v, "Damage") then
-           rawset(v, "RateOfFire", 0.001)
-           rawset(v, "ReloadTime", 0.001)
-           rawset(v, "ClipSize", 2000)
-           rawset(v, "FireMode", "Burst")
-           rawset(v, "Clips", 2000)
-           rawset(v, "MinAccuracy", 0)
-           rawset(v, "MaxAccuracy", 0.001)
+            rawset(v, "RateOfFire", 0)
+            rawset(v, "ReloadTime", 0.001)
+            rawset(v, "ClipSize", 5000)
+            rawset(v, "FireMode", "Burst")
+            rawset(v, "Clips", 5000)
+            rawset(v, "MinAccuracy", 0)
+            rawset(v, "MaxAccuracy", 0.001)
         end
-      end
+    end
     platform.Anchored = true
     platform.CFrame = workspace.Arena.Geometry.Model.PiggyArenaCurve:GetModelCFrame() * CFrame.new(60, -203.6, 0)
     repeat
