@@ -2,7 +2,7 @@
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.8.4"
+local SelfVersion = "V1.9.0"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
@@ -74,7 +74,7 @@ function PressKey(key)
     keyrelease(key)
     task.wait (_G.AutoKeyCCD)
 end
-
+--[[
 -- Get Data
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Downloading Data..."; Duration=5;})
 local VersionOfFunction = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
@@ -100,6 +100,7 @@ local AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 local MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
 local MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
+--]]
 
 function UpdateFunctions()
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Update Functions is in Beta, may not work."; Duration=5;})
@@ -640,7 +641,7 @@ function AddTab(Tab)
             loadstring(MadWeaponMod)()
         end)
         MadEventSection:NewButton("ESP Meteor", "Let to see Meteor locations", function()
-            for __,v in pairs(game.workspace:GetDescendants()) do
+            for __,v in pairs(game.Workspace:GetDescendants()) do
                 if v.Name == "Meteor" then
                   local a = Instance.new("BillboardGui",v)
                   a.Name = "ProBaconESPIn1Minutes"
