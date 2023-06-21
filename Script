@@ -359,7 +359,7 @@ local MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.9.0"
+local SelfVersion = "V1.9.1"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
