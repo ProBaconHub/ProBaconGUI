@@ -8,7 +8,7 @@ Powerful and keyless script
 + Languages supported: English
 + Last Update: 14/6
 
---------Update Log--------
+## Update Log
 + Added Sonic Speed Simulator
 
 --------Future Updates--------
