@@ -1,7 +1,7 @@
 # Pro-Bacon-Hub
 Powerful and keyless script
 
-##About
+#About
 + Name: Pro Bacon Hub
 + UI: Kavo UI
 + Creator: Pro Bacon
