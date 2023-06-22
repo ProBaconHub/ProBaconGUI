@@ -282,7 +282,7 @@ end)
 
 --OP Section
 local OPTab = Window:NewTab("OP")
-local AntiKickSection = LocalPlayerTab:NewSection("AntiKick")
+local AntiKickSection = OPTab:NewSection("AntiKick")
 
 AntiKickSection:NewButton("Anti Kick", "Protect you from kicking you", function()
     local mt = getrawmetatable(game)
