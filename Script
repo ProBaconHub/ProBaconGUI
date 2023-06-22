@@ -21,6 +21,10 @@ local SendMemeAutoHack = Game:HttpGet("https://raw.githubusercontent.com/ProBaco
 local AutoKeyClick = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
 local MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
 local MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
+
+
+if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!")
+
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
