@@ -1,250 +1,316 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
 local ProBaconHub = Instance.new("ScreenGui")
-local Loading = Instance.new("ImageLabel")
+local LoadingScreen = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
 local Name = Instance.new("TextLabel")
-local Progress = Instance.new("TextLabel")
+local DownloadData = Instance.new("TextLabel")
 local Launch = Instance.new("TextButton")
 local Dismis = Instance.new("TextButton")
-local Information = Instance.new("ImageLabel")
-local Creator = Instance.new("TextLabel")
+local SidePennel = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
 local Info = Instance.new("TextLabel")
-local UI = Instance.new("TextLabel")
-local Price = Instance.new("TextLabel")
+local Creator = Instance.new("TextLabel")
+local UiLibrary = Instance.new("TextLabel")
+local Prize = Instance.new("TextLabel")
 local Key = Instance.new("TextLabel")
-
---Properties:
-
+local ProVersionKey = Instance.new("Frame")
+local UICorner_3 = Instance.new("UICorner")
+local Key_2 = Instance.new("TextBox")
+local LaunchProVersion = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
 ProBaconHub.Name = "ProBaconHub"
 ProBaconHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-Loading.Name = "Loading"
-Loading.Parent = ProBaconHub
-Loading.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Loading.BackgroundTransparency = 1.000
-Loading.Position = UDim2.new(0.329099238, 0, 0.325019419, 0)
-Loading.Size = UDim2.new(0, 398, 0, 226)
-Loading.Image = "rbxassetid://3570695787"
-Loading.ImageColor3 = Color3.fromRGB(75, 75, 75)
-Loading.ScaleType = Enum.ScaleType.Slice
-Loading.SliceCenter = Rect.new(100, 100, 100, 100)
-Loading.SliceScale = 0.120
-
+LoadingScreen.Name = "LoadingScreen"
+LoadingScreen.Parent = ProBaconHub
+LoadingScreen.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+LoadingScreen.BorderSizePixel = 0
+LoadingScreen.Position = UDim2.new(0.270756483, 0, 0.349068314, 0)
+LoadingScreen.Size = UDim2.new(0, 420, 0, 243)
+UICorner.CornerRadius = UDim.new(0, 15)
+UICorner.Parent = LoadingScreen
 Name.Name = "Name"
-Name.Parent = Loading
-Name.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+Name.Parent = LoadingScreen
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Name.BackgroundTransparency = 1.000
-Name.BorderColor3 = Color3.fromRGB(28, 5, 53)
-Name.Position = UDim2.new(0.135163024, 0, 0.0776850581, 0)
-Name.Size = UDim2.new(0, 293, 0, 66)
+Name.BorderSizePixel = 0
+Name.Position = UDim2.new(0.100000009, 0, 0.0493827164, 0)
+Name.Size = UDim2.new(0, 334, 0, 61)
 Name.Font = Enum.Font.Unknown
 Name.Text = "ProBaconHub"
-Name.TextColor3 = Color3.fromRGB(170, 255, 0)
+Name.TextColor3 = Color3.fromRGB(255, 255, 0)
 Name.TextScaled = true
-Name.TextSize = 33.000
+Name.TextSize = 14.000
 Name.TextWrapped = true
-
-Progress.Name = "Progress"
-Progress.Parent = Loading
-Progress.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Progress.BackgroundTransparency = 1.000
-Progress.Position = UDim2.new(0.248738199, 0, 0.428750992, 0)
-Progress.Size = UDim2.new(0, 200, 0, 32)
-Progress.Font = Enum.Font.SourceSans
-Progress.Text = "Loading Data"
-Progress.TextColor3 = Color3.fromRGB(85, 170, 255)
-Progress.TextSize = 20.000
-
+DownloadData.Name = "DownloadData"
+DownloadData.Parent = LoadingScreen
+DownloadData.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DownloadData.BackgroundTransparency = 1.000
+DownloadData.BorderSizePixel = 0
+DownloadData.Position = UDim2.new(0.326190501, 0, 0.427983522, 0)
+DownloadData.Size = UDim2.new(0, 145, 0, 35)
+DownloadData.Font = Enum.Font.SourceSans
+DownloadData.Text = "Downloading Data"
+DownloadData.TextColor3 = Color3.fromRGB(170, 170, 255)
+DownloadData.TextScaled = true
+DownloadData.TextSize = 14.000
+DownloadData.TextWrapped = true
 Launch.Name = "Launch"
-Launch.Parent = Loading
+Launch.Parent = LoadingScreen
 Launch.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Launch.BackgroundTransparency = 1.000
-Launch.Position = UDim2.new(0.391812652, 0, 0.681164622, 0)
-Launch.Size = UDim2.new(0, 88, 0, 31)
-Launch.Font = Enum.Font.Unknown
+Launch.BorderSizePixel = 0
+Launch.Position = UDim2.new(0.340476215, 0, 0.674897075, 0)
+Launch.Size = UDim2.new(0, 134, 0, 37)
+Launch.Font = Enum.Font.FredokaOne
 Launch.Text = "Launch"
 Launch.TextColor3 = Color3.fromRGB(0, 0, 0)
-Launch.TextSize = 20.000
-
+Launch.TextScaled = true
+Launch.TextSize = 14.000
+Launch.TextWrapped = true
 Dismis.Name = "Dismis"
-Dismis.Parent = Loading
+Dismis.Parent = LoadingScreen
 Dismis.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Dismis.BackgroundTransparency = 1.000
-Dismis.Position = UDim2.new(0.369346738, 0, 0.845132709, 0)
-Dismis.Size = UDim2.new(0, 104, 0, 25)
-Dismis.Font = Enum.Font.SourceSans
+Dismis.BorderSizePixel = 0
+Dismis.Position = UDim2.new(0.388557523, 0, 0.855967045, 0)
+Dismis.Size = UDim2.new(0, 92, 0, 25)
+Dismis.Font = Enum.Font.FredokaOne
 Dismis.Text = "Dismis"
 Dismis.TextColor3 = Color3.fromRGB(255, 0, 0)
-Dismis.TextSize = 18.000
-
-Information.Name = "Information"
-Information.Parent = ProBaconHub
-Information.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Information.BackgroundTransparency = 1.000
-Information.Position = UDim2.new(0.635468185, 0, 0.324223578, 0)
-Information.Size = UDim2.new(0, 197, 0, 227)
-Information.Image = "rbxassetid://3570695787"
-Information.ImageColor3 = Color3.fromRGB(75, 75, 75)
-Information.ScaleType = Enum.ScaleType.Slice
-Information.SliceCenter = Rect.new(100, 100, 100, 100)
-Information.SliceScale = 0.120
-
-Creator.Name = "Creator"
-Creator.Parent = Information
-Creator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Creator.BackgroundTransparency = 1.000
-Creator.Position = UDim2.new(0.103920259, 0, 0.203260347, 0)
-Creator.Size = UDim2.new(0, 154, 0, 28)
-Creator.Font = Enum.Font.SourceSans
-Creator.Text = "Creator: Pro Bacon"
-Creator.TextColor3 = Color3.fromRGB(85, 0, 255)
-Creator.TextSize = 20.000
-
+Dismis.TextScaled = true
+Dismis.TextSize = 14.000
+Dismis.TextWrapped = true
+SidePennel.Name = "SidePennel"
+SidePennel.Parent = ProBaconHub
+SidePennel.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+SidePennel.BorderSizePixel = 0
+SidePennel.Position = UDim2.new(0.601486981, 0, 0.349068314, 0)
+SidePennel.Size = UDim2.new(0, 170, 0, 243)
+UICorner_2.CornerRadius = UDim.new(0, 15)
+UICorner_2.Parent = SidePennel
 Info.Name = "Info"
-Info.Parent = Information
+Info.Parent = SidePennel
 Info.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Info.BackgroundTransparency = 1.000
-Info.Position = UDim2.new(0.0328542627, 0, 0.0446700752, 0)
-Info.Size = UDim2.new(0, 183, 0, 30)
+Info.BorderSizePixel = 0
+Info.Position = UDim2.new(0.0226113703, 0, 0.0905349776, 0)
+Info.Size = UDim2.new(0, 162, 0, 29)
 Info.Font = Enum.Font.SourceSans
 Info.Text = "--------Info--------"
 Info.TextColor3 = Color3.fromRGB(255, 0, 0)
 Info.TextScaled = true
-Info.TextSize = 25.000
+Info.TextSize = 14.000
 Info.TextWrapped = true
-
-UI.Name = "UI"
-UI.Parent = Information
-UI.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-UI.BackgroundTransparency = 1.000
-UI.Position = UDim2.new(0.105205774, 0, 0.326765656, 0)
-UI.Size = UDim2.new(0, 154, 0, 28)
-UI.Font = Enum.Font.SourceSans
-UI.Text = "UI: Kavo UI"
-UI.TextColor3 = Color3.fromRGB(85, 0, 255)
-UI.TextSize = 20.000
-
-Price.Name = "Price"
-Price.Parent = Information
-Price.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Price.BackgroundTransparency = 1.000
-Price.Position = UDim2.new(0.108996399, 0, 0.449956387, 0)
-Price.Size = UDim2.new(0, 154, 0, 28)
-Price.Font = Enum.Font.SourceSans
-Price.Text = "Price: Free"
-Price.TextColor3 = Color3.fromRGB(85, 0, 255)
-Price.TextSize = 20.000
-
+Creator.Name = "Creator"
+Creator.Parent = SidePennel
+Creator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Creator.BackgroundTransparency = 1.000
+Creator.BorderSizePixel = 0
+Creator.Position = UDim2.new(0.135294124, 0, 0.238683134, 0)
+Creator.Size = UDim2.new(0, 124, 0, 15)
+Creator.Font = Enum.Font.FredokaOne
+Creator.Text = "Creator: ProBacon"
+Creator.TextColor3 = Color3.fromRGB(0, 170, 255)
+Creator.TextScaled = true
+Creator.TextSize = 14.000
+Creator.TextWrapped = true
+UiLibrary.Name = "UiLibrary"
+UiLibrary.Parent = SidePennel
+UiLibrary.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UiLibrary.BackgroundTransparency = 1.000
+UiLibrary.BorderSizePixel = 0
+UiLibrary.Position = UDim2.new(0.135294124, 0, 0.337448567, 0)
+UiLibrary.Size = UDim2.new(0, 124, 0, 15)
+UiLibrary.Font = Enum.Font.FredokaOne
+UiLibrary.Text = "UI Library: Kavo UI"
+UiLibrary.TextColor3 = Color3.fromRGB(0, 170, 255)
+UiLibrary.TextScaled = true
+UiLibrary.TextSize = 14.000
+UiLibrary.TextWrapped = true
+Prize.Name = "Prize"
+Prize.Parent = SidePennel
+Prize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Prize.BackgroundTransparency = 1.000
+Prize.BorderSizePixel = 0
+Prize.Position = UDim2.new(0.135294124, 0, 0.427983552, 0)
+Prize.Size = UDim2.new(0, 124, 0, 15)
+Prize.Font = Enum.Font.FredokaOne
+Prize.Text = "Price: Free"
+Prize.TextColor3 = Color3.fromRGB(0, 170, 255)
+Prize.TextScaled = true
+Prize.TextSize = 14.000
+Prize.TextWrapped = true
 Key.Name = "Key"
-Key.Parent = Information
+Key.Parent = SidePennel
 Key.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Key.BackgroundTransparency = 1.000
-Key.Position = UDim2.new(0.108996399, 0, 0.560088575, 0)
-Key.Size = UDim2.new(0, 154, 0, 28)
-Key.Font = Enum.Font.SourceSans
+Key.BorderSizePixel = 0
+Key.Position = UDim2.new(0.129411772, 0, 0.51028806, 0)
+Key.Size = UDim2.new(0, 124, 0, 15)
+Key.Font = Enum.Font.FredokaOne
 Key.Text = "Key: Keyless"
-Key.TextColor3 = Color3.fromRGB(85, 0, 255)
-Key.TextSize = 20.000
-
--- Scripts:
-
-local function OPWZ_fake_script() -- Progress.DownloadProgress 
-	local script = Instance.new('LocalScript', Progress)
+Key.TextColor3 = Color3.fromRGB(0, 170, 255)
+Key.TextScaled = true
+Key.TextSize = 14.000
+Key.TextWrapped = true
+ProVersionKey.Name = "Pro Version Key"
+ProVersionKey.Parent = SidePennel
+ProVersionKey.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ProVersionKey.Position = UDim2.new(0.129411772, 0, 0.674897134, 0)
+ProVersionKey.Size = UDim2.new(0, 126, 0, 24)
+UICorner_3.CornerRadius = UDim.new(0, 10)
+UICorner_3.Parent = ProVersionKey
+Key_2.Name = "Key"
+Key_2.Parent = ProVersionKey
+Key_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Key_2.BackgroundTransparency = 1.000
+Key_2.BorderSizePixel = 0
+Key_2.Position = UDim2.new(0.0704946369, 0, 0.125, 0)
+Key_2.Size = UDim2.new(0, 109, 0, 18)
+Key_2.ClearTextOnFocus = false
+Key_2.Font = Enum.Font.SourceSans
+Key_2.Text = "Pro Version Key Here"
+Key_2.TextColor3 = Color3.fromRGB(255, 255, 0)
+Key_2.TextScaled = true
+Key_2.TextSize = 14.000
+Key_2.TextWrapped = true
+LaunchProVersion.Name = "LaunchProVersion"
+LaunchProVersion.Parent = SidePennel
+LaunchProVersion.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+LaunchProVersion.Position = UDim2.new(0.152941182, 0, 0.827160478, 0)
+LaunchProVersion.Size = UDim2.new(0, 118, 0, 26)
+LaunchProVersion.Font = Enum.Font.FredokaOne
+LaunchProVersion.Text = "Launch Pro Version"
+LaunchProVersion.TextColor3 = Color3.fromRGB(0, 0, 0)
+LaunchProVersion.TextScaled = true
+LaunchProVersion.TextSize = 14.000
+LaunchProVersion.TextWrapped = true
+UICorner_4.Parent = LaunchProVersion
+local function EKVJAU_fake_script() -- DownloadData.LocalScript 
+	local script = Instance.new('LocalScript', DownloadData)
 
 	_G.ProBaconHubLoadDataDone = false
-    _G.ProBaconHubGuiLunched = false
-	local script = Instance.new('LocalScript', Progress)
-	
-	print("Loading script, please wait.")
 	local Head = "Download: "
 	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Downloading Data..."; Duration=5;})
 	task.wait(0.5)
 	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = "Downloading Data..."
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = "Downloading Data..."
 	task.wait(1)
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."VersionOfFunction"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."VersionOfFunction"
 	local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."VersionOfGUI"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."VersionOfGUI"
 	local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."Escape"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."Escape"
 	local Escape = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."EscapeToBace"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."EscapeToBace"
 	local EscapeToBace = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."EscapeToPear"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."EscapeToPear"
 	local EscapeToPear = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."Aim"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."Aim"
 	local Aim = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."NoEWait"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."NoEWait"
 	local NoEWait = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."CarMode"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."CarMode"
 	local CarMode = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."MadAutoRob"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."MadAutoRob"
 	local MadAutoRob = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Mad%20Auto%20Rob", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."PwsFarm"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."PwsFarm"
 	local PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."TLOTBSautohit"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."TLOTBSautohit"
 	local TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."TLOTBSautoclick"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."TLOTBSautoclick"
 	local TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."BreakInAutoHit"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."BreakInAutoHit"
 	local BreakInAutoHit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."BreakInAutoRefilPlanks"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."BreakInAutoRefilPlanks"
 	local BreakInAutoRefilPlanks = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."INFJump"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."INFJump"
 	local INFJump = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."PlayerWalkSpeed"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."PlayerWalkSpeed"
 	local PlayerWalkSpeed =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."PlayerJumpPower"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."PlayerJumpPower"
 	local PlayerJumpPower =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."SendMemeAutoResearch"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."SendMemeAutoResearch"
 	local SendMemeAutoResearch = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."SendMemeAutoHack"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."SendMemeAutoHack"
 	local SendMemeAutoHack = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."AutoKeyClick"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."AutoKeyClick"
 	local AutoKeyClick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."MadWeaponMod"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."MadWeaponMod"
 	local MadWeaponMod = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."MadBossFight"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."MadBossFight"
 	local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = Head.."GUI"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = Head.."GUI"
 	task.wait(0.5)
 	local ProBaconHubMainGui = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Script", {["Cache-Control"] = "no-cache"})
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = "Done!"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = "Done!"
 	_G.ProBaconHubLoadDataDone = true
 	task.wait(5)
-    if _G.ProBaconHubGuiLaunched then else
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = "Click Launch to launch ProBaconGUI"
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = "Click Launch to launch ProBaconGUI"
 	task.wait(5)
-    if _G.ProBaconHubGuiLaunched then else
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Progress.Text = "GUI wont auto launch, please click launch."
-    end end
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.DownloadData.Text = "GUI wont auto launch, please click launch."
 end
-coroutine.wrap(OPWZ_fake_script)()
-local function COOMEEN_fake_script() -- Launch.LocalScript 
+coroutine.wrap(EKVJAU_fake_script)()
+local function GQBEXWD_fake_script() -- Launch.LaunchScript 
 	local script = Instance.new('LocalScript', Launch)
 
 	local function LeftClickOnLaunch()
 		if _G.ProBaconHubLoadDataDone then
 			game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Script", {["Cache-Control"] = "no-cache"}))()
-            _G.ProBaconHubGuiLaunched = true
 			game.Players.LocalPlayer.PlayerGui.ProBaconHub:Destroy()
 		end
 	end
 	
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Launch.MouseButton1Click:Connect(LeftClickOnLaunch)
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.Launch.MouseButton1Click:Connect(LeftClickOnLaunch)
 end
-coroutine.wrap(COOMEEN_fake_script)()
-local function VEXNAV_fake_script() -- Dismis.LocalScript 
+coroutine.wrap(GQBEXWD_fake_script)()
+local function FCAEED_fake_script() -- Dismis.DismisScript 
 	local script = Instance.new('LocalScript', Dismis)
 
 	local function LeftClickOnDismis()
 		game.Players.LocalPlayer.PlayerGui.ProBaconHub:Destroy()
 	end
 	
-	game.Players.LocalPlayer.PlayerGui.ProBaconHub.Loading.Dismis.MouseButton1Click:Connect(LeftClickOnDismis)
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.LoadingScreen.Dismis.MouseButton1Click:Connect(LeftClickOnDismis)
 end
-coroutine.wrap(VEXNAV_fake_script)()
+coroutine.wrap(FCAEED_fake_script)()
+local function XSSLBGO_fake_script() -- Key_2.KeyScript 
+	local script = Instance.new('LocalScript', Key_2)
+
+	task.wait(0.5)
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.ClearTextOnFocus = true
+	
+	local function FocusKeyTextBoxForProVersion()
+		game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.TextColor3 = Color3.new(1, 1, 0)
+		game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.ClearTextOnFocus = false
+	end
+	
+	
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.Focused:Connect(FocusKeyTextBoxForProVersion)
+end
+coroutine.wrap(XSSLBGO_fake_script)()
+local function ZSKIQLV_fake_script() -- LaunchProVersion.LaunchProScript 
+	local script = Instance.new('LocalScript', LaunchProVersion)
+
+	local KeyForProVersionKey = "ProVersionKey"
+	
+	
+	local function LeftClickOnLaunchPro()
+		if game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.Text == KeyForProVersionKey then
+			--Do nothing
+		else
+			game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.TextColor3 = Color3.new(1, 0, 0)
+			game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.Text = "Worng Key!"
+			game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.ClearTextOnFocus = true
+			task.wait(1)
+			if game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.Text == "Worng Key!" then
+				game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.TextColor3 = Color3.new(1, 1, 0)
+				game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.Text = "Pro Version Key Here"
+				game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel["Pro Version Key"].Key.ClearTextOnFocus = false
+			end
+		end
+	end
+	
+	game.Players.LocalPlayer.PlayerGui.ProBaconHub.SidePennel.LaunchProVersion.MouseButton1Click:Connect(LeftClickOnLaunchPro)
+end
+coroutine.wrap(ZSKIQLV_fake_script)()
