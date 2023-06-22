@@ -23,7 +23,7 @@ local MadWeaponMod = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 local MadBossFight = Game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
 
 
-if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!")
+if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
 
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
@@ -288,11 +288,11 @@ AntiKickSection:NewButton("Anti Kick", "Protect you from kicking you", function(
     local mt = getrawmetatable(game)
     local old = mt.__namecall
     local protect = newcclosure or protect_function
-    
+
     if not protect then
     protect = function(f) return f end
     end
-    
+
     setreadonly(mt, false)
     mt.__namecall = protect(function(self, ...)
     local method = getnamecallmethod()
