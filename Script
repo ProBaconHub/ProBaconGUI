@@ -280,6 +280,31 @@ PlayerStuffFlySection:NewButton("LOL", "Laugh at Pro Bacon", function()
     game.Players.LocalPlayer:Kick("Pro Bacon \r LOL you though its real? \r Now who's the dummy~")
 end)
 
+--OP Section
+local OPTab = Window:NewTab("OP")
+local AntiKickSection = LocalPlayerTab:NewSection("AntiKick")
+
+AntiKickSection:NewButton("Anti Kick", "Protect you from kicking you", function()
+    local mt = getrawmetatable(game)
+    local old = mt.__namecall
+    local protect = newcclosure or protect_function
+    
+    if not protect then
+    protect = function(f) return f end
+    end
+    
+    setreadonly(mt, false)
+    mt.__namecall = protect(function(self, ...)
+    local method = getnamecallmethod()
+    if method == "Kick" then
+    wait(9e9)
+    return
+    end
+    return old(self, ...)
+    end)
+    hookfunction(game:GetService("Players").LocalPlayer.Kick,protect(function() task.wait(9e9) end))
+end)
+
 --Tool Tab
 local ToolTab = Window:NewTab("Tool")
 local ToolSection = ToolTab:NewSection("Tool")
