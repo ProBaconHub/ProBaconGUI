@@ -256,6 +256,7 @@ local function GQBEXWD_fake_script() -- Launch.LaunchScript
 	local function LeftClickOnLaunch()
 		if _G.ProBaconHubLoadDataDone then
 			game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
+			_G.IsItExecutedByLoader = true
 			loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Script", {["Cache-Control"] = "no-cache"}))()
 			game.Players.LocalPlayer.PlayerGui.ProBaconHub:Destroy()
 		end
