@@ -1,326 +1,360 @@
 if true then
-if WaitSevenSeconds then
-	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Wait 7 seconds."; Duration=20;})
-	task.wait(7)
-end
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Please rejoin and execute again if it didnt work!"; Duration=20;})
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="I worked so hard on this auto rob, so please share this script :)"; Duration=20;})
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="I worked so hard on this auto rob, so please share this script :)"; Duration=20;})
-local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
-local vim = game:GetService('VirtualInputManager')
-
-u1.Network:Invoke("RequestTeamChange", "Prisoners")
-function Teleport(x,y,z,cd)
-    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-    NoEWait()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
-    task.wait(cd)
-    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-end
-function TweenTeleport(x,y,z, time)
-    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-    NoEWait()
-    local Position = Vector3.new(x,y,z)
-    local TweenService = game:GetService('TweenService')
-    local LocalPlayer = game.Players.LocalPlayer
-    local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-    local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(time --[[ time ]]), {CFrame = CFrame.new(Position)}  )
-    Tween:Play()
-    game.Players.LocalPlayer.Character.Humanoid.Sit = false
-    task.wait(time)
-end
-function Click(key, HT, cd)
-    vim:SendKeyEvent(true, key, false, game)
-    task.wait(HT)
-    vim:SendKeyEvent(false, key, false, game)
-    task.wait(cd)
-end
-function NoEWait()
-    for i,v in next, getgc(true) do
-        if type(v) == "table" and rawget(v, "ID") and rawget(v, "Seconds") then
-            if typeof(v.Seconds) == "number" then
-                rawset(v, "Seconds", 0.0001)
-            end
-        end
-    end
-end
-function EscapeCell()
-    u1.Network:Invoke("RequestTeamChange", "Prisoners")
-    task.wait(1)
-    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Escaping cell..."; Duration=5;})
-    TweenTeleport(-2092, 88, -538, 0.25)
-    TweenTeleport(-2097, 88, -587, 0.25)
-    TweenTeleport(-2093, 88, -561, 0.25)
-    TweenTeleport(-2092, 88, -538, 0.25)
-    TweenTeleport(-2092, 73, -538, 0.25)
-    TweenTeleport(-2097, 73, -587, 0.25)
-    TweenTeleport(-2093, 73, -561, 0.25)
-    TweenTeleport(-2092, 73, -538, 0.25)
-    TweenTeleport(-2092, 61, -538, 0.25)
-    TweenTeleport(-2097, 61, -587, 0.25)
-    TweenTeleport(-2093, 61, -561, 0.25)
-    TweenTeleport(-2092, 56, -538, 0.25)
-    TweenTeleport(-2092, 61, -538, 0.25)
-    TweenTeleport(-2097, 56, -587, 0.25)
-    TweenTeleport(-2093, 56, -561, 0.25)
-    TweenTeleport(-2044, 47, -560, 0.25)
-    TweenTeleport(-2092, 56, -538, 0.25)
-    TweenTeleport(-2060, 47, -540, 0.25)
-    TweenTeleport(-2044, 47, -560, 0.25)
-    TweenTeleport(-2028, 47, -551, 0.25)
-    TweenTeleport(-2047, 47, -539, 0.25)
-    TweenTeleport(-2126, 47, -529, 1)
-end
-task.wait(1)
-u1.Network:Invoke("RequestTeamChange", "Heroes")
-task.wait(2)
-EscapeCell()
-TweenTeleport(-2141, 47, -534, 0.5)
-TweenTeleport(-2168, 47, -447, 1)
-Teleport(-2193, 47, -419, 0.75)
-TweenTeleport(-2193, 700, -419, 3)
-task.wait(1)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Loading Map..."; Duration=20;})
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Its normal that you didnt get any cash since its just loading map"; Duration=5;})
-for i = 1,100 do
-    Teleport(1354, 28, 745, .01)
-end
-task.wait(2)
-for i = 1,50 do
-    Teleport(914, 28, 974, .01)
-end
-task.wait(2)
-for i = 1,100 do
-    Teleport(728, 118, 2133, .01)
-end
-task.wait(1)
-EscapeCell()
-task.wait(0.5)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Position check was removed since it only works with bacon avatar!"; Duration=5;})
-task.wait(0.1)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Loading E butting..."; Duration=5;})
-NoEWait()
-game.Players.LocalPlayer.Character.Humanoid.Sit = false
-Teleport(-2126, 47, -551, .25)
-Click(Enum.KeyCode.E, 0.1, .25)
-Click(Enum.KeyCode.E, 0.1, .25)
-Click(Enum.KeyCode.E, 0.1, .25)
-Click(Enum.KeyCode.E, 0.1, .25)
-Click(Enum.KeyCode.E, 0.1, .25)
-task.wait(.75)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Escaping Prison"; Duration=5;})
-TweenTeleport(-2141, 47, -534, 0.5)
-TweenTeleport(-2168, 47, -447, 1)
-Teleport(-2193, 47, -419, 0.75)
-TweenTeleport(-2193, 700, -419, 3)
-TweenTeleport(1327, 700, 790, 15)
-TweenTeleport(1327, 25, 790, 3)
-Teleport(1360, 28, 759, .25)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No E cooldown"; Duration=5;})
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Pear Store"; Duration=5;})
-NoEWait()
-Teleport(1354, 28, 745, .25)
-task.wait(0.5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1376, 28, 748, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1387, 28, 730, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(1411, 28, 789, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1390, 28, 783, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1373, 28, 790, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(1381, 85, 804, .5)
-Teleport(1416, 56, 788, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1394, 56, 781, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1380, 56, 748, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(1391, 56, 728, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(1334, 66, 790, .5)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(897, 66, 896, 5)
-Click(Enum.KeyCode.E, 0.1)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Pizza Store"; Duration=5;})
-Teleport(897, 25, 896, .25)
-Click(Enum.KeyCode.E, 0.1)
-NoEWait()
-Teleport(888, 25, 929, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(914, 28, 974, .5)
-task.wait(1)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(904, 28, 978, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(896, 28, 981, .5)
-Click(Enum.KeyCode.E, 0.1)
-task.wait(0.5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(875, 28, 990, .25)
-TweenTeleport(890, 25, 1027, .5)
-Teleport(917, 25, 1013, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(890, 25, 1027, .5)
-TweenTeleport(875, 28, 990, .25)
-TweenTeleport(889, 33, 925, .5)
-Teleport(889, 25, 925, .5)
-Teleport(897, 25, 896, .25)
-TweenTeleport(887, 258, 901, 2.5)
-TweenTeleport(337, 258, 968, 5)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Stupid Unhealthy Garbage Junk Food Store 1"; Duration=5;})
-TweenTeleport(337, 25, 968, 1)
-TweenTeleport(353, 25, 1008, .25)
-Teleport(359, 28, 1013, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(376, 30, 1017, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(370, 30, 1033, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(354, 30, 1026, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(360, 25, 999, .25)
-TweenTeleport(337, 25, 968, .5)
-TweenTeleport(337, 258, 968, 1)
-TweenTeleport(663, 258, 2060, 10)
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="AirPort"; Duration=5;})
-TweenTeleport(663, 116, 2060, .75)
-TweenTeleport(716, 117, 2090, .5)
-Teleport(723, 116, 2108, .25)
-Teleport(728, 118, 2133, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(694, 116, 2123, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(642, 116, 2149, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(581, 116, 2180, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(530, 116, 2207, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(471, 116, 2251, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(492, 116, 2294, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(417, 116, 2331, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(402, 116, 2322, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(399, 116, 2341, .25)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(397, 116, 2332, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(495, 125, 2341, 1)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(528, 128, 2346, 1)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(642, 135, 2259, 1)
-task.wait(.5)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(652, 123, 2253, 1)
-TweenTeleport(662, 121, 2247, .5)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(701, 121, 2240, .5)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(705, 120, 2235, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(768, 130, 2194, 1)
-Click(Enum.KeyCode.E, 0.1, .25)
-TweenTeleport(778, 123, 2189, .5)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(790, 120, 2186, .5)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(830, 121, 2188, 1)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(839, 121, 2136, 1)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(893, 116, 2121, 1)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(769, 116, 2142, 1)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(711, 116, 2171, .25)
-Click(Enum.KeyCode.E, 0.1)
-TweenTeleport(558, 116, 2250, 1)
-Click(Enum.KeyCode.E, 0.1)
-Teleport(502, 116, 2279, .25)
-Click(Enum.KeyCode.E, 0.1)
-u1.Network:Invoke("RequestTeamChange", "Prisoners")
-game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Part 1 of script ended"; Duration=5;})
-if ServerHop then
-    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Server hoping: Waiting for teleport..."; Duration=5;})
-    task.wait(5)
-    local PlaceID = game.PlaceId
-    local AllIDs = {}
-    local foundAnything = ""
-    local actualHour = os.date("!*t").hour
-    local Deleted = false
-    local File = pcall(function()
-        AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
-    end)
-    if not File then
-        table.insert(AllIDs, actualHour)
-        writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-    end
-    function TPReturner()
-        local Site;
-        if foundAnything == "" then
-            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
-        else
-            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
-        end
-        local ID = ""
-        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
-            foundAnything = Site.nextPageCursor
-        end
-        local num = 0;
-        for i,v in pairs(Site.data) do
-            local Possible = true
-            ID = tostring(v.id)
-            if tonumber(v.maxPlayers) > tonumber(v.playing) then
-                for _,Existing in pairs(AllIDs) do
-                    if num ~= 0 then
-                        if ID == tostring(Existing) then
-                            Possible = false
-                        end
-                    else
-                        if tonumber(actualHour) ~= tonumber(Existing) then
-                            local delFile = pcall(function()
-                                delfile("NotSameServers.json")
-                                AllIDs = {}
-                                table.insert(AllIDs, actualHour)
-                            end)
-                        end
-                    end
-                    num = num + 1
-                end
-                if Possible == true then
-                    table.insert(AllIDs, ID)
-                    wait()
-                    pcall(function()
-                        writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
-                        wait()
-                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
-                    end)
-                    wait(4)
-                end
-            end
-        end
-    end
-    function ServerTeleport()
-        while wait() do
-            pcall(function()
-                TPReturner()
-                if foundAnything ~= "" then
-                    TPReturner()
-                end
-            end)
-        end
-    end
-    -- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
-    ServerTeleport()
-    task.wait(10)
-    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Server hop failed: Game failed to teleport!"; Duration=20;})
-end
+	if WaitSevenSeconds then
+		game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Wait 7 seconds."; Duration=20;})
+		task.wait(7)
+	end
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Please rejoin and execute again if it didnt work!"; Duration=20;})
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="I worked so hard on this auto rob, so please share this script :)"; Duration=20;})
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="I worked so hard on this auto rob, so please share this script :)"; Duration=20;})
+	local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
+	local vim = game:GetService('VirtualInputManager')
+	function NoLag()
+		local decalsyeeted = true
+		local g = game
+		local w = g.Workspace
+		local l = g.Lighting
+		local t = w.Terrain
+		t.WaterWaveSize = 0
+		t.WaterWaveSpeed = 0
+		t.WaterReflectance = 0
+		t.WaterTransparency = 1
+		l.GlobalShadows = false
+		l.FogEnd = 9e9
+		l.Brightness = 0
+		settings().Rendering.QualityLevel = "Level01"
+		for i, v in pairs(g:GetDescendants()) do
+		    if v:IsA("Part") or v:IsA("Union") or v:IsA("CornerWedgePart") or v:IsA("TrussPart") then
+		        v.Material = "Plastic"
+		        v.Reflectance = 0
+		    elseif v:IsA("Decal") or v:IsA("Texture") and decalsyeeted then
+		        v.Transparency = 1
+		    elseif v:IsA("ParticleEmitter") or v:IsA("Trail") then
+		        v.Lifetime = NumberRange.new(0)
+		    elseif v:IsA("Explosion") then
+		        v.BlastPressure = 1
+		        v.BlastRadius = 1
+		    elseif v:IsA("Fire") or v:IsA("SpotLight") or v:IsA("Smoke") or v:IsA("Sparkles") then
+		        v.Enabled = false
+		    elseif v:IsA("MeshPart") then
+		        v.Material = "Plastic"
+		        v.Reflectance = 0
+		        v.TextureID = 10385902758728957
+		    end
+		end
+		for i, e in pairs(l:GetChildren()) do
+		    if e:IsA("BlurEffect") or e:IsA("SunRaysEffect") or e:IsA("ColorCorrectionEffect") or e:IsA("BloomEffect") or e:IsA("DepthOfFieldEffect") then
+		        e.Enabled = false
+		    end
+		end
+	end
+	function Teleport(x,y,z,cd)
+		game.Players.LocalPlayer.Character.Humanoid.Sit = false
+		NoEWait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
+		task.wait(cd)
+		game.Players.LocalPlayer.Character.Humanoid.Sit = false
+	end
+	function TweenTeleport(x,y,z, time)
+		game.Players.LocalPlayer.Character.Humanoid.Sit = false
+		NoEWait()
+		local Position = Vector3.new(x,y,z)
+		local TweenService = game:GetService('TweenService')
+		local LocalPlayer = game.Players.LocalPlayer
+		local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
+		local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(time --[[ time ]]), {CFrame = CFrame.new(Position)}  )
+		Tween:Play()
+		game.Players.LocalPlayer.Character.Humanoid.Sit = false
+		task.wait(time)
+	end
+	function Click(key, HT, cd)
+		vim:SendKeyEvent(true, key, false, game)
+		task.wait(HT)
+		vim:SendKeyEvent(false, key, false, game)
+		task.wait(cd)
+	end
+	function NoEWait()
+		for i,v in next, getgc(true) do
+			if type(v) == "table" and rawget(v, "ID") and rawget(v, "Seconds") then
+				if typeof(v.Seconds) == "number" then
+					rawset(v, "Seconds", 0.0001)
+				end
+			end
+		end
+	end
+	function EscapeCell()
+		u1.Network:Invoke("RequestTeamChange", "Prisoners")
+		task.wait(1)
+		game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Escaping cell..."; Duration=5;})
+		TweenTeleport(-2092, 88, -538, 0.25)
+		TweenTeleport(-2097, 88, -587, 0.25)
+		TweenTeleport(-2093, 88, -561, 0.25)
+		TweenTeleport(-2092, 88, -538, 0.25)
+		TweenTeleport(-2092, 73, -538, 0.25)
+		TweenTeleport(-2097, 73, -587, 0.25)
+		TweenTeleport(-2093, 73, -561, 0.25)
+		TweenTeleport(-2092, 73, -538, 0.25)
+		TweenTeleport(-2092, 61, -538, 0.25)
+		TweenTeleport(-2097, 61, -587, 0.25)
+		TweenTeleport(-2093, 61, -561, 0.25)
+		TweenTeleport(-2092, 56, -538, 0.25)
+		TweenTeleport(-2092, 61, -538, 0.5)
+		TweenTeleport(-2097, 56, -587, 0.5)
+		TweenTeleport(-2093, 56, -561, 0.5)
+		TweenTeleport(-2044, 47, -560, 0.5)
+		TweenTeleport(-2092, 56, -538, 0.5)
+		TweenTeleport(-2060, 47, -540, 0.5)
+		TweenTeleport(-2044, 47, -560, 0.5)
+		TweenTeleport(-2028, 47, -551, 0.5)
+		TweenTeleport(-2047, 47, -539, 0.5)
+		TweenTeleport(-2126, 47, -529, 1)
+	end
+	task.wait(1)
+	u1.Network:Invoke("RequestTeamChange", "Heroes")
+	NoLag()
+	task.wait(2)
+	EscapeCell()
+	TweenTeleport(-2141, 47, -534, 0.5)
+	TweenTeleport(-2168, 47, -447, 1)
+	task.wait(0.1)
+	TweenTeleport(-2193, 47, -419, 0.75)
+	TweenTeleport(-2193, 700, -419, 3)
+	task.wait(1)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Loading Map..."; Duration=20;})
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Its normal that you didnt get any cash since its just loading map"; Duration=5;})
+	for i = 1,20 do
+		Teleport(1354, 28, 745, .001)
+	end
+	task.wait(2)
+	for i = 1,5 do
+		Teleport(914, 28, 974, .001)
+	end
+	task.wait(2)
+	for i = 1,10 do
+		Teleport(728, 118, 2133, .001)
+	end
+	task.wait(1)
+	EscapeCell()
+	task.wait(0.5)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Position check was removed since it only works with bacon avatar!"; Duration=5;})
+	task.wait(0.1)
+	NoEWait()
+	game.Players.LocalPlayer.Character.Humanoid.Sit = false
+	task.wait(.75)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Escaping Prison"; Duration=5;})
+	TweenTeleport(-2141, 47, -534, 0.5)
+	TweenTeleport(-2168, 47, -447, 1)
+	TweenTeleport(-2193, 47, -419, 0.75)
+	TweenTeleport(-2193, 700, -419, 3)
+	TweenTeleport(1327, 700, 790, 17)
+	TweenTeleport(1327, 25, 790, 3)
+	NoLag()
+	Teleport(1360, 28, 759, .25)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Pear Store"; Duration=5;})
+	NoEWait()
+	Teleport(1354, 28, 745, .25)
+	task.wait(0.5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1376, 28, 748, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1387, 28, 730, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(1411, 28, 789, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1390, 28, 783, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1373, 28, 790, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(1381, 85, 804, .5)
+	Teleport(1416, 56, 788, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1394, 56, 781, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1380, 56, 748, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(1391, 56, 728, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(1334, 66, 790, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(897, 66, 896, 5)
+	Click(Enum.KeyCode.E, 0.1)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Pizza Store"; Duration=5;})
+	TweenTeleport(897, 25, 896, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	NoEWait()
+	Teleport(888, 25, 929, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(914, 28, 974, .5)
+	task.wait(1)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(904, 28, 978, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(896, 28, 981, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	task.wait(0.5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(875, 28, 990, .25)
+	TweenTeleport(890, 25, 1027, .5)
+	Teleport(917, 25, 1013, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(890, 25, 1027, .5)
+	TweenTeleport(875, 28, 990, .25)
+	TweenTeleport(889, 33, 925, .5)
+	Teleport(889, 25, 925, .5)
+	Teleport(897, 25, 896, .25)
+	TweenTeleport(887, 258, 901, 2.5)
+	TweenTeleport(337, 258, 968, 5)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Stupid Unhealthy Garbage Junk Food Store 1"; Duration=5;})
+	NoLag()
+	TweenTeleport(337, 25, 968, 1)
+	TweenTeleport(353, 25, 1008, .25)
+	Teleport(359, 28, 1013, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(376, 30, 1017, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(370, 30, 1033, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(354, 30, 1026, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(360, 25, 999, .25)
+	TweenTeleport(337, 25, 968, .5)
+	TweenTeleport(337, 258, 968, 1)
+	TweenTeleport(663, 258, 2060, 10)
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="AirPort"; Duration=5;})
+	TweenTeleport(663, 116, 2060, .75)
+	NoLag()
+	TweenTeleport(716, 117, 2090, .5)
+	Teleport(723, 116, 2108, .25)
+	Teleport(728, 118, 2133, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(694, 116, 2123, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(642, 116, 2149, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(581, 116, 2180, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(530, 116, 2207, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(471, 116, 2251, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(492, 116, 2294, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(417, 116, 2331, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(402, 116, 2322, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(399, 116, 2341, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(397, 116, 2332, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(495, 125, 2341, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(528, 128, 2346, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(642, 135, 2259, 1)
+	task.wait(.5)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(652, 123, 2253, 1)
+	TweenTeleport(662, 121, 2247, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(701, 121, 2240, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(705, 120, 2235, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(768, 130, 2194, 1)
+	Click(Enum.KeyCode.E, 0.1, .25)
+	TweenTeleport(778, 123, 2189, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(790, 120, 2186, .5)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(830, 121, 2188, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(839, 121, 2136, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(893, 116, 2121, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(769, 116, 2142, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(711, 116, 2171, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	TweenTeleport(558, 116, 2250, 1)
+	Click(Enum.KeyCode.E, 0.1)
+	Teleport(502, 116, 2279, .25)
+	Click(Enum.KeyCode.E, 0.1)
+	u1.Network:Invoke("RequestTeamChange", "Prisoners")
+	game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Part 1 of script ended"; Duration=5;})
+	if ServerHop then
+		game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Server hoping: Waiting for teleport..."; Duration=5;})
+		task.wait(5)
+		local PlaceID = game.PlaceId
+		local AllIDs = {}
+		local foundAnything = ""
+		local actualHour = os.date("!*t").hour
+		local Deleted = false
+		local File = pcall(function()
+			AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+		end)
+		if not File then
+			table.insert(AllIDs, actualHour)
+			writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+		end
+		function TPReturner()
+			local Site;
+			if foundAnything == "" then
+				Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+			else
+				Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+			end
+			local ID = ""
+			if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+				foundAnything = Site.nextPageCursor
+			end
+			local num = 0;
+			for i,v in pairs(Site.data) do
+				local Possible = true
+				ID = tostring(v.id)
+				if tonumber(v.maxPlayers) > tonumber(v.playing) then
+					for _,Existing in pairs(AllIDs) do
+						if num ~= 0 then
+							if ID == tostring(Existing) then
+								Possible = false
+							end
+						else
+							if tonumber(actualHour) ~= tonumber(Existing) then
+								local delFile = pcall(function()
+									delfile("NotSameServers.json")
+									AllIDs = {}
+									table.insert(AllIDs, actualHour)
+								end)
+							end
+						end
+						num = num + 1
+					end
+					if Possible == true then
+						table.insert(AllIDs, ID)
+						wait()
+						pcall(function()
+							writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+							wait()
+							game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+						end)
+						wait(4)
+					end
+				end
+			end
+		end
+		function ServerTeleport()
+			while wait() do
+				pcall(function()
+					TPReturner()
+					if foundAnything ~= "" then
+						TPReturner()
+					end
+				end)
+			end
+		end
+		-- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+		ServerTeleport()
+		task.wait(10)
+		game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Server hop failed: Game failed to teleport!"; Duration=20;})
+	end
 end
