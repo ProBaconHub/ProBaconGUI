@@ -3,7 +3,7 @@ if _G.Hyper == true then
     for i,v in next, getgc(true) do
         if type(v) == "table" and rawget(v, "MaxSpeed") then
             rawset(v, "TurretFireRate", 0.3) -- turret firerate on all vehicles
-            rawset(v, "MaxSpeed", 300) -- speed
+            rawset(v, "MaxSpeed", 3000) -- speed
             rawset(v, "HoverHitWater", true) -- dont change
             rawset(v, "CanTurnHoverMode", false) 
             rawset(v, "StartTime", 0) --vehicle start time
@@ -14,7 +14,7 @@ else
 	for i,v in next, getgc(true) do
 	    if type(v) == "table" and rawget(v, "MaxSpeed") then
     		rawset(v, "TurretFireRate", 0.3) -- turret firerate on all vehicles
-    		rawset(v, "MaxSpeed", 300) -- speed
+    		rawset(v, "MaxSpeed", 3000) -- speed
     		rawset(v, "HoverHitWater", true) -- dont change
     		rawset(v, "CanTurnHoverMode", true) 
     		rawset(v, "StartTime", 0) --vehicle start time
