@@ -282,9 +282,9 @@ end)
 
 --OP Section
 local OPTab = Window:NewTab("OP")
-local AntiKickSection = OPTab:NewSection("AntiKick")
+local ClientAntiKickSection = OPTab:NewSection("AntiKick")
 
-AntiKickSection:NewButton("Anti Kick", "Protect you from kicking you", function()
+ClientAntiKickSection:NewButton("Client Anti Kick", "Prevend kicking from client suck as other scripts \r wont protect from server kick!", function()
     local mt = getrawmetatable(game)
     local old = mt.__namecall
     local protect = newcclosure or protect_function
@@ -568,6 +568,8 @@ function AddTab(Tab)
         local MadCityTab = Window:NewTab("Mad City")
         local MadAutoSection = MadCityTab:NewSection("Auto")
         local MadRemoteSection = MadCityTab:NewSection("Remote")
+        local MadLazerControlSection = MadCityTab:NewSection("Lazer Control")
+        local MadHeistControlSection = MadCityTab:NewSection("Heist Control")
         local MadEventSection = MadCityTab:NewSection("Piggy Event")
         local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
         function Teleport(x,y,z,cd)
@@ -662,6 +664,38 @@ function AddTab(Tab)
         end)
         MadRemoteSection:NewButton("Gun Mods", "Mod your guns", function()
             loadstring(MadWeaponMod)()
+        end)
+        MadLazerControlSection:NewButton("Stop pear store lazer", "Pause them from moving", function()
+            workspace.MovingLasers.AppleStoreFloorA.AnimationController:Destroy()
+            workspace.MovingLasers.AppleStoreFloorB.AnimationController:Destroy()
+        end)
+        MadLazerControlSection:NewButton("Remove pear store lazer", "Remove them", function()
+            workspace.MovingLasers.AppleStoreFloorA:Destroy()
+            workspace.MovingLasers.AppleStoreFloorB:Destroy()
+        end)
+        MadLazerControlSection:NewButton("Remove casino hallway lazer", "Remove them", function()
+            workspace.Heists.Casino.Stealthy.Items.Detectors:Destroy()
+        end)
+        MadHeistControlSection:NewButton("Club Button ESP", "ESP the button for the door", function()
+            for __,v in pairs(game.Workspace.Heists.Club.Items:GetDescendants()) do
+                if v.Name == "Button" then
+                    local a = Instance.new("BillboardGui",v)
+                    a.Name = "ProBaconESPIn1Minutes"
+                    a.Size = UDim2.new(10,0, 10,0)
+                    a.AlwaysOnTop = true
+                    local b = Instance.new("Frame",a)
+                    b.Size = UDim2.new(1,0, 1,0)
+                    b.BackgroundTransparency = 0.80
+                    b.BorderSizePixel = 0
+                    b.BackgroundColor3 = Color3.new(0, 255, 0)
+                    local c = Instance.new('TextLabel',b)
+                    c.Size = UDim2.new(2,0,2,0)
+                    c.BorderSizePixel = 0
+                    c.TextSize = 20
+                    c.Text = v.Name
+                    c.BackgroundTransparency = 1
+                end
+            end
         end)
         MadEventSection:NewButton("ESP Meteor", "Let to see Meteor locations", function()
             for __,v in pairs(game.Workspace:GetDescendants()) do
