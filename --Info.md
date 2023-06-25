@@ -18,10 +18,12 @@ Powerful and keyless script
 + Remove casino moving laser
 + Remove casino grapple laser
 + Club button ESP
+
 ### Removed
 #### Mad City
 + Remove casino grapple laser
-
+### Fixes
++ Grammar 🙄
 ## Future Updates
 + More UCG Events
 + Check scripts
