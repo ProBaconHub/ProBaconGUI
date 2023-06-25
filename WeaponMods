@@ -1,10 +1,4 @@
 for i,v in next, getgc(true) do
-  if type(v) == "table" and rawget(v, "Missiles") then
-     v.MissileLock = 0.1
-  end
-end
-
-for i,v in next, getgc(true) do
   if type(v) == "table" and rawget(v, "Damage") then
      rawset(v, "RateOfFire", 0) -- firerate
      rawset(v, "ReloadTime", 0) -- ReloadTime
