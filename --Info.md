@@ -12,14 +12,15 @@ Powerful and keyless script
 ### Added
 #### Mad City
 + Teleport to casino grapple
-+ Stop pear store lazer
-+ Remove pear store lazer
-+ Remove casino lazer
-+ Remove casino moving lazer
-+ Remove casino grapple lazer
++ Stop pear store laser
++ Remove pear store laser
++ Remove casino laser
++ Remove casino moving laser
++ Remove casino grapple laser
 + Club button ESP
 ### Removed
-None
+#### Mad City
++ Remove casino grapple laser
 
 ## Future Updates
 + More UCG Events
