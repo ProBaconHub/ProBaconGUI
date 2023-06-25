@@ -568,6 +568,7 @@ function AddTab(Tab)
         local MadCityTab = Window:NewTab("Mad City")
         local MadAutoSection = MadCityTab:NewSection("Auto")
         local MadRemoteSection = MadCityTab:NewSection("Remote")
+        local MadTeleSection = MadCityTab:NewSection("Teleport")
         local MadLazerControlSection = MadCityTab:NewSection("Lazer Control")
         local MadHeistControlSection = MadCityTab:NewSection("Heist Control")
         local MadEventSection = MadCityTab:NewSection("Piggy Event")
@@ -665,6 +666,26 @@ function AddTab(Tab)
         MadRemoteSection:NewButton("Gun Mods", "Mod your guns", function()
             loadstring(MadWeaponMod)()
         end)
+        MadTeleSection:NewButton("Teleport to casino graoole", "Please make sure someone has open it first", function()
+            local v1 = require(game.ReplicatedStorage.Aero.Shared.Util)
+            v1.Network:Fire("RagdollUpdate", false)
+            task.wait(2)
+            for i, deleteparts in next, game:GetService("Workspace")[game.Players.LocalPlayer.Name]:GetChildren() do
+                if deleteparts.Name == "HumanoidRootPart" or deleteparts.Name == "BillboardGui" or deleteparts.Name == "Humanoid" or deleteparts.Name == "Animate" or deleteparts.Name == "Health" or deleteparts.Name ==  "Parachte" or deleteparts:IsA("Accessory") or deleteparts:IsA("BodyColors") or deleteparts:IsA("MeshPart") or deleteparts:IsA("Pants") or deleteparts:IsA("Shirt") --[[]] then
+                else
+                    deleteparts:Destory()w
+                end
+            end
+            for i = 1,30 do
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Heists.Casino.Items.TouchGrapple.CFrame
+                task.wait(0.01)
+                if i == 10 then
+                    v1.Network:Fire("RagdollUpdate", true)
+                end
+            end
+            task.wait(1)
+            v1.Network:Fire("RagdollUpdate", false)
+        end)
         MadLazerControlSection:NewButton("Stop pear store lazer", "Pause them from moving", function()
             workspace.MovingLasers.AppleStoreFloorA.AnimationController:Destroy()
             workspace.MovingLasers.AppleStoreFloorB.AnimationController:Destroy()
@@ -675,6 +696,12 @@ function AddTab(Tab)
         end)
         MadLazerControlSection:NewButton("Remove casino hallway lazer", "Remove them", function()
             workspace.Heists.Casino.Stealthy.Items.Detectors:Destroy()
+        end)
+        MadLazerControlSection:NewButton("Remove casino moving lazer", "Remobe them", function()
+            workspace.Heists.Casino.Stealthy.Items.MovingLasers:Destroy()
+        end)
+        MadLazerControlSection:NewButton("Remove casino grapple lazer", "Remove them", function()
+            workspace.Heists.Casino.Items.Lasers:Destroy()
         end)
         MadHeistControlSection:NewButton("Club Button ESP", "ESP the button for the door", function()
             for __,v in pairs(game.Workspace.Heists.Club.Items:GetDescendants()) do
