@@ -668,11 +668,11 @@ function AddTab(Tab)
         end)
         MadRemoteSection:NewButton("Attack Heli Mods", "Mod your heli", function()
             for i,v in next, getgc(true) do
-                if type(v) == "table" and rawget(v, "Damage") then
-                  rawset(v, "RateOfFire", 0.1)
-                  rawset(v, "ReloadTime", 0.001)
-                  rawset(v, "ClipSize", 8)
-                  rawset(v, "Clips", 8)
+    		if type(v) == "table" and rawget(v, "Damage") then
+      		    rawset(v, "RateOfFire", 0.25)
+      		    rawset(v, "ReloadTime", 0.001)
+                    rawset(v, "ClipSize", 8)
+                    rawset(v, "Clips", 8)
                 end
             end
         end)
