@@ -1102,21 +1102,12 @@ function AddTab(Tab)
         local SonicSpeedBoss = SonicSpeedSimTab:NewSection("Boss Farm")
         local Exp = game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate
         local Rebirth = game:GetService("ReplicatedStorage").Knit.Services.SSLevelingService.RF.AttemptRebirth
-        local Race = game:GetService("ReplicatedStorage").Knit.Services.RaceService.RE.PlayerLeftRace
         local Prop = {
             [1] = "Emerald Hill",
             [2] = "3rd",
             [3] = "BestRank",
             [4] = 2,
             [5] = false
-        }
-        local RaceProp = {
-            [1] = "ReachedEnd",
-            [2] = {
-                ["RaceName"] = "City Escape Race", 
-                ["BeatAI"] = true, 
-                ["TimeElapsed"] = 1
-            }
         }
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
             _G.SonicAutoFarm = state
@@ -1166,17 +1157,6 @@ function AddTab(Tab)
             end
         end)
 
-        SonicSpeedFarm:NewToggle("Auto Ticket", "Auto get ticket", function(state)
-            _G.SonicAutoTicket = state
-            while _G.SonicAutoTicket do
-                Race:FireServer(unpack(RaceProp))
-                Race:FireServer(unpack(RaceProp))
-                Race:FireServer(unpack(RaceProp))
-                Race:FireServer(unpack(RaceProp))
-                Race:FireServer(unpack(RaceProp))
-                task.wait(1)
-            end
-        end)
 
         SonicSpeedBoss:NewButton("Toggle Auto Farm Boss", "Auto join and damage boss!", function()
             _G.SonicAutoBoss = not _G.SonicAutoBoss
