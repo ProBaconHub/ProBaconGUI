@@ -22,9 +22,12 @@ Powerful and keyless script
 ### Removed
 #### Mad City
 + Remove casino grapple laser
+#### Sonic Speed Simulator
++ OutDated Event
 ### Fixes
-+ Grammar 🙄
-## Future Updates
+#### Sonic Speed Simulator
++ Error
+## Future Expects
 + More UCG Events
 + Check scripts
-+ Remove ended events
++ Remove outdated events
