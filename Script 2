@@ -26,7 +26,7 @@ local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
 
 --Start Up
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/GUI%20Base", true))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI%20(Mobile%20Fix)", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
 local SelfVersion = "V1.9.1"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
@@ -37,6 +37,8 @@ local PlayerName = game:GetService("Players").LocalPlayer.Name
 --concainit113344
 local GamesTab = {
     "Mad City CH2", 
+    "City Life", 
+    "Build a Boat",
     "Sonic Speed Sim", 
     "My Prison",
     "Punch Wall Simulator", 
@@ -112,7 +114,6 @@ function UpdateFunctions()
     Aim = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
     NoEWait = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
     CarMode = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
-    HalfAutoRob = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Half-Auto%20Rob", {["Cache-Control"] = "no-cache"})
     PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
     TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
     TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
@@ -134,20 +135,42 @@ local LocalPlayerTab = Window:NewTab("Local Player")
 local PlayerStuffSection = LocalPlayerTab:NewSection("Local player stuff")
 local PlayerStuffFlySection = LocalPlayerTab:NewSection("Fly")
 
+_G.PlayerWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+_G.PlayerJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
 PlayerStuffSection:NewSlider("Walk Speed", "Change your walk speed \r Defalt: 16", 200, 0, function(WS) -- 200 (MaxValue) | 0 (MinValue)
     _G.PlayerWalkSpeed = WS
 end)
 PlayerStuffSection:NewToggle("WalkSpeed", "Enable walkspeed", function(state)
+    if state then
+        local OldWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+    else
+        G.PlayerWsEnable = state
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = OldWalkSpeed
+    end
     _G.PlayerWsEnable = state
-    loadstring(PlayerWalkSpeed)()
 end)
 
 PlayerStuffSection:NewSlider("Jump Power", "Change your jump power \r Defalt: 50", 500, 0, function(JP) -- 500 (MaxValue) | 0 (MinValue)
+    if state then
+        local OldJumpPower = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+    else
+        _G.PlayerJumpPower = JP
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = OldJumpPower
+    end
     _G.PlayerJumpPower = JP
 end)
 PlayerStuffSection:NewToggle("JumpPower", "Enable jumppower", function(state)
     _G.PlayerJpEnable = state
-    loadstring(PlayerJumpPower)()
+end)
+task.spawn(function()
+    while wait() do
+        if _G.PlayerWsEnable then
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.PlayerWalkSpeed
+        end
+        if _G.PlayerJpEnable then
+            game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.PlayerJumpPower
+        end
+    end
 end)
 
 PlayerStuffSection:NewToggle("INF Jump", "Jump more than once", function(state)
@@ -328,6 +351,7 @@ ToolSection:NewButton("TP Tool", "This tool can TP you to where you click \r Inf
 
     Tool.Parent = Player.Backpack
 end)
+
 ToolSection:NewButton("Path Tool", "This tool can print the path of an object \r Info: Click to print path \r WOW finally a useful script by Pro Bacon!", function()
     local Player = game:GetService("Players").LocalPlayer
     local Tool = Instance.new("Tool")
@@ -549,13 +573,71 @@ function AddTab(Tab)
 
 
     elseif Tab == "Build a Boat" then
-        --Build
         local BuildaBoatTab = Window:NewTab("Build a Boat")
         local BABFTFarmSection = BuildaBoatTab:NewSection("Auto Farm")
         local BABFTTPSection = BuildaBoatTab:NewSection("Teletort")
         
-        BABFTFarmSection:NewButton("Dev finding for Gold Auto farm", "Voluntear to help Pro Bacon", function()
-            clipboardCopy("Discord invite link")
+        BABFTFarmSection:NewToggle("Auto Gold", "Earn gold fast", function(state)
+            _G.BABFTgoldfarmloop = state
+            function BABFTgoldTeleport(x,y,z,cd)
+                if _G.BABFTgoldfarmloop then
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        local PlayerRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
+                        PlayerRoot.CFrame = CFrame.new(x,y,z)
+                        local Plat = Instance.new("Part", game.Workspace)
+                        Plat.Anchored = true
+                        Plat.Transparency = 1
+                        Plat.Size = Vector3.new(10, 1, 10)
+                        Plat.CFrame = CFrame.new(PlayerRoot.CFrame.X, PlayerRoot.CFrame.Y-3, PlayerRoot.CFrame.Z)
+                        task.wait(cd)
+                        Plat:Destroy()
+                    end
+                else
+                    game.Players.LocalPlayer.Character.Head:Destroy()
+                end
+            end
+            task.spawn(function()
+                if _G.BABFTgoldfarmloop then
+                    repeat
+                        repeat task.wait(0.001) until game.Players.LocalPlayer.Character:FindFirstChild("Head")
+                        workspace.ClaimRiverResultsGold:FireServer()
+                        workspace.Leoisaprogammer.SnapInPlaceRemote.Check:InvokeServer()
+                        task.wait(0.001)
+                    until not _G.BABFTgoldfarmloop
+                end
+            end)
+            if _G.BABFTgoldfarmloop then
+                if game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    BABFTgoldTeleport(-42, 40, 1254, 2)
+                    BABFTgoldTeleport(-45, 40, 1518, 2)
+                    BABFTgoldTeleport(-58, 40, 2310, 2)
+                    BABFTgoldTeleport(-60, 40, 3046, 2)
+                    BABFTgoldTeleport(-52, 40, 3829, 2)
+                    BABFTgoldTeleport(-37, 40, 4490, 2)
+                    BABFTgoldTeleport(-64, 40, 5324, 2)
+                    BABFTgoldTeleport(-53, 40, 6078, 2)
+                    BABFTgoldTeleport(-54, 40, 6830, 2)
+                    BABFTgoldTeleport(-45, 105, 7702, 2)
+                    game.Players.LocalPlayer.Character.Head:Destroy()
+                end
+                repeat
+                    if game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                        BABFTgoldTeleport(-42, 40, 1254, 6)
+                        BABFTgoldTeleport(-45, 40, 1518, 2)
+                        BABFTgoldTeleport(-58, 40, 2310, 2)
+                        BABFTgoldTeleport(-60, 40, 3046, 2)
+                        BABFTgoldTeleport(-52, 40, 3829, 2)
+                        BABFTgoldTeleport(-37, 40, 4490, 2)
+                        BABFTgoldTeleport(-64, 40, 5324, 2)
+                        BABFTgoldTeleport(-53, 40, 6078, 2)
+                        BABFTgoldTeleport(-54, 40, 6830, 2)
+                        BABFTgoldTeleport(-45, 105, 7702, 2)
+                        game.Players.LocalPlayer.Character.Head:Destroy()
+                    else
+                        task.wait(0.001)
+                    end
+                until not _G.BABFTgoldfarmloop
+            end
         end)
         BABFTFarmSection:NewLabel("Gold block autofarm WIP")
 
@@ -668,11 +750,11 @@ function AddTab(Tab)
         end)
         MadRemoteSection:NewButton("Attack Heli Mods", "Mod your heli", function()
             for i,v in next, getgc(true) do
-    		if type(v) == "table" and rawget(v, "Damage") then
-      		    rawset(v, "RateOfFire", 0.25)
-      		    rawset(v, "ReloadTime", 0.001)
-                    rawset(v, "ClipSize", 8)
-                    rawset(v, "Clips", 8)
+                if type(v) == "table" and rawget(v, "Damage") then
+                  rawset(v, "RateOfFire", 0.1)
+                  rawset(v, "ReloadTime", 0.01)
+                  rawset(v, "ClipSize", 8)
+                  rawset(v, "Clips", 8)
                 end
             end
         end)
@@ -683,6 +765,7 @@ function AddTab(Tab)
             task.wait(2)
             for i = 1,20 do
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1663, 210, 614)
+                task.wait(0.001)
             end
             for i, deleteparts in next, game:GetService("Workspace")[game.Players.LocalPlayer.Name]:GetChildren() do
                 if deleteparts.Name == "HumanoidRootPart" or deleteparts.Name == "BillboardGui" or deleteparts.Name == "Humanoid" or deleteparts.Name == "Animate" or deleteparts.Name == "Health" or deleteparts.Name ==  "Parachte" or deleteparts:IsA("Accessory") or deleteparts:IsA("BodyColors") or deleteparts:IsA("MeshPart") or deleteparts:IsA("Pants") or deleteparts:IsA("Shirt") --[[]] then
@@ -854,7 +937,7 @@ function AddTab(Tab)
         LotbsAutoSection:NewToggle("AutoHeal", "Auto heal you", function(state)
             --Variables
             Heal = game:GetService("Workspace").Parts.Decoration["Healing Pond"].Pad
-            Chara = Game.Players.LocalPlayer.Character
+            Chara = game.Players.LocalPlayer.Character
             basepart = Chara:FindFirstChildWhichIsA("BasePart")
             --Script
             _G.LotbsAutoHeal = state
@@ -1132,7 +1215,7 @@ function AddTab(Tab)
                     break
                 end
                 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Waiting to reduce lag!"; Duration=10;})
-                wait(10)
+                task.wait(10)
                 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="We are back!"; Duration=10;})
             end
         end)
@@ -1157,6 +1240,17 @@ function AddTab(Tab)
             end
         end)
 
+        SonicSpeedFarm:NewToggle("Auto Ticket", "Auto get ticket", function(state)
+            _G.SonicAutoTicket = state
+            while _G.SonicAutoTicket do
+                Race:FireServer(unpack(RaceProp))
+                Race:FireServer(unpack(RaceProp))
+                Race:FireServer(unpack(RaceProp))
+                Race:FireServer(unpack(RaceProp))
+                Race:FireServer(unpack(RaceProp))
+                task.wait(1)
+            end
+        end)
 
         SonicSpeedBoss:NewButton("Toggle Auto Farm Boss", "Auto join and damage boss!", function()
             _G.SonicAutoBoss = not _G.SonicAutoBoss
@@ -1260,8 +1354,297 @@ function AddTab(Tab)
         end)
         MyPrisonEvent:NewLabel("For event: You dont have to go anywhere")
         MyPrisonEvent:NewLabel("Game will teleport you.")
+
+    elseif Tab == "City Life" then
+        local CityLifeTab = Window:NewTab("CityLife")
+        local CityLifeRemote = CityLifeTab:NewSection("Remote")
+        local CityLifeCrime = CityLifeTab:NewSection("Crime")
+        local CityLifePolice = CityLifeTab:NewSection("Police")
+        local CityLifeFireFighter = CityLifeTab:NewSection("Fire Fighter")
+        local CityLifeCook = CityLifeTab:NewSection("Cook")
+        local CityLifeHair = CityLifeTab:NewSection("Hair")
+        local NpcDamageRemote = game:GetService("ReplicatedStorage").remoteInterface.character.damage
+        local NpcDamageRemoteParent = game:GetService("ReplicatedStorage").remoteInterface.character
+
+        CityLifeRemote:NewToggle("Speed", "Gain 15% speed", function(state)
+            _G.CityLifeSpeed = state
+        end)
+        task.spawn(function()
+            while true do
+                if _G.CityLifeSpeed then
+                    game:GetService("ReplicatedStorage").remoteInterface.roleplay.exercise:FireServer()
+                    task.wait(120)
+                else
+                    task.wait(0.001)
+                end
+            end
+        end)
+        CityLifeRemote:NewButton("Get snowball", "Get a snowball", function()
+            game:GetService("ReplicatedStorage").CustomEvents.Snowball3:FireServer()
+        end)
+        CityLifeRemote:NewButton("Get [Public Menace] Badage", "Free badage, why not?", function()
+            for i = 1, 100 do
+                game:GetService("ReplicatedStorage").remoteInterface.vehicles.objectsHitByCarCount:FireServer()
+            end
+        end)
+        CityLifeRemote:NewButton("Heal Hunger", "Eat", function()
+            game:GetService("ReplicatedStorage").remoteInterface.roleplay.buyFood:InvokeServer(workspace.RpObjects:GetChildren()[40])
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v.name == "Pizza" then
+                    v.Parent = game.Players.LocalPlayer.Character
+                end
+            end
+            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+        end)
+        CityLifeCrime:NewToggle("AutoRob", "Rob every single place", function(state)
+            _G.CityLifeAutoRob = state
+            while _G.CityLifeAutoRob and task.wait(5) do
+                for i = 1, 19 do
+                	Heist = i
+                	task.spawn(function()
+                		if _G.CityLifeAutoRob then
+                			for i = 1, #workspace.jobInstances.criminal.heists[Heist]:GetChildren()-1 do
+                				if _G.CityLifeAutoRob then
+                					game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.criminal.heists[Heist]:GetChildren()[i],1)
+                				end
+                			end
+                		end
+                	end)
+                end
+            end
+        end)
+        CityLifePolice:NewToggle("AutoJob", "Auto arrest and save people", function(state)
+            _G.CityLifeAutoPoliceJob = state
+            while _G.CityLifeAutoPoliceJob and task.wait(0.001) do
+            	local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            	for i = 1, 33 do
+            		local Heist = i
+            		if workspace.jobInstances.police.crimeScenes:FindFirstChild(i) then
+            			for i = 2, #workspace.jobInstances.police.crimeScenes[i]:GetChildren()-1 do
+            				local Obj = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i]
+            				if #Obj:GetChildren() ~= 0 then
+            					if not Obj:FindFirstChild("thug") then
+            						game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(Obj,3)
+            					end
+            				end
+            			end
+            		end
+            	end
+            	for i = 1, 33 do
+            		local Heist = i
+            		if workspace.jobInstances.police.crimeScenes:FindFirstChild(i) then
+            			for i = 2, #workspace.jobInstances.police.crimeScenes[i]:GetChildren()-1 do
+            				local Obj = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i]
+            				if #Obj:GetChildren() ~= 0 then
+            					if Obj:FindFirstChild("thug") then
+            						for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            						    if v.name == "Handcuffs" then
+            						        v.Parent = game.Players.LocalPlayer.Character
+            						    end
+            						end
+            						game.Players.LocalPlayer.Character.Humanoid.Sit = false
+            						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i].thug.HumanoidRootPart.CFrame*CFrame.new(0,0,2)
+            						task.wait(0.5)
+            						game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            						local ThugNum = i
+            						for i = 1, 30 do
+            							game.Players.LocalPlayer.Character.Humanoid.Sit = false
+            							if workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum]:FindFirstChild("thug") then
+            								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum].thug.HumanoidRootPart.CFrame*CFrame.new(0,0,2)
+            							end
+            							task.wait(0.1)
+            						end
+            						game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+            					else
+            						game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(Obj,3)
+            					end
+            				end
+            			end
+            		end
+            	end
+            	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
+            end
+        end)
+        CityLifePolice:NewButton("Arrest All Crime Player", "Arrest all crime that is a player", function()
+            for i, v in pairs(game.Players:GetPlayers()) do
+                print("Scan Player: ",v)
+                if v ~= game.Players.LocalPlayer then
+                    if v.Backpack:FindFirstChild("Gun") and not v.Backpack:FindFirstChild("Handcuffs") and not v.Character:FindFirstChild("ForceField") then
+                        warn("TargetFound: ",v)
+                        local ArrestTarget = v
+                        for i = 1, 25 do
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ArrestTarget.Character.HumanoidRootPart.CFrame*CFrame.new(0,1,1)
+                            task.wait(0.1)
+                            if i == 2 then
+                                game:GetService("ReplicatedStorage").remoteInterface.jobs.primeArrest:FireServer(702,v)
+                            end
+                            if i == 10 then
+                                game:GetService("ReplicatedStorage").remoteInterface.jobs.arrestPlayer:InvokeServer(232,v)
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+        CityLifePolice:NewToggle("God Mode (NPC)", "Take no, 0, ZERO damage from NPCs", function(state)
+            if state then
+                NpcDamageRemote.Parent = game.Players.LocalPlayer
+            else
+                NpcDamageRemote.Parent = NpcDamageRemoteParent
+            end
+        end)
+        CityLifeFireFighter:NewToggle("Auto Farm", "Put out fire, save people, and save KITTENS", function()
+            task.spawn(function()
+            	for i = 1, #workspace.jobInstances.firefighter.catNodes:GetChildren() do
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.firefighter.catNodes:GetChildren()[i],1)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.firefighter.catNodes:GetChildren()[i],2)
+            	end
+            end)
+
+            for i = 1, 35 do
+            	if workspace.jobInstances.firefighter.houses:FindFirstChild(i) and workspace.jobInstances.firefighter.houses[i].nodes:FindFirstChild("fireNode"):FindFirstChild("fireNodeHealth") then
+            		House = i
+            		task.spawn(function()
+            			for i = 1, #workspace.jobInstances.firefighter.houses[House].nodes:GetChildren()-1 do
+            				game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.firefighter.houses[House].nodes:GetChildren()[i],1)
+            				game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.firefighter.houses[House].nodes:GetChildren()[i],2)
+            			end
+            		end)
+            	end
+            end
+        end)
+        CityLifeCook:NewToggle("Auto Cook", "Auto cook and send to costomer", function(state)
+            _G.CityLifeAutoCook = state
+            while _G.CityLifeAutoCook and task.wait(0.001) do
+                local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+                for i = 1, #workspace.jobInstances.cook.OrderSpots:GetChildren() do
+                	if #workspace.jobInstances.cook.OrderSpots:GetChildren()[i]:GetChildren() ~= 0 then
+                		OrderSpots = workspace.jobInstances.cook.OrderSpots:GetChildren()[i]
+                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.OrderSpots:GetChildren()[i].CFrame
+                        task.wait(0.1)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                		task.wait(0.01)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                	end
+                end
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.CookSpots:GetChildren()[5].CFrame
+                task.wait(0.25)
+                game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                task.wait(0.01)
+                game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                task.wait(0.5)
+                for i = 1, 5 do
+                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[3])
+                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[4])
+                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[5])
+                	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.CookSpots:GetChildren()[5].CFrame
+                end
+                task.wait(0.05)
+                game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                task.wait(0.01)
+                game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                for i, v in pairs(workspace.jobInstances.cook.CustomerSpots:GetChildren()) do
+                	if v:FindFirstChild("customer") then
+                		v:FindFirstChild("customer").MaxActivationDistance = 100
+                		task.wait(0.1)
+                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                		task.wait(0.1)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                		task.wait(0.01)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                	end
+                end
+                for i, v in pairs(workspace.jobInstances.cook.DeliverNodes:GetChildren()) do
+                	if v:FindFirstChild("customer") then
+                		v:FindFirstChild("customer").MaxActivationDistance = 100000
+                		task.wait(0.1)
+                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                		task.wait(0.5)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                		task.wait(0.01)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                	end
+                end
+
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
+                task.wait(0.01)
+            end
+        end)
+        CityLifeHair:NewButton("Auto Cut Hair", "Only cut hair", function()
+            local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            for i,v in pairs(workspace.jobInstances.hairsalon:GetChildren())do
+            	if v.Name ~= "NPCNodes" and #v:GetChildren() == 2 then
+            		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+            		task.wait(0.1)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            	end
+            end
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
+        end)
     end
 end
+
+
+--[[
+
+    local AdminPerm = Instance.new("IntValue")
+    AdminPerm.Parent = game:GetService("ReplicatedStorage").admins
+    AdminPerm.Name = game.Players.LocalPlayer.Name
+
+    Test
+    -- Script generated by SimpleSpy - credits to exx#9394
+
+local args = {
+    [1] = 7,
+    [2] = 3
+}
+
+game:GetService("ReplicatedStorage").remoteInterface.playtimeRewards.claimRewardTier:InvokeServer(unpack(args))
+
+    HairCut
+
+
+    local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+    for i,v in pairs(workspace.jobInstances.hairsalon:GetChildren())do
+    	if v.Name ~= "NPCNodes" and #v:GetChildren() == 2 then
+    		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+    		task.wait(0.1)
+    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+    	end
+    end
+
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
+]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 --[[
