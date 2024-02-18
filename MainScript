@@ -26,7 +26,7 @@ local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
 
 --Start Up
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI%20(Mobile%20Fix)", true))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
 local SelfVersion = "V1.10.1"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
