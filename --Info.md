@@ -6,7 +6,7 @@ Powerful and keyless script
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 22/6/2023
++ Last Update: 18/2/2024
 
 ## Update Log
 ### Added
