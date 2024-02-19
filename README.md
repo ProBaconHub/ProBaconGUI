@@ -11,6 +11,19 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Languages supported: English
 + Last Update: 18/2/2024
 
+### Supported games
+• Mad City: Chapter 2 (Outdated)  
+• City Life  
+• Build A Boat (Beta)  
+• Sonic Speed Simulator  
+• The Legend Of The Bone Sword  
+• Punch Wall Simulator  
+• Break In (Story)  
+• SendMeme(SMTYETDTT)  
+• Base Battles!  
+• arm wrestling simulator  
+• Wall Mining Sim  
+
 ## Update Log
 ### Added
 #### Mad City
@@ -31,9 +44,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 #### Sonic Speed Simulator
 + Error
 ## Future Expects
-+ More UCG Events
++ More random games
 + Check scripts
 + Remove outdated events
++ Remove Mad City scripts
 
 > **_NOTE:_** Daily updates are only available in July and October  
 > **_NOTE:_** Please find your way to contact ProBacon if you want to learn making scripts.
