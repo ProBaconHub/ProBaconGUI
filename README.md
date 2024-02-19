@@ -34,3 +34,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + More UCG Events
 + Check scripts
 + Remove outdated events
+
+> **_NOTE:_** Daily updates are only available in July and October
+> **_NOTE:_** Please find your way to contact ProBacon if you want to learn making scripts.
