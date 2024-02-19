@@ -248,7 +248,7 @@ local function FURPK_fake_script() -- DownloadData.DataScript
 	local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
 	game.Players.LocalPlayer.PlayerGui.ProBaconHub.GuiLoader.LoadingScreen.DownloadData.Text = Head.."GUI"
 	task.wait(0.5)
-	local ProBaconHubMainGui = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Script", {["Cache-Control"] = "no-cache"})
+	local ProBaconHubMainGui = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript", {["Cache-Control"] = "no-cache"})
 	game.Players.LocalPlayer.PlayerGui.ProBaconHub.GuiLoader.LoadingScreen.DownloadData.Text = "Done!"
 	_G.ProBaconHubLoadDataDone = true
 	task.wait(5)
