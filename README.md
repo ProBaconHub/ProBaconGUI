@@ -1,5 +1,8 @@
 # Pro-Bacon-Hub
 Powerful and keyless script
+```
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-ProBaconGuiLoader", true))()
+```
 
 ## About
 + Name: Pro Bacon Hub
