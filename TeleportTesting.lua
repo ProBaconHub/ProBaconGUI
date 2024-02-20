@@ -19,3 +19,10 @@ local function VelocityTeleport(X, Y, Z, Force)
     end
     PlrVelocity:Destroy()
 end
+local function TweenTeleport(X, Y, Z, TimeTaken)
+    local Tween = game:GetService("TweenService"):Create(GetRootPart(), TweenInfo.new(TimeTaken), CFrame = CFrame.new(X, Y, Z))
+    Tween:Play()
+    Tween.Completed:Wait()
+end
+local list = {}
+list
