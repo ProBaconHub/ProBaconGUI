@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 18/2/2024
++ Last Update: 28/2/2024
 
 ### Supported games
 • Mad City: Chapter 2 (Outdated)  
@@ -25,19 +25,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 • Wall Mining Sim  
 
 ## Update Log
-### Added
-#### Mad City
-+ Teleport to casino grapple
-+ Stop pear store laser
-+ Remove pear store laser
-+ Remove casino laser
-+ Remove casino moving laser
-+ Remove casino grapple laser
-+ Club button ESP
-
+### Changed
++ Gui Loader V2
 ### Removed
-#### Mad City
-+ Remove casino grapple laser
 #### Sonic Speed Simulator
 + OutDated Event
 ### Fixes
