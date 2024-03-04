@@ -1,6 +1,6 @@
 # Pro-Bacon-Hub
 ProBaconHub is a powerful & keyless script
-```
+```lua
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-ProBaconGuiLoader", true))()
 ```
 
@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 28/2/2024
++ Last Update: 29/2/2024
 
 ### Supported games
 • Mad City: Chapter 2 (Outdated)  
@@ -39,5 +39,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Remove outdated events
 + Remove Mad City scripts
 
-> **_NOTE:_** Daily updates are only available in July and October  
+> **_NOTE:_** There will be no daily updates until I get a better PC  
 > **_NOTE:_** Please find your way to contact ProBacon if you want to learn making scripts.
