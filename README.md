@@ -12,24 +12,21 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Last Update: 29/2/2024
 
 ### Supported games
-• Mad City: Chapter 2 (Outdated)  
-• City Life  
-• Build A Boat (Beta)  
-• Sonic Speed Simulator  
-• The Legend Of The Bone Sword  
-• Punch Wall Simulator  
-• Break In (Story)  
-• SendMeme(SMTYETDTT)  
-• Base Battles!  
-• arm wrestling simulator  
-• Wall Mining Sim  
+- [ ] Mad City: Chapter 2 (Outdated)  
+- [x] City Life  
+- [x] Build A Boat (Beta)  
+- [x] Sonic Speed Simulator  
+- [x] The Legend Of The Bone Sword  
+- [x] Punch Wall Simulator  
+- [x] Break In (Story)  
+- [ ] SendMeme(SMTYETDTT)  
+- [x] Base Battles!  
+- [x] arm wrestling simulator  
+- [x] Wall Mining Sim  
 
 ## Update Log
-### Changed
 + Gui Loader V2
-### Removed
-#### Sonic Speed Simulator
-+ OutDated Event
++ Removed OutDated event in Sonic Speed Simulator
 ### Fixes
 #### Sonic Speed Simulator
 + Error
