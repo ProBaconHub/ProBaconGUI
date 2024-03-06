@@ -37,5 +37,5 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Remove Mad City scripts
 
 > **_NOTE:_** There will be no daily updates until I get a better PC  
-> **_NOTE:_** Please find your way to contact ProBacon if you want to learn making scripts
+> **_NOTE:_** Please find your way to contact ProBacon if you want to learn making scripts  
 > **_NOTE:_** More information on GitBook: https://probacon-hub.gitbook.io/probaconhub/
