@@ -1,7 +1,7 @@
 # Pro-Bacon-Hub
 ProBaconHub is a powerful & keyless script
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-ProBaconGuiLoader", true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-ProBaconGuiLoader.lua", true))()
 ```
 
 ## About
