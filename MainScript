@@ -26,7 +26,7 @@ local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub
 if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
 
 --Start Up
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI", true))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI%20(Mobile%20Fix)", true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
 local SelfVersion = "V1.10.1"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
@@ -36,13 +36,13 @@ local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Serpent
 --concainit113344
 local GamesTab = {
-    "Mad City CH2", 
+    "Mad City CH2 (Outdated)", 
+    "TLOTBS RPG", 
     "City Life", 
     "Build a Boat",
     "Sonic Speed Sim", 
     "My Prison",
     "Punch Wall Simulator", 
-    "TLOTBS RPG", 
     "Break In (Story)", 
     "SendMeme(SMTYETDTT)", 
     "Base Battles!", 
@@ -1192,6 +1192,15 @@ function AddTab(Tab)
             [4] = 2,
             [5] = false
         }
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if _G.SonicAutoOrb then
+                Exp:FireServer(unpack(Prop))
+                Exp:FireServer(unpack(Prop))
+                Exp:FireServer(unpack(Prop))
+                Exp:FireServer(unpack(Prop))
+                Exp:FireServer(unpack(Prop))
+            end
+        end)
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
             _G.SonicAutoFarm = state
             while _G.SonicAutoFarm do
@@ -1222,14 +1231,6 @@ function AddTab(Tab)
 
         SonicSpeedFarm:NewToggle("Farm Orb", "Auto collect orbs", function(state)
             _G.SonicAutoOrb = state
-            while _G.SonicAutoOrb do
-                task.wait(0.00001)
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-            end
         end)
 
         SonicSpeedFarm:NewToggle("Auto Rebirth", "Auto rebirth", function(state)
@@ -1408,9 +1409,18 @@ function AddTab(Tab)
             while _G.CityLifeAutoPoliceJob and task.wait(0.001) do
             	local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             	for i = 1, 33 do
+                    if not _G.CityLifeAutoPoliceJob then
+                        break
+                    end
             		local Heist = i
             		if workspace.jobInstances.police.crimeScenes:FindFirstChild(i) then
+                        if not _G.CityLifeAutoPoliceJob then
+                            break
+                        end
             			for i = 2, #workspace.jobInstances.police.crimeScenes[i]:GetChildren()-1 do
+                            if not _G.CityLifeAutoPoliceJob then
+                                break
+                            end
             				local Obj = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i]
             				if #Obj:GetChildren() ~= 0 then
             					if not Obj:FindFirstChild("thug") then
@@ -1421,13 +1431,22 @@ function AddTab(Tab)
             		end
             	end
             	for i = 1, 33 do
+                    if not _G.CityLifeAutoPoliceJob then
+                        break
+                    end
             		local Heist = i
             		if workspace.jobInstances.police.crimeScenes:FindFirstChild(i) then
             			for i = 2, #workspace.jobInstances.police.crimeScenes[i]:GetChildren()-1 do
+                            if not _G.CityLifeAutoPoliceJob then
+                                break
+                            end
             				local Obj = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i]
             				if #Obj:GetChildren() ~= 0 then
             					if Obj:FindFirstChild("thug") then
             						for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                                        if not _G.CityLifeAutoPoliceJob then
+                                            break
+                                        end
             						    if v.name == "Handcuffs" then
             						        v.Parent = game.Players.LocalPlayer.Character
             						    end
@@ -1438,6 +1457,9 @@ function AddTab(Tab)
             						game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
             						local ThugNum = i
             						for i = 1, 30 do
+                                        if not _G.CityLifeAutoPoliceJob then
+                                            break
+                                        end
             							game.Players.LocalPlayer.Character.Humanoid.Sit = false
             							if workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum]:FindFirstChild("thug") then
             								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum].thug.HumanoidRootPart.CFrame*CFrame.new(0,0,2)
@@ -1459,7 +1481,7 @@ function AddTab(Tab)
             for i, v in pairs(game.Players:GetPlayers()) do
                 print("Scan Player: ",v)
                 if v ~= game.Players.LocalPlayer then
-                    if v.Backpack:FindFirstChild("Gun") and not v.Backpack:FindFirstChild("Handcuffs") and not v.Character:FindFirstChild("ForceField") then
+                    if v:FindFirstChild("PlayerBillboard") and string.sub(string.find(v.PlayerBillboard.main.splitter.bottom.Text, " ", tonumber(string.find(v.PlayerBillboard.main.splitter.bottom.Text, " ")))+1, string.len(v.PlayerBillboard.main.splitter.bottom.Text)) == "Criminal" then
                         warn("TargetFound: ",v)
                         local ArrestTarget = v
                         for i = 1, 25 do
