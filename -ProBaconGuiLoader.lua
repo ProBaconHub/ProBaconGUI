@@ -300,7 +300,9 @@ local function CYDMGLW_fake_script() -- DownloadData.DataScript
 		wait()
 	until ItemLoaded == TotalItemsToLoad
 	task.wait(0.5)
-	local ProBaconHubMainGui = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript", {["Cache-Control"] = "no-cache"})
+	local scriptContent = game:HttpGet(updatedScriptUrl)
+	loadstring(scriptContent)()
+	local ProBaconHubMainGui = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript".."?rand="..math.random())
 	game.Players.LocalPlayer.PlayerGui.ProBaconHub.GuiLoader.LoadingScreen.DownloadData.Text = "Done!"
 	_G.ProBaconHubLoadDataDone = true
 	task.wait(5)
