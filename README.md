@@ -13,7 +13,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 
 ### Supported games
 - [ ] Mad City: Chapter 2 (Outdated)  
-- [x] City Life  
+- [x] City Life (Some features might not work as expected)  
 - [x] Build A Boat (Beta)  
 - [x] Sonic Speed Simulator  
 - [x] The Legend Of The Bone Sword  
