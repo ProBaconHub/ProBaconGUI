@@ -323,7 +323,9 @@ local function WHYWY_fake_script() -- Launch.LaunchScript
 			_G.Launched = true
 			game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
 			_G.IsItExecutedByLoader = true
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript", {["Cache-Control"] = "no-cache"}))()
+			local Url = "https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript?rand="..math.random()
+			local ProBaconHubMainGui = game:HttpGet(Url)
+			loadstring(ProBaconHubMainGui)()
 			game.Players.LocalPlayer.PlayerGui.ProBaconHub:Destroy()
 		end
 	end
