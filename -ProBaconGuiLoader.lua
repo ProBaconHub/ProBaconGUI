@@ -300,8 +300,6 @@ local function CYDMGLW_fake_script() -- DownloadData.DataScript
 		wait()
 	until ItemLoaded == TotalItemsToLoad
 	task.wait(0.5)
-	local Url = "https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript?rand="..math.random()
-	local ProBaconHubMainGui = game:HttpGet(Url)
 	game.Players.LocalPlayer.PlayerGui.ProBaconHub.GuiLoader.LoadingScreen.DownloadData.Text = "Done!"
 	_G.ProBaconHubLoadDataDone = true
 	task.wait(5)
@@ -323,7 +321,7 @@ local function WHYWY_fake_script() -- Launch.LaunchScript
 			_G.Launched = true
 			game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="May take a few seconds to load..."; Duration=5;})
 			_G.IsItExecutedByLoader = true
-			local Url = "https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript?rand="..math.random()
+			local Url = "https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MainScript?rand="..math.random(1, 999999)
 			loadstring(game:HttpGet(Url))()
 			game.Players.LocalPlayer.PlayerGui.ProBaconHub:Destroy()
 		end
