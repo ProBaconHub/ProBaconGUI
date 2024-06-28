@@ -1194,11 +1194,16 @@ function AddTab(Tab)
         }
         game:GetService("RunService").RenderStepped:Connect(function()
             if _G.SonicAutoOrb then
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
-                Exp:FireServer(unpack(Prop))
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
             end
         end)
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
@@ -1599,7 +1604,6 @@ function AddTab(Tab)
         end)
     end
 end
-
 
 --[[
 
