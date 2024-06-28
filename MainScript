@@ -403,7 +403,11 @@ end)
 --Hubs Tab
 local ScriptTab = Window:NewTab("Scripts")
 local AdminSection = ScriptTab:NewSection("Admin")
- 
+
+AdminSection:NewButton("Infinite Yeild", "Load Infinite Yeild \r Info: Fake admin", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
+end)
+
 AdminSection:NewButton("CMD-X", "Load CMD-X Admin \r Info: Fake admin", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source", true))()
 end)
@@ -1199,11 +1203,6 @@ function AddTab(Tab)
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
             end
         end)
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
@@ -1234,7 +1233,7 @@ function AddTab(Tab)
             end
         end)
 
-        SonicSpeedFarm:NewToggle("Farm Orb", "Auto collect orbs", function(state)
+        SonicSpeedFarm:NewToggle("Farm Orb (Might Damage Server!)", "Auto collect orbs", function(state)
             _G.SonicAutoOrb = state
         end)
 
