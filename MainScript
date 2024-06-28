@@ -1,3 +1,6 @@
+_G.IsItExecutedByLoader = true
+
+
 -- Get Data
 local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
 local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
@@ -1205,6 +1208,15 @@ function AddTab(Tab)
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
             end
         end)
+        game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+            if _G.SonicAutoOrbLite then
+                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
+                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
+                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
+                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
+                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
+            end
+        end)
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
             _G.SonicAutoFarm = state
             while _G.SonicAutoFarm do
@@ -1235,6 +1247,10 @@ function AddTab(Tab)
 
         SonicSpeedFarm:NewToggle("Farm Orb (Might Damage Server!)", "Auto collect orbs", function(state)
             _G.SonicAutoOrb = state
+        end)
+
+        SonicSpeedFarm:NewToggle("Farm Orb (Lite)", "Auto collect orbs", function(state)
+            _G.SonicAutoOrbLite = state
         end)
 
         SonicSpeedFarm:NewToggle("Auto Rebirth", "Auto rebirth", function(state)
