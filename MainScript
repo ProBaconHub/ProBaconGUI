@@ -1229,7 +1229,6 @@ function AddTab(Tab)
                     if not _G.SonicAutoFarm then
                         break
                     end
-                    Race:FireServer(unpack(RaceProp))
                     Rebirth:InvokeServer(true)
                     task.wait(1)
                 end
