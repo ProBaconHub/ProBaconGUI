@@ -1,6 +1,3 @@
-_G.IsItExecutedByLoader = true
-
-
 -- Get Data
 local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
 local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
