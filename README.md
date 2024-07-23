@@ -14,7 +14,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 ### Supported games
 - [ ] Mad City: Chapter 2 (Outdated)  
 - [x] City Life (Some features might not work as expected)  
-- [ ] Build A Boat (Pending Fixes)  
+- [x] Build A Boat (Fixed) 
 - [x] Sonic Speed Simulator  
 - [x] The Legend Of The Bone Sword  
 - [x] Punch Wall Simulator  
@@ -26,8 +26,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 
 ## Update Log
 + Gui Loader V3
-+ Checked BABFT script  
++ Checked BABFT script
+### Added
+#### BABFT
++ Gold Block Auto Farm (Beta)
 ### Fixes
+#### BABFT
++ Gold Auto Farm
 #### Launcher
 + Http 404 error
 ## Future Expects
