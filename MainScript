@@ -96,9 +96,9 @@ end
 local Space = 0x20; local E = 0x45; local F = 0x46; local Q = 0x51; Z = 0x5A; local X = 0x58; local C = 0x43; 
 
 function PressKey(key)
-    keypress(key)
+    game:GetService('VirtualInputManager'):SendKeyEvent(true, key, false, game)
     task.wait(_G.AutoKeyHoldTime)
-    keyrelease(key)
+    game:GetService('VirtualInputManager'):SendKeyEvent(false, key, false, game)
     task.wait (_G.AutoKeyCCD)
 end
 
@@ -632,8 +632,10 @@ function AddTab(Tab)
         end)
         BABFTFarmSection:NewButton("Gold block autofarm (Beta)", "Click \"Claim\" to end farm", function()
             if game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                local GoldAutoFarm = true
                 print("[ProBaconHub]: Gold Auto Farm | Triggering checkpoint...")
                 game.Workspace.ClaimRiverResultsGold:FireServer()
+                task.wait(0.1)
                 local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                 local PlayerRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
                 PlayerRoot.Anchored = false
@@ -682,7 +684,7 @@ function AddTab(Tab)
                         if WaitForChestRespond < 10 then
                             SuccessfullyGottenGold = true
                         end
-                    until SuccessfullyGottenGold
+                    until SuccessfullyGottenGold or not GoldAutoFarm
                 end)
                 repeat
                     task.wait(0.0001)
@@ -1438,21 +1440,29 @@ function AddTab(Tab)
         CityLifeRemote:NewButton("Get snowball", "Get a snowball", function()
             game:GetService("ReplicatedStorage").CustomEvents.Snowball3:FireServer()
         end)
-        CityLifeRemote:NewButton("Get [Public Menace] Badage", "Free badage, why not?", function()
+        CityLifeRemote:NewButton("Get [Public Menace] Badage [Patched]", "Free badage, why not?", function()
             for i = 1, 100 do
                 game:GetService("ReplicatedStorage").remoteInterface.vehicles.objectsHitByCarCount:FireServer()
             end
         end)
         CityLifeRemote:NewButton("Heal Hunger", "Eat", function()
-            game:GetService("ReplicatedStorage").remoteInterface.roleplay.buyFood:InvokeServer(workspace.RpObjects:GetChildren()[40])
-            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v.name == "Pizza" then
-                    v.Parent = game.Players.LocalPlayer.Character
+            local TargetFood = nil
+            for _,v in pairs(workspace.RpObjects:GetChildren()) do
+                if v.Name == "vendor" and v.CFrame == CFrame.new(-92.0135956, 6.91660261, -984.743347, -1, 0, 0, 0, 1, 0, 0, 0, -1) then
+                    TargetFood = v
                 end
             end
-            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
-            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
-            game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+            if TargetFood ~= nil then
+                game:GetService("ReplicatedStorage").remoteInterface.roleplay.buyFood:InvokeServer(TargetFood)
+                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v.name == "Pizza" then
+                        v.Parent = game.Players.LocalPlayer.Character
+                    end
+                end
+                game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+                game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+                game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
+            end
         end)
         CityLifeCrime:NewToggle("AutoRob", "Rob every single place", function(state)
             _G.CityLifeAutoRob = state
@@ -1545,25 +1555,31 @@ function AddTab(Tab)
             end
         end)
         CityLifePolice:NewButton("Arrest All Crime Player", "Arrest all crime that is a player", function()
-            for i, v in pairs(game.Players:GetPlayers()) do
+            local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            for _, v in pairs(game.Players:GetPlayers()) do
                 print("Scan Player: ",v)
                 if v ~= game.Players.LocalPlayer then
-                    if v:FindFirstChild("PlayerBillboard") and string.sub(string.find(v.PlayerBillboard.main.splitter.bottom.Text, " ", tonumber(string.find(v.PlayerBillboard.main.splitter.bottom.Text, " ")))+1, string.len(v.PlayerBillboard.main.splitter.bottom.Text)) == "Criminal" then
-                        warn("TargetFound: ",v)
-                        local ArrestTarget = v
-                        for i = 1, 25 do
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ArrestTarget.Character.HumanoidRootPart.CFrame*CFrame.new(0,1,1)
-                            task.wait(0.1)
-                            if i == 2 then
-                                game:GetService("ReplicatedStorage").remoteInterface.jobs.primeArrest:FireServer(702,v)
-                            end
-                            if i == 10 then
-                                game:GetService("ReplicatedStorage").remoteInterface.jobs.arrestPlayer:InvokeServer(232,v)
+                    if v.Character and v.Character:FindFirstChild("PlayerBillboard") and v.Character.PlayerBillboard.main.splitter.bottom.Text ~= "Unemployed" then
+                        if string.sub(v.Character.PlayerBillboard.main.splitter.bottom.Text, string.find(v.Character.PlayerBillboard.main.splitter.bottom.Text, " ", string.find(v.Character.PlayerBillboard.main.splitter.bottom.Text, " ")+1)+1, string.len(v.Character.PlayerBillboard.main.splitter.bottom.Text)) == "Criminal" and not v.Character:FindFirstChild("ForceField") then
+                            warn("TargetFound: ",v)
+                            local ArrestTarget = v
+                            for i = 1, 75 do
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = ArrestTarget.Character.HumanoidRootPart.CFrame*CFrame.new(0,1,1.5)
+                                task.wait(0.01)
+                                task.spawn(function()
+                                    if i == 10 then
+                                        game:GetService("ReplicatedStorage").remoteInterface.jobs.primeArrest:FireServer(702,v)
+                                    end
+                                    if i == 65 then
+                                        game:GetService("ReplicatedStorage").remoteInterface.jobs.arrestPlayer:InvokeServer(232,v)
+                                    end
+                                end)
                             end
                         end
                     end
                 end
             end
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
         end)
         CityLifePolice:NewToggle("God Mode (NPC)", "Take no, 0, ZERO damage from NPCs", function(state)
             if state then
@@ -1596,29 +1612,83 @@ function AddTab(Tab)
             _G.CityLifeAutoCook = state
             while _G.CityLifeAutoCook and task.wait(0.001) do
                 local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                for i = 1, #workspace.jobInstances.cook.OrderSpots:GetChildren() do
-                	if #workspace.jobInstances.cook.OrderSpots:GetChildren()[i]:GetChildren() ~= 0 then
-                		OrderSpots = workspace.jobInstances.cook.OrderSpots:GetChildren()[i]
-                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.OrderSpots:GetChildren()[i].CFrame
+                for _, TargetOrderSpot in pairs(workspace.jobInstances.cook.OrderSpots:GetChildren()) do
+                    if TargetOrderSpot:GetChildren() then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetOrderSpot.CFrame
                         task.wait(0.1)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
                 		task.wait(0.01)
                 		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                	end
+                    end
                 end
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.CookSpots:GetChildren()[5].CFrame
-                task.wait(0.25)
-                game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                task.wait(0.01)
-                game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
                 task.wait(0.5)
-                for i = 1, 5 do
-                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[3])
-                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[4])
-                	game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[5])
-                	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.cook.CookSpots:GetChildren()[5].CFrame
+                for _, TargetCookSpot in pairs(workspace.jobInstances.cook.CookSpots:GetChildren()) do
+                    if not TargetCookSpot:FindFirstChildWhichIsA("Model") then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetCookSpot.CFrame
+                        task.wait(0.1)
+                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                		task.wait(0.01)
+                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                    end
                 end
-                task.wait(0.05)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  CFrame.new(-77, 4, -807)
+                task.wait(0.5)
+                while task.wait(0.00001) do
+                    if workspace.jobInstances.cook.CookSpots:GetChildren()[1]:FindFirstChildWhichIsA("Model") then
+                        if workspace.jobInstances.cook.CookSpots:GetChildren()[1]:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate") then
+                            break
+                        end
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[1])
+                        end)
+                        task.wait(0.25)
+                    elseif workspace.jobInstances.cook.CookSpots:GetChildren()[2]:FindFirstChildWhichIsA("Model") then
+                        if workspace.jobInstances.cook.CookSpots:GetChildren()[2]:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate") then
+                            break
+                        end
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[2])
+                        end)
+                        task.wait(0.25)
+                    elseif workspace.jobInstances.cook.CookSpots:GetChildren()[3]:FindFirstChildWhichIsA("Model") then
+                        if workspace.jobInstances.cook.CookSpots:GetChildren()[3]:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate")then
+                            break
+                        end
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[3])
+                        end)
+                        task.wait(0.25)
+                    elseif workspace.jobInstances.cook.CookSpots:GetChildren()[4]:FindFirstChildWhichIsA("Model") then
+                        if workspace.jobInstances.cook.CookSpots:GetChildren()[4]:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate") then
+                            break
+                        end
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[4])
+                        end)
+                        task.wait(0.25)
+                    elseif workspace.jobInstances.cook.CookSpots:GetChildren()[5]:FindFirstChildWhichIsA("Model") then
+                        if workspace.jobInstances.cook.CookSpots:GetChildren()[5]:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate") then
+                            break
+                        end
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(workspace.jobInstances.cook.CookSpots:GetChildren()[5])
+                        end)
+                        task.wait(0.25)
+                    else
+                        break
+                    end
+                    if not _G.CityLifeAutoCook then
+                        break
+                    end
+                end
+                for _,v in pairs(workspace.jobInstances.cook.CookSpots:GetChildren()) do
+                    if v:FindFirstChildWhichIsA("Model") then
+                        if v:FindFirstChildWhichIsA("Model").prim:FindFirstChild("plate") then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+                            task.wait(0.1)
+                        end
+                    end
+                end
                 game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
                 task.wait(0.01)
                 game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
@@ -1644,7 +1714,6 @@ function AddTab(Tab)
                 		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
                 	end
                 end
-
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
                 task.wait(0.01)
             end
@@ -1654,12 +1723,13 @@ function AddTab(Tab)
             for i,v in pairs(workspace.jobInstances.hairsalon:GetChildren())do
             	if v.Name ~= "NPCNodes" and #v:GetChildren() == 2 then
             		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-            		task.wait(0.1)
-            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-            		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+            		task.wait(0.001)
+                    for _ = 1, 5 do
+                        task.spawn(function()
+                            game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
+                        end)
+                        task.wait(0.5)
+                    end
             	end
             end
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
