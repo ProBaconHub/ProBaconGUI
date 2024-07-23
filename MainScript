@@ -637,7 +637,7 @@ function AddTab(Tab)
                 local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                 local PlayerRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
                 PlayerRoot.Anchored = false
-                PlayerRoot.CFrame = CFrame.new(-45, 100, 1450)
+                PlayerRoot.CFrame = CFrame.new(-45, 75, 1450)
                 local Plat = Instance.new("Part", game.Workspace)
                 Plat.Anchored = true
                 Plat.Transparency = 1
@@ -650,34 +650,39 @@ function AddTab(Tab)
                 firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),0)
                 task.wait(1)
                 firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),1)
+                local WaitForChestRespond = 0
+                repeat
+                    task.wait(0.1)
+                    WaitForChestRespond += 0.1
+                until game.Players.LocalPlayer.PlayerGui:FindFirstChild("NoChestAnimation") or WaitForChestRespond > 15
+                if WaitForChestRespond > 10 then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56, -339, 9486)
+                end
                 local AutoTriggerTheChest
                 AutoTriggerTheChest = game.Players.LocalPlayer.CharacterAdded:Connect(function()
-                    if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                    local SuccessfullyGottenGold = false
+                    repeat
+                        if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                            repeat
+                                task.wait(0.000001)
+                            until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                        end
+                        print("[ProBaconHub]: Gold Auto Farm | Bypassing...")
+                        task.wait(1)
+                        firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),0)
+                        print("[ProBaconHub]: Gold Auto Farm | Spoofing start interact with chest...")
+                        task.wait(0.5)
+                        firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),1)
+                        print("[ProBaconHub]: Gold Auto Farm | Spoofing end interact with chest...")
+                        local WaitForChestRespond = 0
                         repeat
-                            task.wait(0.000001)
-                        until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
-                    end
-                    if not game.Players.LocalPlayer.PlayerGui.RiverResultsGui.Frame.Visible then
-                        local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                        local PlayerRoot = game.Players.LocalPlayer.Character.HumanoidRootPart
-                        PlayerRoot.Anchored = false
-                        PlayerRoot.CFrame = CFrame.new(-45, 100, 1450)
-                        local Plat = Instance.new("Part", game.Workspace)
-                        Plat.Anchored = true
-                        Plat.Transparency = 1
-                        Plat.Size = Vector3.new(10, 1, 10)
-                        Plat.CFrame = CFrame.new(PlayerRoot.CFrame.X, PlayerRoot.CFrame.Y-3, PlayerRoot.CFrame.Z)
-                        task.wait(5)
-                        Plat:Destroy()
-                        PlayerRoot.CFrame = LastCFrame
-                    end
-                    print("[ProBaconHub]: Gold Auto Farm | Bypassing...")
-                    task.wait(1)
-                    firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),0)
-                    print("[ProBaconHub]: Gold Auto Farm | Spoofing start interact with chest...")
-                    task.wait(0.5)
-                    firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),1)
-                    print("[ProBaconHub]: Gold Auto Farm | Spoofing end interact with chest...")
+                            task.wait(0.1)
+                            WaitForChestRespond += 0.1
+                        until game.Players.LocalPlayer.PlayerGui:FindFirstChild("NoChestAnimation") or WaitForChestRespond > 15
+                        if WaitForChestRespond < 10 then
+                            SuccessfullyGottenGold = true
+                        end
+                    until SuccessfullyGottenGold
                 end)
                 repeat
                     task.wait(0.0001)
