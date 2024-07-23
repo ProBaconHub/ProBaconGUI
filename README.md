@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 28/6/2024
++ Last Update: 23/7/2024
 
 ### Supported games
 - [ ] Mad City: Chapter 2 (Outdated)  
