@@ -67,11 +67,27 @@ if PlayerName == "concainit113344" then
 end
 
 --Set Up
+local InGamePlayerStringList = {}
+local InGamePlayerNameList = {}
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 _G.Hyper = false
 getgenv().fov = 100
 local Noclip = nil
 local Clip = nil
+
+function UpdatePlayerTable()
+    InGamePlayerStringList = {}
+    InGamePlayerNameList = {}
+    for _,InGamePlayerTarget in pairs(game.Players:GetChildren()) do
+        table.insert(InGamePlayerStringList, InGamePlayerTarget)
+        table.insert(InGamePlayerNameList, InGamePlayerTarget.Name)
+    end
+end
+
+UpdatePlayerTable()
+game.Players.PlayerAdded:Connect(UpdatePlayerTable)
+game.Players.PlayerRemoving:Connect(UpdatePlayerTable)
+
 
 function noclip()
 	Clip = false
@@ -598,7 +614,7 @@ function AddTab(Tab)
                         Plat:Destroy()
                     end
                 else
-                    game.Players.LocalPlayer.Character.Head:Destroy()
+                    game.Players.LocalPlayer.Character:BreakJoints()
                 end
             end
             task.spawn(function()
@@ -623,7 +639,7 @@ function AddTab(Tab)
                         BABFTgoldTeleport(-53, 40, 6078, 2)
                         BABFTgoldTeleport(-54, 40, 6830, 2)
                         BABFTgoldTeleport(-45, 105, 7702, 2)
-                        game.Players.LocalPlayer.Character.Head:Destroy()
+                        game.Players.LocalPlayer.Character:BreakJoints()
                     else
                         task.wait(0.001)
                     end
@@ -649,9 +665,9 @@ function AddTab(Tab)
                 Plat:Destroy()
                 PlayerRoot.CFrame = LastCFrame
                 task.wait(0.1)
-                firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),0)
+                game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame = PlayerRoot.CFrame
                 task.wait(1)
-                firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),1)
+                game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame = CFrame.new(-55.7065125, -358.739624, 9492.35645, 0, 0, -1, 0, 1, 0, 1, 0, 0)
                 local WaitForChestRespond = 0
                 repeat
                     task.wait(0.1)
@@ -671,10 +687,10 @@ function AddTab(Tab)
                         end
                         print("[ProBaconHub]: Gold Auto Farm | Bypassing...")
                         task.wait(1)
-                        firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),0)
+                        game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
                         print("[ProBaconHub]: Gold Auto Farm | Spoofing start interact with chest...")
                         task.wait(0.5)
-                        firetouchinterest(game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger,game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart"),1)
+                        game.Workspace.BoatStages.NormalStages.TheEnd.GoldenChest.Trigger.CFrame = CFrame.new(-55.7065125, -358.739624, 9492.35645, 0, 0, -1, 0, 1, 0, 1, 0, 0)
                         print("[ProBaconHub]: Gold Auto Farm | Spoofing end interact with chest...")
                         local WaitForChestRespond = 0
                         repeat
@@ -683,6 +699,8 @@ function AddTab(Tab)
                         until game.Players.LocalPlayer.PlayerGui:FindFirstChild("NoChestAnimation") or WaitForChestRespond > 15
                         if WaitForChestRespond < 10 then
                             SuccessfullyGottenGold = true
+                        else
+                            task.wait(5)
                         end
                     until SuccessfullyGottenGold or not GoldAutoFarm
                 end)
@@ -697,9 +715,24 @@ function AddTab(Tab)
             end
         end)
 
-
-        BABFTTPSection:NewLabel("Dropdown comming soon!")
-
+        local BuildABoatPlot = {}
+        for _,v in pairs(game.Workspace.Teams:GetChildren()) do
+            if v:FindFirstChild("FlagPole") then
+                table.insert(BuildABoatPlot, v.Name)
+            end
+        end
+        local BuildABoatPlayerTeleportDropDown = BABFTTPSection:NewDropdown("Player Teleport", "Teleport to player", InGamePlayerNameList, function(PlayerOption)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(PlayerOption).Character.HumanoidRootPart.CFrame
+        end)
+        local UpdatePlayerTeleportList = function()
+            task.wait(1)
+            BuildABoatPlayerTeleportDropDown:Refresh(InGamePlayerNameList)
+        end
+        game.Players.PlayerAdded:Connect(UpdatePlayerTeleportList)
+        game.Players.PlayerRemoving:Connect(UpdatePlayerTeleportList)
+        BABFTTPSection:NewDropdown("Plot Teleport", "Teleport to team plot", BuildABoatPlot, function(PlotOption)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Teams:FindFirstChild(PlotOption).Baseplate.CFrame*CFrame.new(0,3,60)
+        end)
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
 
     elseif Tab == "Mad City CH2" then
