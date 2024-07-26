@@ -47,7 +47,7 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",                                                                                                                                                                                                                
-     Text = "Last Update: 26/7/23 (DD/MM/YY)"
+     Text = "Last Update: 26/7/24 -2 (DD/MM/YY)"
 })
 
 if PlayerName == "concainit113344" then
@@ -704,7 +704,7 @@ function AddTab(Tab)
                 repeat
                     task.wait(0.0001)
                 until game.Players.LocalPlayer.PlayerGui:FindFirstChild("RiverResultsGui") and not game.Players.LocalPlayer.PlayerGui.RiverResultsGui.Frame.Visible
-                AutoTriggerTheChest:Disconnect()
+                _G.AutoTriggerTheChest:Disconnect()
                 GoldBlockutoFarm = false
                 print("Done")
             end
