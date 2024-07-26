@@ -1,34 +1,23 @@
 -- Get Data
-local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
-local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
-local Escape = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
-local EscapeToBace = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
-local EscapeToPear = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
-local Aim = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
-local NoEWait = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
-local CarMode = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
-local MadAutoRob = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Mad%20Auto%20Rob", {["Cache-Control"] = "no-cache"})
+local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true)
+local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)?TheVersionOrCache="..math.random(), true)
 local PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
 local TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
 local TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
 local BreakInAutoHit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
 local BreakInAutoRefilPlanks = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
 local INFJump = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
-local PlayerWalkSpeed =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed", {["Cache-Control"] = "no-cache"})
-local PlayerJumpPower =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower", {["Cache-Control"] = "no-cache"})
 local SendMemeAutoResearch = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
 local SendMemeAutoHack = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
 local AutoKeyClick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-local MadWeaponMod = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
-local MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
 
 
 if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
 
 --Start Up
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI", true))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI?TheVersionOrCache="..math.random(), true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.10.1"
+local SelfVersion = "V1.11.0"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
@@ -58,7 +47,7 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",                                                                                                                                                                                                                
-     Text = "Last Update: 14/6/23 (DD/MM/YY)"
+     Text = "Last Update: 26/7/23 (DD/MM/YY)"
 })
 
 if PlayerName == "concainit113344" then
@@ -122,27 +111,17 @@ function UpdateFunctions()
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Update Functions is in Beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No cache is in beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Updating Data..."; Duration=5;})
-    VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"})
-    VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)", {["Cache-Control"] = "no-cache"})
-    Escape = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison", {["Cache-Control"] = "no-cache"})
-    EscapeToBace = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Back%20to%20Base", {["Cache-Control"] = "no-cache"})
-    EscapeToPear = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Mad-City-Scripts/main/Auto%20Excape%20Prison%20%2B%20Go%20to%20pear%20shop", {["Cache-Control"] = "no-cache"})
-    Aim = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Aim", {["Cache-Control"] = "no-cache"})
-    NoEWait = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/No%20E%20Wait", {["Cache-Control"] = "no-cache"})
-    CarMode = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Car%20mode", {["Cache-Control"] = "no-cache"})
+    VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true)
+    VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)?TheVersionOrCache="..math.random(), true)
     PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
     TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
     TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
     BreakInAutoHit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
     BreakInAutoRefilPlanks = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
     INFJump = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
-    PlayerWalkSpeed =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20WalkSpeed", {["Cache-Control"] = "no-cache"})
-    PlayerJumpPower =game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Player%20JumpPower", {["Cache-Control"] = "no-cache"})
     SendMemeAutoResearch = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
     SendMemeAutoHack = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
     AutoKeyClick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-    MadWeaponMod = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/WeaponMods", {["Cache-Control"] = "no-cache"})
-    MadBossFight = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/MadCityBossSafePlaceAndGunMods", {["Cache-Control"] = "no-cache"})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="All loaded"; Duration=5;})
 end
 
@@ -450,6 +429,19 @@ HubSection:NewLabel("More comming soon!")
 local OtherTab = Window:NewTab("Others")
 local OtherSection = OtherTab:NewSection("Others")
 
+OtherSection:NewToggle("Anti-AFK", "Prevent you from getting kicked for being AFK for 20 minutes.", function(state)
+    if state then
+        getgenv().AntiAfk = game:GetService("Players").LocalPlayer.Idled:Connect(function()
+            game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            task.wait(1)
+            game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    else
+        if AntiAfk then
+            AntiAfk:Disconnect()
+        end
+    end
+end)
 OtherSection:NewButton("Get Position", "Print and notifi your position.", function()
     print(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
     game.StarterGui:SetCore("SendNotification", {
@@ -521,7 +513,7 @@ SettingSection:NewButton("Update Function", "Update it when there is any changes
     UpdateFunctions()
 end)
 SettingSection:NewButton("Check for function update", "Check for new update for function!", function()
-    if VersionOfFunction == game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)", {["Cache-Control"] = "no-cache"}) then
+    if VersionOfFunction == game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true) then
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Function is up to date!"; Duration=5;})
     else
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="There is new update for function, requier Update function to get the newest version of function!"; Duration=10;})
@@ -648,6 +640,9 @@ function AddTab(Tab)
         end)
         BABFTFarmSection:NewButton("Gold block autofarm (Beta)", "Click \"Claim\" to end farm", function()
             if game.Players.LocalPlayer.Character:FindFirstChild("Head") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                if _G.AutoTriggerTheChest ~= nil then
+                    _G.AutoTriggerTheChest:Disconnect()
+                end
                 local GoldAutoFarm = true
                 print("[ProBaconHub]: Gold Auto Farm | Triggering checkpoint...")
                 game.Workspace.ClaimRiverResultsGold:FireServer()
@@ -676,8 +671,7 @@ function AddTab(Tab)
                 if WaitForChestRespond > 10 then
                     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56, -339, 9486)
                 end
-                local AutoTriggerTheChest
-                AutoTriggerTheChest = game.Players.LocalPlayer.CharacterAdded:Connect(function()
+                _G.AutoTriggerTheChest = game.Players.LocalPlayer.CharacterAdded:Connect(function()
                     local SuccessfullyGottenGold = false
                     repeat
                         if not game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
@@ -734,212 +728,6 @@ function AddTab(Tab)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Teams:FindFirstChild(PlotOption).Baseplate.CFrame*CFrame.new(0,3,60)
         end)
         game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Done!"; Duration=5;})
-
-    elseif Tab == "Mad City CH2" then
-        --Mad
-        local MadCityTab = Window:NewTab("Mad City")
-        local MadAutoSection = MadCityTab:NewSection("Auto")
-        local MadRemoteSection = MadCityTab:NewSection("Remote")
-        local MadTeleSection = MadCityTab:NewSection("Teleport")
-        local MadLazerControlSection = MadCityTab:NewSection("Lazer Control")
-        local MadHeistControlSection = MadCityTab:NewSection("Heist Control")
-        local MadEventSection = MadCityTab:NewSection("Piggy Event")
-        local u1 = require(game:GetService("ReplicatedStorage").Aero.Shared.Util)
-        function Teleport(x,y,z,cd)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
-            task.wait(cd)
-        end
-        
-        function TweenTeleport(x,y,z, time)
-            game.Players.LocalPlayer.Character.Humanoid.Sit = false
-            local Position = Vector3.new(x,y,z)
-            local TweenService = game:GetService('TweenService')
-            local LocalPlayer = game.Players.LocalPlayer
-            local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:wait()
-            local Tween = TweenService:create(Character.Humanoid.RootPart,TweenInfo.new(time --[[ time ]]), {CFrame = CFrame.new(Position)}  )
-            Tween:Play()
-            game.Players.LocalPlayer.Character.Humanoid.Sit = false
-            task.wait(time)
-        end
-        
-        function EscapeCell()
-            u1.Network:Invoke("RequestTeamChange", "Prisoners")
-            task.wait(1)
-            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Escaping cell..."; Duration=5;})
-            TweenTeleport(-2092, 88, -538, 0.25)
-            TweenTeleport(-2097, 88, -587, 0.25)
-            TweenTeleport(-2093, 88, -561, 0.25)
-            TweenTeleport(-2092, 88, -538, 0.25)
-            TweenTeleport(-2092, 73, -538, 0.25)
-            TweenTeleport(-2097, 73, -587, 0.25)
-            TweenTeleport(-2093, 73, -561, 0.25)
-            TweenTeleport(-2092, 73, -538, 0.25)
-            TweenTeleport(-2092, 61, -538, 0.25)
-            TweenTeleport(-2097, 61, -587, 0.25)
-            TweenTeleport(-2093, 61, -561, 0.25)
-            TweenTeleport(-2092, 56, -538, 0.25)
-            TweenTeleport(-2092, 61, -538, 0.25)
-            TweenTeleport(-2097, 56, -587, 0.25)
-            TweenTeleport(-2093, 56, -561, 0.25)
-            TweenTeleport(-2044, 47, -560, 0.25)
-            TweenTeleport(-2092, 56, -538, 0.25)
-            TweenTeleport(-2060, 47, -540, 0.25)
-            TweenTeleport(-2044, 47, -560, 0.25)
-            TweenTeleport(-2028, 47, -551, 0.25)
-            TweenTeleport(-2047, 47, -539, 0.25)
-            TweenTeleport(-2126, 47, -529, 1)
-        end
-
-        MadAutoSection:NewDropdown("Auto Escape", "Choose what type of auto escape", {"Escape", "Escape + Back to base", "Escape + Go to pear shop"}, function(currentOption)
-            if currentOption == "Escape" then
-                loadstring(Escape)()
-            elseif currentOption == "Escape + Back to base" then
-                loadstring(EscapeToBace)()
-            elseif currentOption == "Escape + Go to pear shop" then
-                loadstring(EscapeToPear)()
-            end
-        end)
-        MadAutoSection:NewButton("AutoEscapeToBase V2", "Better escape.", function()
-            EscapeCell()
-            TweenTeleport(-2141, 47, -534, 0.5)
-            TweenTeleport(-2168, 47, -447, 1)
-            Teleport(-2193, 47, -419, 0.75)
-            TweenTeleport(-2193, 700, -419, 3)
-            TweenTeleport(-73, 300, -96, 6)
-            TweenTeleport(-73, 25, -96, 1)
-            task.wait(0.25)
-            TweenTeleport(115, 26, -175, 2)
-        end)
-        MadAutoSection:NewButton("Aim", "Aim good", function()
-            loadstring(Aim)()
-        end)
-        MadAutoSection:NewSlider("Aim Circle", "Decide how big the circle is.", 1500, 0, function(AimCircle)
-            getgenv().fov = AimCircle
-        end)
-        MadAutoSection:NewButton("Auto Rob", "Rejoin if it doesnt work!", function()
-            getgenv().ServerHop = false
-            getgenv().WaitSevenSeconds = false
-            loadstring(MadAutoRob)()
-        end)
-
-        MadRemoteSection:NewButton("No E Wait", "No more waiting when pressing E!", function()
-            loadstring(NoEWait)()
-        end)
-        MadRemoteSection:NewButton("Car Mode", "Make your car way more better!", function()
-            loadstring(CarMode)()
-        end)
-        MadRemoteSection:NewToggle("No hover", "No hover mode", function(state)
-            if state then
-                _G.Hyper = true --I dont know if only hyper will glitch out because I dont have other moters
-            else
-                _G.Hyper = false
-            end
-        end)
-        MadRemoteSection:NewButton("Gun Mods", "Mod your guns", function()
-            loadstring(MadWeaponMod)()
-        end)
-        MadRemoteSection:NewButton("Attack Heli Mods", "Mod your heli", function()
-            for i,v in next, getgc(true) do
-                if type(v) == "table" and rawget(v, "Damage") then
-                  rawset(v, "RateOfFire", 0.1)
-                  rawset(v, "ReloadTime", 0.01)
-                  rawset(v, "ClipSize", 8)
-                  rawset(v, "Clips", 8)
-                end
-            end
-        end)
-        MadTeleSection:NewButton("Teleport to casino grapple", "Please make sure someone has open it first", function()
-            local v1 = require(game.ReplicatedStorage.Aero.Shared.Util)
-            v1.Network:Fire("RagdollUpdate", false)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1663, 210, 614)
-            task.wait(2)
-            for i = 1,20 do
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1663, 210, 614)
-                task.wait(0.001)
-            end
-            for i, deleteparts in next, game:GetService("Workspace")[game.Players.LocalPlayer.Name]:GetChildren() do
-                if deleteparts.Name == "HumanoidRootPart" or deleteparts.Name == "BillboardGui" or deleteparts.Name == "Humanoid" or deleteparts.Name == "Animate" or deleteparts.Name == "Health" or deleteparts.Name ==  "Parachte" or deleteparts:IsA("Accessory") or deleteparts:IsA("BodyColors") or deleteparts:IsA("MeshPart") or deleteparts:IsA("Pants") or deleteparts:IsA("Shirt") --[[]] then
-                else
-                    deleteparts:Destory()
-                end
-            end
-            for i = 1,30 do
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Heists.Casino.Items.TouchGrapple.CFrame
-                task.wait(0.01)
-                if i == 10 then
-                    v1.Network:Fire("RagdollUpdate", true)
-                end
-            end
-            task.wait(1)
-            v1.Network:Fire("RagdollUpdate", false)
-        end)
-        MadLazerControlSection:NewButton("Stop pear store laser", "Pause them from moving", function()
-            workspace.MovingLasers.AppleStoreFloorA.AnimationController:Destroy()
-            workspace.MovingLasers.AppleStoreFloorB.AnimationController:Destroy()
-        end)
-        MadLazerControlSection:NewButton("Remove pear store laser", "Remove them", function()
-            workspace.MovingLasers.AppleStoreFloorA:Destroy()
-            workspace.MovingLasers.AppleStoreFloorB:Destroy()
-        end)
-        MadLazerControlSection:NewButton("Remove casino hallway laser", "Remove them", function()
-            workspace.Heists.Casino.Stealthy.Items.Detectors:Destroy()
-        end)
-        MadLazerControlSection:NewButton("Remove casino moving laser", "Remobe them", function()
-            workspace.Heists.Casino.Stealthy.Items.MovingLasers:Destroy()
-        end)
-        MadHeistControlSection:NewButton("Club Button ESP", "ESP the button for the door", function()
-            for __,v in pairs(game.Workspace.Heists.Club.Items:GetDescendants()) do
-                if v.Name == "Button" then
-                    local a = Instance.new("BillboardGui",v)
-                    a.Name = "ProBaconESPIn1Minutes"
-                    a.Size = UDim2.new(10,0, 10,0)
-                    a.AlwaysOnTop = true
-                    local b = Instance.new("Frame",a)
-                    b.Size = UDim2.new(1,0, 1,0)
-                    b.BackgroundTransparency = 0.80
-                    b.BorderSizePixel = 0
-                    b.BackgroundColor3 = Color3.new(0, 255, 0)
-                    local c = Instance.new('TextLabel',b)
-                    c.Size = UDim2.new(2,0,2,0)
-                    c.BorderSizePixel = 0
-                    c.TextSize = 20
-                    c.Text = v.Name
-                    c.BackgroundTransparency = 1
-                end
-            end
-        end)
-        MadEventSection:NewButton("ESP Meteor", "Let to see Meteor locations", function()
-            for __,v in pairs(game.Workspace:GetDescendants()) do
-                if v.Name == "Meteor" then
-                  local a = Instance.new("BillboardGui",v)
-                  a.Name = "ProBaconESPIn1Minutes"
-                  a.Size = UDim2.new(10,0, 10,0)
-                  a.AlwaysOnTop = true
-                  local b = Instance.new("Frame",a)
-                  b.Size = UDim2.new(1,0, 1,0)
-                  b.BackgroundTransparency = 0.80
-                  b.BorderSizePixel = 0
-                  b.BackgroundColor3 = Color3.new(0, 255, 0)
-                  local c = Instance.new('TextLabel',b)
-                  c.Size = UDim2.new(2,0,2,0)
-                  c.BorderSizePixel = 0
-                  c.TextSize = 20
-                  c.Text = v.Name
-                  c.BackgroundTransparency = 1
-                end
-               end
-        end)
-        MadEventSection:NewToggle("Piggy Event Safe Place", "Join event first \r It mod your guns", function(state)
-            _G.MadPigEventStand = state
-            loadstring(MadBossFight)()
-        end)
-
-        game.StarterGui:SetCore("SendNotification", {
-            Icon = " ",
-             Title = "Pro Bacon",
-             Text = "Done"
-        })
-
     elseif Tab == "Punch Wall Simulator" then
         --Pws
         local PunchWallSimTab = Window:NewTab("PunchWallSim")
@@ -1497,6 +1285,13 @@ function AddTab(Tab)
                 game:GetService("ReplicatedStorage").remoteInterface.roleplay.eat:FireServer(workspace:FindFirstChild(game.Players.LocalPlayer.Name).Pizza)
             end
         end)
+        CityLifeRemote:NewButton("Fake Pay Check", "Spawn fake  apay check", function()
+            game.Players.LocalPlayer.PlayerGui.paycheck.Enabled = true
+            game.Players.LocalPlayer.PlayerGui.paycheck.Main.Position = UDim2.new(0.5, 0, 0.02, 0)
+            game.Players.LocalPlayer.PlayerGui.paycheck.Main.accept.ImageTransparency = 0
+            game.Players.LocalPlayer.PlayerGui.paycheck.Main.accept.Position = UDim2.new(0.5, 0, 0.85, 0)
+            game.Players.LocalPlayer.PlayerGui.paycheck.Main.accept.TextLabel.TextTransparency = 0
+        end)
         CityLifeCrime:NewToggle("AutoRob", "Rob every single place", function(state)
             _G.CityLifeAutoRob = state
             while _G.CityLifeAutoRob and task.wait(5) do
@@ -1517,6 +1312,7 @@ function AddTab(Tab)
         CityLifePolice:NewToggle("AutoJob", "Auto arrest and save people", function(state)
             _G.CityLifeAutoPoliceJob = state
             while _G.CityLifeAutoPoliceJob and task.wait(0.001) do
+                noclip()
             	local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
             	for i = 1, 33 do
                     if not _G.CityLifeAutoPoliceJob then
@@ -1562,17 +1358,17 @@ function AddTab(Tab)
             						    end
             						end
             						game.Players.LocalPlayer.Character.Humanoid.Sit = false
-            						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i].thug.HumanoidRootPart.CFrame*CFrame.new(0,0,2)
+            						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[i].thug.HumanoidRootPart.CFrame
             						task.wait(0.5)
             						game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
             						local ThugNum = i
-            						for i = 1, 30 do
+            						for _ = 1, 30 do
                                         if not _G.CityLifeAutoPoliceJob then
                                             break
                                         end
             							game.Players.LocalPlayer.Character.Humanoid.Sit = false
             							if workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum]:FindFirstChild("thug") then
-            								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum].thug.HumanoidRootPart.CFrame*CFrame.new(0,0,2)
+            								game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.jobInstances.police.crimeScenes[Heist]:GetChildren()[ThugNum].thug.HumanoidRootPart.CFrame*CFrame.new(0, 0, -0.1)
             							end
             							task.wait(0.1)
             						end
@@ -1584,6 +1380,7 @@ function AddTab(Tab)
             			end
             		end
             	end
+                clip()
             	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
             end
         end)
@@ -1607,6 +1404,9 @@ function AddTab(Tab)
                                         game:GetService("ReplicatedStorage").remoteInterface.jobs.arrestPlayer:InvokeServer(232,v)
                                     end
                                 end)
+                                if v.Character:FindFirstChild("ForceField") then
+                                    break
+                                end
                             end
                         end
                     end
@@ -1645,23 +1445,34 @@ function AddTab(Tab)
             _G.CityLifeAutoCook = state
             while _G.CityLifeAutoCook and task.wait(0.001) do
                 local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                for _, TargetOrderSpot in pairs(workspace.jobInstances.cook.OrderSpots:GetChildren()) do
-                    if TargetOrderSpot:GetChildren() then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetOrderSpot.CFrame
-                        task.wait(0.1)
-                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                		task.wait(0.01)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                local CookingSpotGotItemOnIt = false
+                for _, TargetCookSpot in pairs(workspace.jobInstances.cook.CookSpots:GetChildren()) do
+                    if TargetCookSpot:FindFirstChildWhichIsA("Model") then
+                        CookingSpotGotItemOnIt = true
+                        break
                     end
                 end
-                task.wait(0.5)
-                for _, TargetCookSpot in pairs(workspace.jobInstances.cook.CookSpots:GetChildren()) do
-                    if not TargetCookSpot:FindFirstChildWhichIsA("Model") then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetCookSpot.CFrame
-                        task.wait(0.1)
-                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                		task.wait(0.01)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                if not CookingSpotGotItemOnIt then
+                    for _, TargetOrderSpot in pairs(workspace.jobInstances.cook.OrderSpots:GetChildren()) do
+                        if TargetOrderSpot:GetChildren() then
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetOrderSpot.CFrame
+                            task.wait(0.1)
+                            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                    		task.wait(0.01)
+                    		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                            for _, TargetCookSpot in pairs(workspace.jobInstances.cook.CookSpots:GetChildren()) do
+                                if not TargetCookSpot:FindFirstChildWhichIsA("Model") and TargetCookSpot.prompt.Enabled then
+                                    repeat
+                                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetCookSpot.CFrame
+                                        task.wait(0.1)
+                                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                                        task.wait(0.01)
+                                        game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                                    until TargetCookSpot:FindFirstChildWhichIsA("Model") or not TargetCookSpot.prompt.Enabled or not _G.CityLifeAutoCook
+                                    break
+                                end
+                            end
+                        end
                     end
                 end
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =  CFrame.new(-77, 4, -807)
@@ -1725,27 +1536,34 @@ function AddTab(Tab)
                 game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
                 task.wait(0.01)
                 game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                for i, v in pairs(workspace.jobInstances.cook.CustomerSpots:GetChildren()) do
-                	if v:FindFirstChild("customer") then
-                		v:FindFirstChild("customer").MaxActivationDistance = 100
-                		task.wait(0.1)
-                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-                		task.wait(0.1)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                		task.wait(0.01)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                	end
+                local function FindCustomerForCookingJob()
+                    for i, v in pairs(workspace.jobInstances.cook.CustomerSpots:GetChildren()) do
+                        if v:FindFirstChild("customer") then
+                            if v:FindFirstChild("customer").Enabled then
+                                return v
+                            end
+                        end
+                    end
+                    for i, v in pairs(workspace.jobInstances.cook.DeliverNodes:GetChildren()) do
+                        if v:FindFirstChild("customer") then
+                            if v:FindFirstChild("customer").Enabled then
+                                return v
+                            end
+                        end
+                    end
+                    return nil
                 end
-                for i, v in pairs(workspace.jobInstances.cook.DeliverNodes:GetChildren()) do
-                	if v:FindFirstChild("customer") then
-                		v:FindFirstChild("customer").MaxActivationDistance = 100000
-                		task.wait(0.1)
-                		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-                		task.wait(0.5)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                		task.wait(0.01)
-                		game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                	end
+                if FindCustomerForCookingJob() ~= nil then
+                    repeat
+                        local TargetCustomerForCookJob = FindCustomerForCookingJob()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TargetCustomerForCookJob.CFrame
+                        task.wait(0.25)
+                        game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+                        task.wait(0.1)
+                        game:GetService('VirtualInputManager'):SendKeyEvent(false, Enum.KeyCode.E, false, game)
+                        task.wait(0.01)
+                        TargetCustomerForCookJob:FindFirstChild("customer").Enabled = false
+                    until FindCustomerForCookingJob() == nil or not _G.CityLifeAutoCook
                 end
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
                 task.wait(0.01)
