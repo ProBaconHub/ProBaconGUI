@@ -643,7 +643,7 @@ function AddTab(Tab)
                 if _G.AutoTriggerTheChest ~= nil then
                     _G.AutoTriggerTheChest:Disconnect()
                 end
-                local GoldAutoFarm = true
+                local GoldBlockutoFarm = true
                 print("[ProBaconHub]: Gold Auto Farm | Triggering checkpoint...")
                 game.Workspace.ClaimRiverResultsGold:FireServer()
                 task.wait(0.1)
@@ -696,7 +696,7 @@ function AddTab(Tab)
                         else
                             task.wait(5)
                         end
-                    until SuccessfullyGottenGold or not GoldAutoFarm
+                    until SuccessfullyGottenGold or not GoldBlockutoFarm
                 end)
                 repeat
                     task.wait(0.0001)
@@ -705,6 +705,7 @@ function AddTab(Tab)
                     task.wait(0.0001)
                 until game.Players.LocalPlayer.PlayerGui:FindFirstChild("RiverResultsGui") and not game.Players.LocalPlayer.PlayerGui.RiverResultsGui.Frame.Visible
                 AutoTriggerTheChest:Disconnect()
+                GoldBlockutoFarm = false
                 print("Done")
             end
         end)
