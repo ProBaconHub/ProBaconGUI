@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 26/7/23 (DD/MM/YY)  
++ Last Update: 27/7/24 (DD/MM/YY)  
 
 ### Supported games
 - [ ] Mad City: Chapter 2 (Outdated)  
@@ -38,6 +38,9 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Gold Auto Farm
 #### Launcher
 + Http 404 error
+### Rework
+#### GUI
++ Rework on how the system works
 ## Future Expects
 + More random games
 + Check scripts
