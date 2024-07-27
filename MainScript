@@ -1,28 +1,56 @@
--- Get Data
-local VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true)
-local VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)?TheVersionOrCache="..math.random(), true)
-local PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
-local TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
-local TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
-local BreakInAutoHit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
-local BreakInAutoRefilPlanks = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
-local INFJump = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
-local SendMemeAutoResearch = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
-local SendMemeAutoHack = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
-local AutoKeyClick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
-
-
-if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
-
 --Start Up
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/main/KavoUI?TheVersionOrCache="..math.random(), true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Serpent")
-local SelfVersion = "V1.11.0"
+local SelfVersion = "v1.12.0"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
 --BloodTheme
 --Serpent
+
+local ThingsToLoad = 10
+local LoadingTab = Window:NewTab("Loading...")
+local LoadingSection = LoadingTab:NewSection("Loading Data")
+local LoadingLabel = LoadingSection:NewLabel("["..string.rep(" ", ThingsToLoad).."]")
+
+function UpdateLoadingBar(num)
+    LoadingLabel:UpdateLabel("["..string.rep("|", num)..string.rep(" ", ThingsToLoad-num).."]")
+end
+
+-- Get Data
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Version%20Control?TheVersionOrCache="..math.random(), true))()
+local SelfFunctionVersion = _G.FunctionVersion
+UpdateLoadingBar(1)
+local PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(2)
+local TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(3)
+local TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(4)
+local BreakInAutoHit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoHit", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(5)
+local BreakInAutoRefilPlanks = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/BreakInAutoRefillPlanks", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(6)
+local INFJump = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/INF%20Jump", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(7)
+local SendMemeAutoResearch = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Research", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(8)
+local SendMemeAutoHack = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SMTYETDTT%20Auto%20Hack", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(9)
+local AutoKeyClick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Auto%20Key%20Click", {["Cache-Control"] = "no-cache"})
+UpdateLoadingBar(10)
+
+if _G.IsItExecutedByLoader then else game.Players.LocalPlayer:Kick("Please execute using loader!") end
+
+for _,v in pairs(game.CoreGui:GetChildren()) do
+    if v:FindFirstChild("Main") then
+        if v.Main:FindFirstChild("MainHeader") and v.Main:FindFirstChild("MainSide") and v.Main:FindFirstChild("pages") then
+            v.Main.MainSide.tabFrames["Loading...TabButton"]:Destroy()
+            v.Main.pages.Pages.Page:Destroy()
+        end
+    end
+end
+
 --concainit113344
 local GamesTab = {
     "Mad City CH2 (Outdated)", 
@@ -47,7 +75,7 @@ game.StarterGui:SetCore("SendNotification", {
 game.StarterGui:SetCore("SendNotification", {
     Icon = " ",
      Title = "Pro Bacon",                                                                                                                                                                                                                
-     Text = "Last Update: 26/7/24 -2 (DD/MM/YY)"
+     Text = "Last Update: 27/7/24 (DD/MM/YY)"
 })
 
 if PlayerName == "concainit113344" then
@@ -111,8 +139,8 @@ function UpdateFunctions()
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Update Functions is in Beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No cache is in beta, may not work."; Duration=5;})
     game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Updating Data..."; Duration=5;})
-    VersionOfFunction = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true)
-    VersionOfGUI = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(GUI)?TheVersionOrCache="..math.random(), true)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Version%20Control?TheVersionOrCache="..math.random(), true))()
+    SelfFunctionVersion = _G.FunctionVersion
     PwsFarm = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/PwsFarm", {["Cache-Control"] = "no-cache"})
     TLOTBSautohit = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/TLOTBS-AutoHit", {["Cache-Control"] = "no-cache"})
     TLOTBSautoclick = game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/LotbsAutoHit", {["Cache-Control"] = "no-cache"})
@@ -509,61 +537,45 @@ local SettingSection = SettingTab:NewSection("Setting")
 SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function()
 	Library:ToggleUI()
 end)
-SettingSection:NewButton("Update Function", "Update it when there is any changes", function()
-    UpdateFunctions()
-end)
-SettingSection:NewButton("Check for function update", "Check for new update for function!", function()
-    if VersionOfFunction == game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/-Version%20(Functuion)?TheVersionOrCache="..math.random(), true) then
-        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Function is up to date!"; Duration=5;})
+
+SettingSection:NewButton("Check for update", "Check for new update", function()
+    game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Checking for updates..."; Duration=5;})
+    local AgreeToUpdate = Instance.new("BindableFunction")
+    function AgreeToUpdate.OnInvoke(Input)
+        if Input == "Yes" then
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Functions will be updated."; Duration=5;})
+            UpdateFunctions()
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Functions has been updated!"; Duration=5;})
+        elseif Input == "No" then
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Functions will be updated automatically next time you execute!"; Duration=5;})
+        end
+    end
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Version%20Control?TheVersionOrCache="..math.random(), true))()
+    if SelfVersion ~= _G.GuiVersion then
+        game.StarterGui:SetCore("SendNotification", {
+            Title="Pro Bacon";
+            Text="Gui is outdated! Please re-execute with the launcher to get the latest update.";
+            Duration=5;
+        })
+    elseif SelfFunctionVersion ~= _G.FunctionVersion then
+        game.StarterGui:SetCore("SendNotification", {
+            Title="Pro Bacon";
+            Text="Functions are outdated! Do you want to update now?.";
+            CallBack = AgreeToUpdate;
+            Button1 = "Yes";
+            Button2 = "No";
+            Duration = 5;
+        })
     else
-        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="There is new update for function, requier Update function to get the newest version of function!"; Duration=10;})
+        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="This script is up to date!"; Duration=5;})
     end
 end)
-SettingSection:NewButton("Check for GUI update", "Check for new update for function!", function()
-    print(SelfVersion)
-    print(VersionOfGUI)
-    if VersionOfGUI == SelfVersion then
-        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="No update for GUI!"; Duration=5;})
-    else
-        game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="There is new version of GUI is out! There might be more supported games of fixes! Requier rexecute to update!"; Duration=10;})
-    end
-end)
-SettingSection:NewButton("Check for GUI version", "See GUI version", function()
-    print("--------GUI state--------")
-    print("Current version of GUI: ",SelfVersion)
-    print("Current version of function: ",VersionOfFunction)
-    print("Available version of GUI: ", VersionOfGUI)
-    print("Available version of function: ",VersionOfFunction)
-    print("Update function to get 100% correct info")
+SettingSection:NewButton("Check Version", "Check Version", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/Version%20Control?TheVersionOrCache="..math.random(), true))()
+    warn("--------[[GUI STATE]]--------")
+    print("Current version of GUI: ", SelfVersion, ("\n"), "Available version of GUI: ", _G.GuiVersion, ("\n"):rep(2), "Current version of function: ", SelfFunctionVersion, ("\n"), "Available version of function: ", _G.FunctionVersion)
     game.StarterGui:SetCore("DevConsoleVisible", true)
 end)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 --New Tab Function
@@ -1589,116 +1601,19 @@ function AddTab(Tab)
     end
 end
 
---[[
-
-    local AdminPerm = Instance.new("IntValue")
-    AdminPerm.Parent = game:GetService("ReplicatedStorage").admins
-    AdminPerm.Name = game.Players.LocalPlayer.Name
-
-    Test
-    -- Script generated by SimpleSpy - credits to exx#9394
-
-local args = {
-    [1] = 7,
-    [2] = 3
-}
-
-game:GetService("ReplicatedStorage").remoteInterface.playtimeRewards.claimRewardTier:InvokeServer(unpack(args))
-
-    HairCut
-
-
-    local LastCFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-
-    for i,v in pairs(workspace.jobInstances.hairsalon:GetChildren())do
-    	if v.Name ~= "NPCNodes" and #v:GetChildren() == 2 then
-    		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
-    		task.wait(0.1)
-    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-    		game:GetService("ReplicatedStorage").remoteInterface.jobs.action:InvokeServer(v)
-    	end
-    end
-
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastCFrame
-]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 --[[
 
-                      BREAK IN
+BREAK IN
 
-local args = {
-    [1] = 6,
-    [2] = "Pizza3"
-}
+game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(6, "Pizza3")
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Pizza3")
 
-game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Apple")
+game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(15, "Apple")
 
+game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer("Cure")
 
-
--- Script generated by SimpleSpy - credits to exx#9394
-
-local args = {
-    [1] = "Pizza3"
-}
-
-game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
-
--- Script generated by SimpleSpy - credits to exx#9394
-
-local args = {
-    [1] = "Apple"
-}
-
-game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
-
--- Script generated by SimpleSpy - credits to exx#9394
-
-local args = {
-    [1] = 15,
-    [2] = "Apple"
-}
-
-game:GetService("ReplicatedStorage").RemoteEvents.Energy:FireServer(unpack(args))
-
---              Give Cure
-
-local args = {
-    [1] = "Cure"
-}
-
-game:GetService("ReplicatedStorage").RemoteEvents.GiveTool:FireServer(unpack(args))
-
-
-
-local args = {
-    [1] = 2,
-    [2] = "IcePart2"
-}
-
-game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(unpack(args))
-
+game:GetService("ReplicatedStorage").RemoteEvents.EggHuntEvent:FireServer(2, "IcePart2")
 
 ]]
