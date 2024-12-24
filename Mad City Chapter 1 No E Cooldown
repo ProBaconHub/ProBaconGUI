@@ -1,0 +1,9 @@
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    task.spawn(function()
+        for i,vgetgc in pairs(getgc(true)) do
+            if type(vgetgc) == "function" and getinfo(vgetgc).name == "HoldProgress" then
+                hookfunction(vgetgc, true)
+            end
+        end
+    end)
+end)
