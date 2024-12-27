@@ -1,21 +1,17 @@
-local LastPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-
-
-
 while wait() do
 	if _G.AutoHitEnable then
 		for i,v in pairs(Workspace.Enemies:GetChildren()) do
 		    if v.Name == _G.EnemiesName then
-		        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-		        game:GetService("ReplicatedStorage").Remotes.UseItem:FireServer()
-		        wait()
-		        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastPos
+                if v.HumanoidRootPart  and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                    v.HumanoidRootPart.Anchored = true
+		            v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Handle.CFrame
+		            game:GetService("ReplicatedStorage").Remotes.UseItem:FireServer()
+		            wait()
+                    v.HumanoidRootPart.Anchored = false
+                end
 		    end
 		end
 	else
-		for i = 1,10 do
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LastPos
-		end
-		break --I think this is how it work???
+		break --I think this is how it works??? (Edit: this is how it works)
 	end
 end
