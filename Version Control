@@ -1,2 +1,2 @@
-_G.GuiVersion = "v1.12.0"
-_G.FunctionVersion = "v1.20"
+getgenv().GuiVersion = "v1.12.0"
+getgenv().FunctionVersion = "v1.20"
