@@ -1,16 +1,18 @@
 while wait() do
 	if getgenv().AutoHitEnable then
-		for i,v in pairs(Workspace.Enemies:GetChildren()) do
-		    if v.Name == getgenv().EnemiesName then
-                if v.HumanoidRootPart  and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
-                    v.HumanoidRootPart.Anchored = true
-		            v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Handle.CFrame
-		            game:GetService("ReplicatedStorage").Remotes.UseItem:FireServer()
-		            wait()
-                    v.HumanoidRootPart.Anchored = false
+        local plrpos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        repeat
+            for i,v in pairs(workspace.Enemies:GetChildren()) do
+                if v.Name == getgenv().EnemiesName then
+                    if v:FindFirstChild("HumanoidRootPart")  and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                        v.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Handle.CFrame
+                        game:GetService("ReplicatedStorage").Remotes.UseItem:FireServer()
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plrpos
+                    end
                 end
-		    end
-		end
+            end
+            task.wait(.001)
+        until not getgenv().dopillarnow
 	else
 		break --I think this is how it works??? (Edit: this is how it works)
 	end
