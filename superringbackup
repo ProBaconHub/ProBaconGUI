@@ -314,8 +314,6 @@ IncreaseRadius.MouseButton1Click:Connect(function()
     playSound("12221967")
 end)
 
--- Get player thumbnail
-
 StarterGui:SetCore("SendNotification", {
     Title = "Pro Bacon",
     Text = "Super Ring Parts Modded",
