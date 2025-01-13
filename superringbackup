@@ -315,14 +315,9 @@ IncreaseRadius.MouseButton1Click:Connect(function()
 end)
 
 -- Get player thumbnail
-local userId = Players:GetUserIdFromNameAsync("NannaDev")
-local thumbType = Enum.ThumbnailType.HeadShot
-local thumbSize = Enum.ThumbnailSize.Size420x420
-local content, isReady = Players:GetUserThumbnailAsync(userId, thumbType, thumbSize)
 
 StarterGui:SetCore("SendNotification", {
-    Title = "Super Ring",
-    Text = "Modded",
-    Icon = content,
+    Title = "Pro Bacon",
+    Text = "Super Ring Parts Modded",
     Duration = 5
 })
