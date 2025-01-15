@@ -3354,9 +3354,18 @@ function AddTab(Tab)
             powerValue.Name = "SuperPower"
             powerValue.Value = powerOption
         end)
-        MadGet:NewButton("Unlock all vehicles (Not in spawn menu, info for more", "This unlock only unlocks vehicle on map and also the UFO \n Unfortunately, you cant spawn them.")
+        MadGet:NewButton("Unlock all vehicles (Not in spawn menu, info for more", "This unlock only unlocks vehicle on map and also the UFO \n Unfortunately, you cant spawn them.", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" and rawget(v, 1) == "Camaro" then
+                    print('found')
+                    for _, vehicle in pairs(game:GetService("ReplicatedStorage").ItemDatabase.Vehicles:GetChildren()) do
+                        table.insert(v, vehicle.Name)
+                    end
+                end
+            end
+        end)
 
-        function SpawnVehicle(name)
+        local function SpawnVehicle(name)
             local vehicletoget = workspace.ObjectSelection[name]
             local _, boudingvector3 = vehicletoget:GetBoundingBox()
             vehicletoget:SetPrimaryPartCFrame(CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.x, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.y+(boudingvector3.y/2), game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.z))
