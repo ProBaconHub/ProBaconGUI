@@ -5,9 +5,9 @@ if not game:IsLoaded() then
         task.wait(1)
     until game:IsLoaded()
 end
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/refs/heads/main/KavoUI(ProBacon%2C%20customized8)?TheVersionOrCache="..math.random(), true))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/refs/heads/main/KavoUI(ProBacon%2C%20customized13)?TheVersionOrCache="..math.random(), true))()
 local Window = Library.CreateLib("Pro Bacon Hub", "Midnight")
-local SelfVersion = "v1.13.0"
+local SelfVersion = "v1.14.0"
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 --Midnight
 --Ocean
@@ -76,7 +76,9 @@ local GamesTab = {
     "Cart Ride Into Rdite",
     "Destruction Simulator",
     "Build and Survive! Classic",
-    "Flag Wars"
+    "Flag Wars",
+    "Notoriety",
+    "Depthless RPG"
 }
 
 game.StarterGui:SetCore("SendNotification", {
@@ -91,9 +93,16 @@ game.StarterGui:SetCore("SendNotification", {
 })
 
 --Set Up
-getgenv().PlayerWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
-getgenv().PlayerJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
-getgenv().PlayerHipHeight = game.Players.LocalPlayer.Character.Humanoid.HipHeight
+
+if game.Players.LocalPlayer.Character then
+    getgenv().PlayerWalkSpeed = game.Players.LocalPlayer.Character.Humanoid.WalkSpeed
+    getgenv().PlayerJumpPower = game.Players.LocalPlayer.Character.Humanoid.JumpPower
+    getgenv().PlayerHipHeight = game.Players.LocalPlayer.Character.Humanoid.HipHeight
+else
+    getgenv().PlayerWalkSpeed = 16
+    getgenv().PlayerJumpPower = 50
+    getgenv().PlayerHipHeight = 2.2
+end
 getgenv().ProBaconEspSettings = {
 	Tag = {
 		Name = false,
@@ -129,6 +138,16 @@ local InGamePlayerNameList = {}
 local PlayerName = game:GetService("Players").LocalPlayer.Name
 local Noclip = nil
 local Clip = nil
+
+local function stringToVector3(vector)
+	vector:gsub(" ", "")
+	local x, y, z = table.unpack(string.split(vector, ","))
+    return Vector3.new(x, y, z)
+end
+function StringToCFrame(String)
+    local Split = string.split(String, ",")
+    return CFrame.new(Split[1],Split[2],Split[3],Split[4],Split[5],Split[6],Split[7],Split[8],Split[9],Split[10],Split[11],Split[12])
+end
 
 function UpdatePlayerTable()
     InGamePlayerStringList = {}
@@ -445,13 +464,16 @@ PlayerStuffSection:NewButton("Animation (Emote UI)", "", function()
     emote_ui:NewEmote("Back Flip", "15693621070")
     emote_ui:NewEmote("Bodybuilder", "10713990381")
     emote_ui:NewEmote("Confused", "4940561610")
+    emote_ui:NewEmote("Cha Cha", "6862001787")
     emote_ui:NewEmote("Disagree", "10714065135")
     emote_ui:NewEmote("Dizzy", "10714066964")
     emote_ui:NewEmote("Dolphin Dance", "10714068222")
     emote_ui:NewEmote("Elevate", "11394033602")
     emote_ui:NewEmote("Fall Back to Float", "15549124879")
     emote_ui:NewEmote("Fashion Roadkill", "136831243854748")
+    emote_ui:NewEmote("Flowing Breeze", "10714342957")
     emote_ui:NewEmote("Frosty Flair", "10214311282")
+    emote_ui:NewEmote("Get Out", "10714345862")
     emote_ui:NewEmote("Godlike", "10714347256")
     emote_ui:NewEmote("Greatest", "10714349037")
     emote_ui:NewEmote("Haha", "10714350889")
@@ -468,6 +490,7 @@ PlayerStuffSection:NewButton("Animation (Emote UI)", "", function()
     emote_ui:NewEmote("Sleep", "10714360343")
     emote_ui:NewEmote("Strut", "14352362059")
     emote_ui:NewEmote("Swish", "10714349738")
+    emote_ui:NewEmote("Take Me Under", "10714345459")
     emote_ui:NewEmote("Touch", "135876612109535")
     emote_ui:NewEmote("TWICE The Feels", "12874447851")
     emote_ui:NewEmote("V Pose", "10214319518")
@@ -678,27 +701,35 @@ getgenv().hitboxexpandpart = "HumanoidRootPart"
 hitboxsection:NewDropdown("Hitbox part", "", {"Head", "HumanoidRootPart (DF)"}, function(option)
 
 end)
-hitboxsection:NewToggle("Hitbox (HumanoidRootPart)", "", function(state)
+hitboxsection:NewToggle("Hitbox", "", function(state)
     getgenv().hitboxexpand = state
     if getgenv().hitboxexpand then
         repeat
             for _, v in pairs(game.Players:GetPlayers()) do
                 if v ~= game.Players.LocalPlayer then
                     if v.Character then
-                        if v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Head") then
-                            if getgenv().hitboxexpand and (not getgenv().hitboxteamcheck or not game.Players.LocalPlayer.Team or not v.Team or (v.Team ~= game.Players.LocalPlayer.Team)) then
-                                if (not getgenv().hitboxteamcheck or (not game.Players.LocalPlayer.Team or not v.Team)) then
-                                    v.Character[getgenv().hitboxexpandpart].Size = Vector3.new(15, 20, 15)
-                                    v.Character[getgenv().hitboxexpandpart].Transparency = 0.9
-                                    v.Character[getgenv().hitboxexpandpart].BrickColor = BrickColor.new("White")
-                                    v.Character[getgenv().hitboxexpandpart].Material = "Neon"
-                                    v.Character[getgenv().hitboxexpandpart].CanCollide = false
-                                elseif v.Team ~= game.Players.LocalPlayer.Team then
-                                    v.Character[getgenv().hitboxexpandpart].Size = Vector3.new(15, 20, 15)
-                                    v.Character[getgenv().hitboxexpandpart].Transparency = 0.9
-                                    v.Character[getgenv().hitboxexpandpart].BrickColor = BrickColor.new("White")
-                                    v.Character[getgenv().hitboxexpandpart].Material = "Neon"
-                                    v.Character[getgenv().hitboxexpandpart].CanCollide = false
+                        if v.Character:FindFirstChild("HumanoidRootPart") and v:FindFirstChildOfClass("Humanoid") and v.Character:FindFirstChild("Head") then
+                            pcall(function()
+                                if v:FindFirstChildOfClass("Humanoid").Health > 0 and getgenv().hitboxexpand and (not getgenv().hitboxteamcheck or not game.Players.LocalPlayer.Team or not v.Team or (v.Team ~= game.Players.LocalPlayer.Team)) then
+                                    if (not getgenv().hitboxteamcheck or (not game.Players.LocalPlayer.Team or not v.Team)) then
+                                        v.Character[getgenv().hitboxexpandpart].Size = Vector3.new(15, 20, 15)
+                                        v.Character[getgenv().hitboxexpandpart].Transparency = 0.9
+                                        v.Character[getgenv().hitboxexpandpart].BrickColor = BrickColor.new("White")
+                                        v.Character[getgenv().hitboxexpandpart].Material = "Neon"
+                                        v.Character[getgenv().hitboxexpandpart].CanCollide = false
+                                    elseif v.Team ~= game.Players.LocalPlayer.Team then
+                                        v.Character[getgenv().hitboxexpandpart].Size = Vector3.new(15, 20, 15)
+                                        v.Character[getgenv().hitboxexpandpart].Transparency = 0.9
+                                        v.Character[getgenv().hitboxexpandpart].BrickColor = BrickColor.new("White")
+                                        v.Character[getgenv().hitboxexpandpart].Material = "Neon"
+                                        v.Character[getgenv().hitboxexpandpart].CanCollide = false
+                                    else
+                                        v.Character[getgenv().hitboxexpandpart].Size = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Size or Vector3.new(2, 2, 1)
+                                        v.Character[getgenv().hitboxexpandpart].Transparency = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Transparency or 1
+                                        v.Character[getgenv().hitboxexpandpart].BrickColor = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].BrickColor or BrickColor.new("Medium stone grey")
+                                        v.Character[getgenv().hitboxexpandpart].Material = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Material or "Plastic"
+                                        v.Character[getgenv().hitboxexpandpart].CanCollide = false
+                                    end
                                 else
                                     v.Character[getgenv().hitboxexpandpart].Size = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Size or Vector3.new(2, 2, 1)
                                     v.Character[getgenv().hitboxexpandpart].Transparency = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Transparency or 1
@@ -706,13 +737,7 @@ hitboxsection:NewToggle("Hitbox (HumanoidRootPart)", "", function(state)
                                     v.Character[getgenv().hitboxexpandpart].Material = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Material or "Plastic"
                                     v.Character[getgenv().hitboxexpandpart].CanCollide = false
                                 end
-                            else
-                                v.Character[getgenv().hitboxexpandpart].Size = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Size or Vector3.new(2, 2, 1)
-                                v.Character[getgenv().hitboxexpandpart].Transparency = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Transparency or 1
-                                v.Character[getgenv().hitboxexpandpart].BrickColor = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].BrickColor or BrickColor.new("Medium stone grey")
-                                v.Character[getgenv().hitboxexpandpart].Material = game.Players.LocalPlayer.Character[getgenv().hitboxexpandpart].Material or "Plastic"
-                                v.Character[getgenv().hitboxexpandpart].CanCollide = false
-                            end
+                            end)
                         end
                     end
                 end
@@ -885,7 +910,7 @@ flingsection:NewToggle("Loop Fling Player", "", function(state)
             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = probaconflinglastframe
             game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
             task.wait(0.5)
-        until game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity < Vector3.new(10, 10, 10) and game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity < Vector3.new(1,1,1)
+        until math.abs(game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyAngularVelocity) < Vector3.new(10, 10, 10) and math.abs(game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity) < Vector3.new(10, 10, 10)
     end
 end)
 
@@ -1142,16 +1167,6 @@ PlayerTeleport:NewTextBox("Player", "Input player name (username/displayname)", 
     end
 end)
 
-local function stringToVector3(vector)
-	vector:gsub(" ", "")
-	local x, y, z = table.unpack(string.split(vector, ","))
-    return Vector3.new(x, y, z)
-end
-function StringToCFrame(String)
-    local Split = string.split(String, ",")
-    return CFrame.new(Split[1],Split[2],Split[3],Split[4],Split[5],Split[6],Split[7],Split[8],Split[9],Split[10],Split[11],Split[12])
-end
-
 CoordinateTeleport:NewTextBox("Position", "Input position (Vector3)", function(txt)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(stringToVector3(txt))
     lastteleporttype = "cframe"
@@ -1180,6 +1195,9 @@ local UsefulScriptsSection = ScriptTab:NewSection("Useful scripts")
 local FunScriptsSection = ScriptTab:NewSection("Fun scripts")
 local noteWhereIsProBaconHubScript = ScriptTab:NewSection("", true)
 
+UsefulScriptsSection:NewButton("Console", "Load customed console", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/Pro-Bacon-Hub/refs/heads/main/Console"))()
+end)
 UsefulScriptsSection:NewButton("Infinite Yeild", "Load Infinitey Yield \r Info: Fake admin", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/edgeiy/infiniteyield/master/source"))()
 end)
@@ -1187,6 +1205,9 @@ UsefulScriptsSection:NewButton("Remote Spy", "Load Remote spy \r Info: Remote sp
     loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
 end)
 UsefulScriptsSection:NewButton("Dex", "Load Dex with decompiler", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+end)
+UsefulScriptsSection:NewButton("Dex [Moded by realredz (Patched on PC)]", "Load Dex with decompiler", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/DEX-Explorer/refs/heads/main/Mobile.lua"))()
 end)
 FunScriptsSection:NewButton("Super Ring", "", function()
@@ -1232,6 +1253,7 @@ local OtherTab = Window:NewTab("Others")
 local OtherSection = OtherTab:NewSection("Others")
 
 OtherSection:NewButton("Anti-AFK", "Prevent you from getting kicked for being idle for 20 minutes.", function()
+    local cloneref = cloneref or function(service) return service end
 	local VirtualUser = cloneref(game:GetService("VirtualUser"))
 	game.Players.LocalPlayer.Idled:Connect(function()
 		VirtualUser:CaptureController()
@@ -1343,8 +1365,10 @@ end)
 local SettingTab = Window:NewTab("Settings")
 local SettingSection = SettingTab:NewSection("Setting")
 
-SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function()
-	Library:ToggleUI()
+SettingSection:NewKeybind("Toggle GUI", "The input key will be the key to toggle GUI", Enum.KeyCode.Delete, function(state)
+    if state then
+	    Library:ToggleUI()
+    end
 end)
 
 SettingSection:NewButton("Check for update", "Check for new update", function()
@@ -1756,7 +1780,7 @@ function AddTab(Tab)
 
 
         local lotbsx, lotbsy, lotbsz
-        function ChangeHitBoxlotbs(x,y,z)
+        local function ChangeHitBoxlotbs(x,y,z)
             for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
                 if v:FindFirstChild("Handle") then
                     v.Handle.Size = Vector3.new(x, y, z)
@@ -1784,7 +1808,7 @@ function AddTab(Tab)
             ChangeHitBoxlotbs(lotbsx, lotbsy, lotbsz)
         end)
         LotbsWeapoSection:NewTextBox("Size", "Input Vector3", function(txt)
-            local vector3here = Vector3.new(txt:match("(.+), (.+), (.+)"))
+            local vector3here = stringToVector3(txt)
             print(vector3here)
             lotbsx = vector3here.X
             lotbsy = vector3here.Y
@@ -1813,6 +1837,7 @@ function AddTab(Tab)
             	print(v)
             end
             print("Done")
+            game.StarterGui:SetCore("DevConsoleVisible", true)
         end)
         LotbsBossSection:NewToggle("On/Off Auto Hit", "Turn on and off", function(state)
             getgenv().AutoHitEnable = state
@@ -2380,44 +2405,22 @@ function AddTab(Tab)
         local SonicSpeedSimTab = Window:NewTab("Sonic Speed Sim")
         local SonicSpeedFarm = SonicSpeedSimTab:NewSection("Auto Farm")
         local SonicSpeedBoss = SonicSpeedSimTab:NewSection("Boss Farm")
-        local Exp = game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate
+        local Exp = game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate
         local Rebirth = game:GetService("ReplicatedStorage").Knit.Services.SSLevelingService.RF.AttemptRebirth
-        local Prop = {
-            [1] = "Emerald Hill",
-            [2] = "3rd",
-            [3] = "BestRank",
-            [4] = 2,
-            [5] = false
-        }
-        game:GetService("RunService").RenderStepped:Connect(function()
-            if getgenv().SonicAutoOrb then
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
-            end
-        end)
-        game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
-            if getgenv().SonicAutoOrbLite then
-                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
-                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
-                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
-                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
-                game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnStatUpdate:FireServer("Emerald Hill", "3rd", "BestRank", 2, false)
-            end
-        end)
+        getgenv().SonicAutoOrbStrong = nil
+        getgenv().SonicAutoOrb = nil
+        getgenv().SonicAutoOrbLite = nil
         SonicSpeedFarm:NewToggle("Auto Farm", "Farm everything!", function(state)
             getgenv().SonicAutoFarm = state
             while getgenv().SonicAutoFarm do
                 for i = 1,100 do
                     for i = 1,5 do
                         task.wait(0.00001)
-                        Exp:FireServer(unpack(Prop))
-                        Exp:FireServer(unpack(Prop))
-                        Exp:FireServer(unpack(Prop))
-                        Exp:FireServer(unpack(Prop))
-                        Exp:FireServer(unpack(Prop))
+                        Exp:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                        Exp:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                        Exp:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                        Exp:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                        Exp:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
                     end
                     if not getgenv().SonicAutoFarm then
                         break
@@ -2434,12 +2437,49 @@ function AddTab(Tab)
             end
         end)
 
-        SonicSpeedFarm:NewToggle("Farm Orb (Might Damage Server!)", "Auto collect orbs", function(state)
-            getgenv().SonicAutoOrb = state
+        SonicSpeedFarm:NewToggle("Farm Orb (Laggy!)", "Auto collect orbs", function(state)
+            if state then
+                getgenv().SonicAutoOrbStrong = game:GetService("RunService").RenderStepped:Connect(function()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconGUI/main/SonicOrb"))()
+                end)
+            else
+                if getgenv().SonicAutoOrbStrong then
+                    getgenv().SonicAutoOrbStrong:Disconnect()
+                    getgenv().SonicAutoOrbStrong = nil
+                end
+            end
+        end)
+
+        SonicSpeedFarm:NewToggle("Farm Orb", "Auto collect orbs", function(state)
+            if state then
+                getgenv().SonicAutoOrb = game:GetService("RunService").RenderStepped:Connect(function()
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                end)
+            else
+                if getgenv().SonicAutoOrb then
+                    getgenv().SonicAutoOrb:Disconnect()
+                    getgenv().SonicAutoOrb = nil
+                end
+            end
         end)
 
         SonicSpeedFarm:NewToggle("Farm Orb (Lite)", "Auto collect orbs", function(state)
-            getgenv().SonicAutoOrbLite = state
+            if state then
+                getgenv().SonicAutoOrbLite = game:GetService("RunService").RenderStepped:Connect(function(deltaTime)
+                    game:GetService("ReplicatedStorage").Knit.Services.TrialService.RE.OnTStatUpdate:FireServer("Emerald Hill", "1st", "BestRank", 2, false)
+                end)
+            else
+                if getgenv().SonicAutoOrbLite then
+                    getgenv().SonicAutoOrbLite:Disconnect()
+                    getgenv().SonicAutoOrbLite = nil
+                end
+            end
         end)
 
         SonicSpeedFarm:NewToggle("Auto Rebirth", "Auto rebirth", function(state)
@@ -2450,20 +2490,95 @@ function AddTab(Tab)
             end
         end)
 
-        SonicSpeedBoss:NewButton("Toggle Auto Farm Boss", "Auto join and damage boss!", function()
-            getgenv().SonicAutoBoss = not getgenv().SonicAutoBoss
-            while getgenv().SonicAutoBoss and task.wait(0.001) do
-                game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RF.JoinQueue:InvokeServer("Emerald Hill Boss Battle")
-            	for i = 1,12 do
-            		game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
-            		task.wait(.01)
-            	end
-            	for i = 1,3 do
-            		game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
-            		task.wait(0.01)
-            	end
+        SonicSpeedFarm:NewButton("Steps quest", "", function()
+            for _ = 1, 100 do
+                game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("CharacterService"):WaitForChild("RE"):WaitForChild("UpdateCharacterState"):FireServer({["CFrame"] = CFrame.new(math.random(-100, 100), math.random(-100, 100), math.random(-100, 100)), ["IsRunning"] = true})
+                task.wait(1)
             end
-            game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RF.LeaveQueue:InvokeServer("Emerald Hill Boss Battle")
+        end)
+        SonicSpeedFarm:NewButton("Complete Speed boost quest", "", function()
+            game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ProgressService"):WaitForChild("RE"):WaitForChild("ClientLogProgress"):FireServer("BoostTime", 10)
+        end)
+        SonicSpeedFarm:NewButton("Hover board boost quest", "", function()
+            game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ProgressService"):WaitForChild("RE"):WaitForChild("ClientLogProgress"):FireServer("HoverboardBoostAmount", 1, {["ZoneName"] = game.Players.LocalPlayer:GetAttribute("ZoneName")})
+        end)
+        SonicSpeedFarm:NewButton("Complete RailGrindPoints quest", "", function()
+            game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("ProgressService"):WaitForChild("RE"):WaitForChild("ClientLogProgress"):FireServer("RailGrindPoints",  math.huge, {["ZoneName"] = game.Players.LocalPlayer:GetAttribute("ZoneName")})
+        end)
+
+        getgenv().sonicautopickupcurrencies = nil
+        SonicSpeedFarm:NewToggle("Collect Currencies", "", function(state)
+            if state then
+                for _, v in pairs(workspace["World Currencies"]:GetChildren()) do
+                    game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("WorldCurrencyService"):WaitForChild("RE"):WaitForChild("PickupCurrency"):FireServer(v.Name)
+                end
+                getgenv().sonicautopickupcurrencies = workspace["World Currencies"].ChildAdded:Connect(function(v)
+                    game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("WorldCurrencyService"):WaitForChild("RE"):WaitForChild("PickupCurrency"):FireServer(v.Name)
+                end)
+            else
+                if getgenv().sonicautopickupcurrencies then
+                    getgenv().sonicautopickupcurrencies:Disconnect()
+                    getgenv().sonicautopickupcurrencies = nil
+                end
+            end
+        end)
+        SonicSpeedFarm:NewButton("Collect Destructible Objects", "", function()
+            for _, v in pairs(workspace.Map.Objects.Destructibles:GetChildren()) do
+                game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("DestructibleService"):WaitForChild("RE"):WaitForChild("ProcessDestructibleObject"):FireServer(v.Name)
+            end
+        end)
+        SonicSpeedFarm:NewButton("Collect Red Star Rings", "", function()
+            for _, map in pairs(workspace:GetChildren()) do
+                if map:FindFirstChild("Objects") and map:FindFirstChild("Paths") then
+                    for _, v in pairs(map.Objects.Spawners:GetDescendants()) do
+                        if v.Name == "UniqueCurrencySpawn" and #v:GetChildren() > 0 then
+                            local args = {
+                                [1] = "RedStarRings",
+                                [2] = string.sub(v:FindFirstChildWhichIsA("Model").Name, 13, string.len(v:FindFirstChildWhichIsA("Model").Name)),
+                                [3] = 10,
+                                [4] = v:FindFirstChildWhichIsA("Model").base.CFrame
+                            }
+                            game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("WorldCurrencyService"):WaitForChild("RE"):WaitForChild("PickupUniqueCurrency"):FireServer(unpack(args))
+                        end
+                    end
+                end
+            end
+        end)
+
+        SonicSpeedBoss:NewToggle("Toggle Auto Farm Boss", "Auto join and damage boss!", function(state)
+            getgenv().SonicAutoBoss = state
+            if state then
+                while getgenv().SonicAutoBoss and task.wait(0.001) do
+                    game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RF.JoinQueue:InvokeServer(game.Players.LocalPlayer:GetAttribute("ZoneName"))
+                	for i = 1,12 do
+                		game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("GeneratorDamaged",{["Generator"]=i})
+                		task.wait(.01)
+                	end
+                	for i = 1,3 do
+                		game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                        game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
+                		task.wait(0.01)
+                	end
+                end
+                game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RF.LeaveQueue:InvokeServer(game.Players.LocalPlayer:GetAttribute("ZoneName"))
+            end
         end)
 
         SonicSpeedBoss:NewButton("Damage Generator", "Instanse damage all genarator", function()
@@ -2476,6 +2591,18 @@ function AddTab(Tab)
             for i = 1,3 do
                 game:GetService("ReplicatedStorage").Knit.Services.BossBattleService.RE.UpdateBattleState:FireServer("Damage",{})
                 task.wait(0.01)
+            end
+        end)
+
+        SonicSpeedBoss:NewToggle("Auto spin", "", function(state)
+            getgenv().sonicspeedbossautospin = state
+            if state then
+                task.spawn(function()
+                    repeat
+                        task.wait(0.1)
+                        game:GetService("ReplicatedStorage"):WaitForChild("Knit"):WaitForChild("Services"):WaitForChild("GridLootService"):WaitForChild("RF"):WaitForChild("AttemptSpin"):InvokeServer("EmeraldHillBossBattle")
+                    until not getgenv().sonicspeedbossautospin
+                end)
             end
         end)
 
@@ -4152,93 +4279,65 @@ function AddTab(Tab)
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.world.spawns.TpSpots[opt].CFrame
             end
         end)
-        getgenv().fischmoneyfarm = nil
-        getgenv().fischluckfarm = nil
-        getgenv().fischpowerfarm = nil
-        fishSec:NewToggle("Money farm [OP]", "", function(state)
-            if state then
-                getgenv().fischmoneyfarm = game:GetService("RunService").RenderStepped:Connect(function()
-                    task.spawn(function()
-                        for _ = 1, 10 do
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                            game:GetService("ReplicatedStorage").packages.Net["RE/DailyReward/Claim"]:FireServer()
-                        end
-                    end)
+        fishSec:NewButton("Ice Warpers Rod", "", function()
+            local leverrenderstepped = {}
+            local leverspoof = workspace["Frozen Levers"].ChildAdded:Connect(function(child)
+                local a = game:GetService("RunService").RenderStepped:Connect(function()
+                    if child:FindFirstChild("Root") then
+                        child.Root.Active.HoldDuration = 0
+                        child.Root.Active.Enabled = true
+                    end
                 end)
-            else
-                if getgenv().fischmoneyfarm then
-                    getgenv().fischmoneyfarm:Disconnect()
-                    getgenv().fischmoneyfarm = nil
-                end
+                table.insert(leverrenderstepped, a)
+            end)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19880, 426, 5380)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19851, 476, 4970)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19436, 690, 5856)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19600, 545, 5613)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(20194, 856, 5644)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19964, 584, 5573)
+            task.wait(.5)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, false, game)
+            task.wait(.05)
+            game:GetService('VirtualInputManager'):SendKeyEvent(true, Enum.KeyCode.E, true, game)
+            task.wait(4)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(19966.4296875, 589.3118896484375, 5553.09521484375)
+            leverspoof:Disconnect()
+            leverspoof = nil
+            for _,v in pairs(leverrenderstepped) do
+                v:Disconnect()
+                v = nil
             end
         end)
-        fishSec:NewToggle("Luck farm [Require LOTS of cash]", "", function(state)
-            if state then
-                getgenv().fischluckfarm = game:GetService("RunService").RenderStepped:Connect(function()
-                    task.spawn(function()
-                        for _ = 1, 10 do
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("luck"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("luck"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("luck"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("luck"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("luck"):InvokeServer()
-                            end)
-                        end
-                    end)
-                end)
-            else
-                if getgenv().fischluckfarm then
-                    getgenv().fischluckfarm:Disconnect()
-                    getgenv().fischluckfarm = nil
-                end
-            end
-        end)
-        fishSec:NewToggle("Power farm [Require LOTS of cash]", "", function(state)
-            if state then
-                getgenv().fischpowerfarm = game:GetService("RunService").RenderStepped:Connect(function()
-                    task.spawn(function()
-                        for _ = 1, 10 do
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("power"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("power"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("power"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("power"):InvokeServer()
-                            end)
-                            task.spawn(function()
-                                workspace:WaitForChild("world"):WaitForChild("npcs"):WaitForChild("Merlin"):WaitForChild("Merlin"):WaitForChild("power"):InvokeServer()
-                            end)
-                        end
-                    end)
-                end)
-            else
-                if getgenv().fischpowerfarm then
-                    getgenv().fischpowerfarm:Disconnect()
-                    getgenv().fischpowerfarm = nil
-                end
-            end
+        fishSec:NewButton("No freezing and drowning", "", function()
+           game.Players.LocalPlayer.Character.client.oxygen:Destroy()
+           game.Players.LocalPlayer.Character.client["oxygen(peaks)"]:Destroy()
+           game.Players.LocalPlayer.Character.client.temperature:Destroy()
         end)
         --[[
             local args = {
@@ -4555,24 +4654,27 @@ function AddTab(Tab)
 
         local theMeleeId = nil
         local flagwarsidcrack = nil
-        local calibratemelee = function()
-            theMeleeId = nil
-            flagwarsidcrack = nil
-            flagwarsidcrack = hookmetamethod(game, "__namecall", function(Self, ...)
-                local Args = {...}
-                local NamecallMethod = getnamecallmethod()
-                if NamecallMethod == "FireServer" and Self.Name == "ClientCast-Replication" then
-                    if not theMeleeId then
-                        print(Args[1])
-                        theMeleeId = tonumber(Args[1])
-                        print(theMeleeId)
+        flagwarsection:NewButton("Calibrate melee", "", function()
+            task.spawn(function()
+                theMeleeId = nil
+                flagwarsidcrack = nil
+                flagwarsidcrack = hookmetamethod(game, "__namecall", function(Self, ...)
+                    local Args = {...}
+                    local NamecallMethod = getnamecallmethod()
+                    if NamecallMethod == "FireServer" and Self.Name == "ClientCast-Replication" then
+                        if not theMeleeId then
+                            print(Args[1])
+                            theMeleeId = tonumber(Args[1])
+                            print(theMeleeId)
+                        end
                     end
-                end
-                return flagwarsidcrack(Self, ...)
+                    return flagwarsidcrack(Self, unpack(Args))
+                end)
+                repeat
+                    task.wait(0.1)
+                until theMeleeId
             end)
-        end
-        calibratemelee()
-        game.Players.LocalPlayer.CharacterAdded:Connect(calibratemelee)
+        end)
         flagwarsection:NewButton("Kill All Enemies (melee)", "", function()
             if theMeleeId then
                 pcall(function()
@@ -4611,6 +4713,488 @@ function AddTab(Tab)
             else
                 game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Haven't calibrated melee yet. \r Please swing your melee to calibrate."; Duration=5;})
             end
+        end)
+
+    elseif Tab == "Notoriety" then
+        local NotorietyTab = Window:NewTab("Notoriety")
+        local NotorietyLobby = NotorietyTab:NewSection("Lobby [Might be patched due to Byforn or executor]")
+        local NotorietyCriminalSec = NotorietyTab:NewSection("Criminal")
+        local NotorietyPoliceSec = NotorietyTab:NewSection("Police")
+        local NotorietyEspSec = NotorietyTab:NewSection("ESP")
+        local NotorietyOthers = NotorietyTab:NewSection("Others")
+        local notorinter = nil
+        local enableinteractions = false
+        NotorietyLobby:NewButton("Unlock all heist", "", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" and rawget(v, "R&B Bank") and rawget(v, "Shopping Spree") then
+                    print("Heist Info Found")
+                    for _, a in pairs(v) do
+                        if type(a) == "table" then
+                            rawset(a, "Cost", 0)
+                            rawset(a, "CanPlay", true)
+                            rawset(a, "CanStealth", true)
+                            rawset(a, "StealthOnly", false)
+                            rawset(a, "StealthBonus", 100)
+                        end
+                    end
+                end
+            end
+        end)
+        NotorietyLobby:NewButton("Unlock all skill", "", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" and rawget(v, "M") then
+                    print("Found Skill Info")
+                    for _, a in pairs(v) do
+                        if type(a) == "table" then
+                            for _, b in pairs(a) do
+                                if type(b) == "table" then
+                                    rawset(b, "Tier", 1)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+        NotorietyLobby:NewButton("Add to developer list", "", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" and rawget(v, "list") then
+                    print("Found Developers list")
+                    rawset(v, "list", {game.Players.LocalPlayer.UserId})
+                end
+            end
+        end)
+        NotorietyLobby:NewButton("Teleport to heist (View Only!)", "", function()
+            local notorHeist = {
+                ["Shopping Spree"] = {
+                    ["PlaceID"] = 1234408990
+                },
+                ["Trick Or Treat"] = {
+                    ["PlaceID"] = 5891659534
+                },
+                ["Downtown Bank"] = {
+                    ["PlaceID"] = 3107097964
+                },
+                ["Art Gallery"] = {
+                    ["PlaceID"] = 1549086835
+                },
+                ["Black Friday"] = {
+                    ["PlaceID"] = 2591382751
+                },
+                ["Haunted Forest"] = {
+                    ["PlaceID"] = 2511620169
+                },
+                ["Transport"] = {
+                    ["PlaceID"] = 5431100846
+                },
+                ["Diamond Store"] = {
+                    ["PlaceID"] = 1448835396
+                },
+                ["R&B Bank"] = {
+                    ["PlaceID"] = 1213821265
+                },
+                ["Gift Factory"] = {
+                    ["PlaceID"] = 1269513822
+                },
+                ["Authority"] = {
+                    ["PlaceID"] = 1419274802
+                },
+                ["Nightclub"] = {
+                    ["PlaceID"] = 2840013718
+                },
+                ["The Depot"] = {
+                    ["PlaceID"] = 86300559848070
+                },
+                ["Brick Bank"] = {
+                    ["MappackID"] = 269515318
+                },
+                ["Rush Hour"] = {
+                    ["PlaceID"] = 10605039538
+                },
+                ["The Ozela Heist"] = {
+                    ["PlaceID"] = 6537140247
+                },
+                ["Shadow Raid"] = {
+                    ["PlaceID"] = 2088934656
+                },
+                ["Golden Mask Casino"] = {
+                    ["PlaceID"] = 1470780246
+                },
+                ["Jewelry Shop"] = {
+                    ["PlaceID"] = 2557847604
+                },
+                ["The Depot (Test Server)"] = {
+                    ["PlaceID"] = 102890428833660
+                }
+            }
+            local notortoheisttab = Window:NewTab("Heist")
+            local notortoheistsec = notortoheisttab:NewSection("", true)
+            for i, v in pairs(notorHeist) do
+                notortoheistsec:NewButton(tostring(i), "", function()
+                    game:GetService('TeleportService'):Teleport(v["PlaceID"])
+                end)
+            end
+        end)
+        NotorietyCriminalSec:NewToggle("Enable interactions", "", function(state)
+            enableinteractions = state
+            if state then
+                for _, v in pairs(game:GetDescendants()) do
+                    if v:IsA("ProximityPrompt") then
+                        task.spawn(function()
+                            local hb = game:GetService("RunService").Heartbeat:Connect(function()
+                                v.Enabled = true
+                            end)
+                            repeat
+                                task.wait(0.001)
+                            until not enableinteractions
+                            hb:Disconnect()
+                        end)
+                    end
+                end
+                notorinter = game.Workspace.DescendantAdded:Connect(function(descendant)
+                    if descendant:IsA("ProximityPrompt") then
+                        task.spawn(function()
+                            local hb = game:GetService("RunService").Heartbeat:Connect(function()
+                                descendant.Enabled = true
+                            end)
+                            repeat
+                                task.wait(0.001)
+                            until not enableinteractions
+                            hb:Disconnect()
+                        end)
+                    end
+                end)
+            else
+                if notorinter then
+                    notorinter:Disconnect()
+                    notorinter = nil
+                    for _, v in pairs(game:GetDescendants()) do
+                        if v:IsA("ProximityPrompt") then
+                            v.Enabled = false
+                        end
+                    end
+                end
+            end
+        end)
+        NotorietyCriminalSec:NewButton("INF Stamina", "", function()
+            game.Players.LocalPlayer.Character.MaxStamina.Value = math.huge
+            game.Players.LocalPlayer.Character.Stamina.Value = math.huge
+        end)
+        NotorietyCriminalSec:NewButton("Get Ammo Box", "", function()
+            for _, v in pairs(workspace.AmmoDrops:GetChildren()) do
+                if v.Name == "AmmoBox" then
+                    task.spawn(function()
+                        local lastboxframe = v.AmmoPart.CFrame
+                        v.AmmoPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("BasePart").CFrame
+                        task.wait(0.1)
+                        v.AmmoPart.CFrame = lastboxframe
+                    end)
+                end
+            end
+        end)
+        NotorietyCriminalSec:NewButton("Go to Keycard", "", function()
+            for i, v in pairs(game.Workspace.Map:GetChildren()) do
+                if v.Name == "KeyCard" then
+                    game.Players.LocalPlayer.Character:MoveTo(v.KeyCard.Position)
+                end
+            end
+        end)
+        NotorietyCriminalSec:NewButton("Mod weapons", "", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" and rawget(v, "AmmoMax") then
+                    rawset(v, "AmmoMax", 99999)
+                    rawset(v, "MagazineSize", 99999)
+                    rawset(v, "ReloadTime", 0.001)
+                    rawset(v, "LongerReloadTime", 0.001)
+                    rawset(v, "Damage", 99999)
+                    rawset(v, "ReloadSequence", {})
+                    rawset(v, "LongerReloadSequence", {})
+                end
+            end
+        end)
+        NotorietyCriminalSec:NewKeybind("Move Bags To Loot Vehicle", "", Enum.KeyCode.X, function(state)
+            for _, v in pairs(game.Workspace.Bags:GetChildren()) do
+                v:MoveTo(game.Workspace.BagSecuredArea.FloorPart.Position)
+            end
+        end)
+        NotorietyCriminalSec:NewKeybind("Bring Bags", "", Enum.KeyCode.Z, function(state)
+            for _, v in pairs(game.Workspace.Bags:GetChildren()) do
+                v:MoveTo(game.Players.LocalPlayer.Character.HumanoidRootPart.Position)
+            end
+        end)
+        NotorietyCriminalSec:NewButton("Get Body Bag", "", function()
+            game.Players.LocalPlayer.Character.BodyBags.Value = 100
+        end)
+        NotorietyCriminalSec:NewButton("Get Cable Ties", "", function()
+            game.Players.LocalPlayer.Character.CableTies.Value = 100
+        end)
+
+        local NotorPoliceRemove = nil
+        NotorietyPoliceSec:NewButton("Kill Police NPC", "", function()
+            for _,v in pairs(workspace.Police:GetChildren()) do
+                v.Humanoid.Health = 0
+                v.Humanoid.MaxHealth = 0
+            end
+        end)
+        NotorietyPoliceSec:NewButton("Remove NPC [PATCHED]", "", function()
+            for _,v in pairs(workspace:GetDescendants()) do
+                if v:IsA("Humanoid") and v.Parent then
+                    if not table.find(workspace.Criminals:GetChildren(), v.Parent) then
+                        task.spawn(function()
+                            v.Parent:MoveTo(Vector3.new(1000, -1000, 1000))
+                            v.Parent.PrimaryPart.Anchored = true
+                        end)
+                    end
+                end
+            end
+            NotorPoliceRemove = game.Workspace.DescendantAdded:Connect(function(v)
+                if v:IsA("Humanoid") and v.Parent then
+                    if not table.find(workspace.Criminals:GetChildren(), v.Parent) then
+                        task.spawn(function()
+                            v.Parent:MoveTo(Vector3.new(1000, -1000, 1000))
+                            v.Parent.PrimaryPart.Anchored = true
+                        end)
+                    end
+                end
+            end)
+        end)
+        
+        getgenv().NotorStuffEsp = {
+            Keys = false,
+            Loots = false,
+            Cameras = false,
+            Cops = false,
+            Citizens = false
+        }
+        local function NotorEsp(path, color)
+            for _, v in pairs(path:GetChildren()) do
+                if not v:FindFirstChild("Esp") then
+                    local outline = Instance.new("Highlight", v)
+                    outline.Name = "Esp"
+                    outline.Adornee = v
+                    outline.OutlineColor = color
+                    outline.OutlineTransparency = 0
+                    outline.FillTransparency = 0.9
+                    outline.FillColor = color
+                end
+            end
+            local fromadd = path.ChildAdded:Connect(function(v)
+                if not v:FindFirstChild("Esp") then
+                    local outline = Instance.new("Highlight", v)
+                    outline.Name = "Esp"
+                    outline.Adornee = v
+                    outline.OutlineColor = color
+                    outline.OutlineTransparency = 0
+                    outline.FillTransparency = 0.9
+                    outline.FillColor = color
+                end
+            end)
+            game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Not all objects will be highlighted due to the limit of numbers of highlight."; Duration=5;})
+            return fromadd
+        end
+        NotorietyEspSec:NewToggle("Key ESP", "", function(state)
+            getgenv().NotorStuffEsp.Keys = state
+            if state then task.spawn(function()
+                local fromadd = NotorEsp(workspace.Map.Keys, Color3.new(1,1,0))
+                repeat
+                    task.wait(0.1)
+                until not getgenv().NotorStuffEsp.Key
+                fromadd:Disconnect()
+                fromadd = nil
+                for _, v in pairs(workspace.Map.Keys:GetChildren()) do
+                    if v:FindFirstChild("Esp") then
+                        v:FindFirstChild("Esp"):Destroy()
+                    end
+                end
+            end) end
+        end)
+        NotorietyEspSec:NewToggle("Loot ESP", "", function(state)
+            getgenv().NotorStuffEsp.Loots = state
+            if state then task.spawn(function()
+                local fromadd = NotorEsp(game.Workspace.Lootables, Color3.new(0,1,0))
+                repeat
+                    task.wait(0.1)
+                until not getgenv().NotorStuffEsp.Loots
+                fromadd:Disconnect()
+                fromadd = nil
+                for _, v in pairs(game.Workspace.Lootables:GetChildren()) do
+                    if v:FindFirstChild("Esp") then
+                        v:FindFirstChild("Esp"):Destroy()
+                    end
+                end
+            end) end
+        end)
+        NotorietyEspSec:NewToggle("Camera ESP", "", function(state)
+            getgenv().NotorStuffEsp.Cameras = state
+            if state then task.spawn(function()
+                local fromadd = NotorEsp(game.Workspace.Cameras, Color3.new(1,0,0))
+                repeat
+                    task.wait(0.1)
+                until not getgenv().NotorStuffEsp.Cameras
+                fromadd:Disconnect()
+                fromadd = nil
+                for _, v in pairs(game.Workspace.Cameras:GetChildren()) do
+                    if v:FindFirstChild("Esp") then
+                        v:FindFirstChild("Esp"):Destroy()
+                    end
+                end
+            end) end
+        end)
+        NotorietyEspSec:NewToggle("Polices ESP", "", function(state)
+            getgenv().NotorStuffEsp.Cops = state
+            if state then task.spawn(function()
+                local fromadd = NotorEsp(game.Workspace.Police, Color3.new(1,0,0))
+                repeat
+                    task.wait(0.1)
+                until not getgenv().NotorStuffEsp.Cops
+                fromadd:Disconnect()
+                fromadd = nil
+                for _, v in pairs(game.Workspace.Police:GetChildren()) do
+                    if v:FindFirstChild("Esp") then
+                        v:FindFirstChild("Esp"):Destroy()
+                    end
+                end
+            end) end
+        end)
+        NotorietyEspSec:NewToggle("Citizens ESP", "", function(state)
+            getgenv().NotorStuffEsp.Citizens = state
+            if state then task.spawn(function()
+                local fromadd = NotorEsp(game.Workspace.Citizens, Color3.new(0,0,1))
+                repeat
+                    task.wait(0.1)
+                until not getgenv().NotorStuffEsp.Citizens
+                fromadd:Disconnect()
+                fromadd = nil
+                for _, v in pairs(game.Workspace.Citizens:GetChildren()) do
+                    if v:FindFirstChild("Esp") then
+                        v:FindFirstChild("Esp"):Destroy()
+                    end
+                end
+            end) end
+        end)
+        NotorietyEspSec:NewButton("Highlight Camera Mornitor", "", function()
+            local path = workspace.Map.SecurityAreas.CameraFeed or nil
+            if path then
+                if path:FindFirstChild("Esp") then
+                    path:FindFirstChild("Esp"):Destroy()
+                end
+                local outline = Instance.new("Highlight", path)
+                outline.Name = "Esp"
+                outline.Adornee = path
+                outline.OutlineColor = Color3.new(0,1,1)
+                outline.OutlineTransparency = 0
+                outline.FillTransparency = 0.9
+                outline.FillColor = Color3.new(0,1,1)
+                game.StarterGui:SetCore("SendNotification", {Title="Pro Bacon"; Text="Not all objects will be highlighted due to the limit of numbers of highlight."; Duration=5;})
+            end
+        end)
+
+        NotorietyOthers:NewButton("Vote Restart", "", function()
+            game:GetService("ReplicatedStorage").RS_Package.Remotes.VoteReset:FireServer()
+        end)
+    elseif Tab == "Depthless RPG" then
+        local dephlessrpgTab = Window:NewTab("Depthless RPG")
+        local dephlessrpgSec = dephlessrpgTab:NewSection("", true)
+
+        if getgenv().dephlessrpgAutoKill == nil then
+            getgenv().dephlessrpgAutoKill = false
+        end
+        dephlessrpgSec:NewToggle("Auto kill", "", function(state)
+            getgenv().dephlessrpgAutoKill = state
+            if state then
+                repeat
+                    for _,mob in pairs(workspace.Mobs:GetChildren()) do
+                        if mob:FindFirstChildOfClass("Humanoid") and game.Players.LocalPlayer.Character then
+                            if mob:FindFirstChildOfClass("Humanoid").Health > 0 and game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool") then
+                                game:GetService("ReplicatedStorage").Remotes.DamageMob:FireServer(mob, nil, game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Tool").Name)
+                                task.wait(0.001)
+                            end
+                        end
+                    end
+                    task.wait(0.001)
+                until not getgenv().dephlessrpgAutoKill
+            end
+        end, getgenv().dephlessrpgAutoKill)
+        dephlessrpgSec:NewButton("Mod Weapons", "", function()
+            for _, v in getgc(true) do
+                if type(v) == "table" then
+                    if (rawget(v, "Type") and rawget(v, "Damage") and rawget(v, "Cooldown")) then
+                        rawset(v, "Cooldown", 0.000)
+                        rawset(v, "Autofire", true)
+                        rawset(v, "Cost", nil)
+                        if rawget(v, "Ranged") then
+                            rawset(v.Ranged, "Velocity", 1000)
+                            rawset(v.Ranged, "Acceleration", Vector3.new(0,0,0))
+                            rawset(v.Ranged, "SpreadAngle", NumberRange.new(0,0))
+                            rawset(v.Ranged, "Pierce", 99)
+                        end
+                    end
+                    if rawget(v, "Potion") then
+                        rawset(v, "Potion", {Effect = "Instant", Duration = 99999, MaxTime = 9999999, Rate = 1, Stat = {LuckMulti = 100, HealthMulti = 100, GoldMulti = 100, DamageMulti = 100}})
+                    end
+                end
+            end
+        end)
+        getgenv().dephlessrpgautoheal = false
+        local dephlessrpghook = nil
+        --[[    IDK why not working
+        dephlessrpghook = hookmetamethod(game, "__namecall", function(Self, ...)
+            local Args = {...}
+            local NamecallMethod = getnamecallmethod()
+            if NamecallMethod == "FireServer" and Self.Name == "PlayerDamaged" and getgenv().dephlessrpgautoheal then
+                print(Self.Name)
+                return dephlessrpghook(Self, math.huge*-1)
+            end
+            return dephlessrpghook(Self, unpack(Args))
+        end)
+        ]]
+        dephlessrpgSec:NewToggle("AutoHeal", "", function(state)
+            getgenv().dephlessrpgautoheal = state
+            if state then
+                task.spawn(function()
+                    repeat
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("PlayerDamaged"):FireServer(math.huge*-1)
+                        task.wait(0.005)
+                    until not getgenv().dephlessrpgautoheal
+                end)
+            end
+        end)
+
+        local deaphrpgx, deaphrpgy, deaphrpgz
+        local function ChangeHitBoxDeaphrpg(x,y,z)
+            for _, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:FindFirstChild("Handle") then
+                    v.Handle.Size = Vector3.new(x, y, z)
+                    v.Handle.Transparency = 0.9
+                end
+            end
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Tool") and v:FindFirstChild("Handle") then
+                    v.Handle.CanCollide = false
+                    v.Handle.Size = Vector3.new(x, y, z)
+                    v.Handle.Transparency = 0.9
+                end
+            end
+        end
+        dephlessrpgSec:NewSlider("Hitbox.X", "Change the hitbox", 1000, 1, function(var)
+            deaphrpgx = var
+            ChangeHitBoxDeaphrpg(deaphrpgx, deaphrpgy, deaphrpgz)
+        end)
+        dephlessrpgSec:NewSlider("Hitbox.Y", "Change the hitbox", 1000, 1, function(var)
+            deaphrpgy = var
+            ChangeHitBoxDeaphrpg(deaphrpgx, deaphrpgy, deaphrpgz)
+        end)
+        dephlessrpgSec:NewSlider("Hitbox.Z", "Change the hitbox", 1000, 1, function(var)
+            deaphrpgz = var
+            ChangeHitBoxDeaphrpg(deaphrpgx, deaphrpgy, deaphrpgz)
+        end)
+        dephlessrpgSec:NewTextBox("Size", "Input Vector3", function(txt)
+            local vector3here = stringToVector3(txt)
+            print(vector3here)
+            deaphrpgx = vector3here.X
+            deaphrpgy = vector3here.Y
+            deaphrpgz = vector3here.Z
+            ChangeHitBoxDeaphrpg(vector3here.X, vector3here.Y, vector3here.Z)
         end)
     end
 end
