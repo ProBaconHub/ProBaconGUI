@@ -9,7 +9,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 27/7/24 (DD/MM/YY)
++ Last Update: 2/2/2025 (DD/MM/YY)
 
 ## Future Expects
 + More random games
