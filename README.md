@@ -9,38 +9,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + UI: Kavo UI
 + Creator: Pro Bacon
 + Languages supported: English
-+ Last Update: 27/7/24 (DD/MM/YY)  
++ Last Update: 27/7/24 (DD/MM/YY)
 
-### Supported games
-- [ ] Mad City: Chapter 2 (Outdated)  
-- [x] City Life (Some features might not work as expected)  
-- [x] Build A Boat (Fixed) 
-- [x] Sonic Speed Simulator  
-- [x] The Legend Of The Bone Sword  
-- [x] Punch Wall Simulator  
-- [x] Break In (Story)  
-- [ ] SendMeme(SMTYETDTT)  
-- [x] Base Battles! (Update soon!)  
-- [x] arm wrestling simulator  
-- [x] Wall Mining Sim  
-
-## Update Log
-+ Gui Loader V3  
-+ Checked BABFT script
-### Added
-#### BABFT
-+ Gold Block Auto Farm (Beta)
-### Removed
-#### Mad City
-+ The whole tab
-### Fixes
-#### BABFT
-+ Gold Auto Farm
-#### Launcher
-+ Http 404 error
-### Rework
-#### GUI
-+ Rework on how the system works
 ## Future Expects
 + More random games
 + Check scripts
