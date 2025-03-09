@@ -12,7 +12,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ProBaconHub/ProBaconG
 + Last Update: 2/2/2025 (DD/MM/YY)
 
 ## Future Expects
-+ Not future expects
++ No future expects
 
 > **_NOTE:_** This script will receive no further updates unless critical.  
 > **_NOTE:_** More information on GitBook: https://probacon-hub.gitbook.io/probaconhub/
